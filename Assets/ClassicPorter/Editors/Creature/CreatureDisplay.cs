@@ -27,12 +27,18 @@ public class CreatureDisplay : MonoBehaviour
 
     public LootDisplay lootDisplay;
 
+    public PropertyDisplay nameDisplay;
+    public PropertyDisplay varNameDisplay;
+
     public void DisplayCreature(ref CreatureData creature)
     {
-        if (natureResistanceDisplay)
-        {
-            natureResistanceDisplay.Setup(ref creature);
-        }
+        nameDisplay.Setup("Creature name: ", creature.name, UtilDefinitions.PropertyDisplayTypes.String);
+        varNameDisplay.Setup("Var name: ", creature.varName, UtilDefinitions.PropertyDisplayTypes.String);
+
+
+        if (natureResistanceDisplay) { natureResistanceDisplay.Setup(ref creature); }
+        if (characterAttributesDisplay) { characterAttributesDisplay.Setup(ref creature); }
+
     }
 
 }

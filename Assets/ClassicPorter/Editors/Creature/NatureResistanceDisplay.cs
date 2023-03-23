@@ -24,14 +24,15 @@ public class NatureResistanceDisplay : MonoBehaviour
     public Transform resistancePropertiesParent;
     public Dictionary<string, PropertyDisplay> controlledDisplays = new Dictionary<string, PropertyDisplay>();
 
-
+    CreatureData targetCreature;
 
     public void Setup(ref CreatureData creatureData)
     {
+        targetCreature = creatureData;
         foreach (NameFloatPair resistance in creatureData.natureResistance.resistances)
         {
             SetResistance(resistance.name, resistance.number.ToString());
-            print("Set resistance for "+creatureData.name+"'s display [ "+resistance.name+" ] = [ "+resistance.number.ToString()+" ]");
+            print("Set resistance for " + creatureData.name + "'s display [ " + resistance.name + " ] = [ " + resistance.number.ToString() + " ]");
 
             //if (controlledDisplays.TryGetValue(resistance.name, out PropertyDisplay display))
             //{
@@ -62,6 +63,8 @@ public class NatureResistanceDisplay : MonoBehaviour
             GameObject prefab = resistancePropertyPrefabOverride;
             if (!prefab) prefab = PortController.single.propertyDisplayPrefabSmall;
             PropertyDisplay newPropertyDisplay = PropertyDisplay.Spawn(resistanceName, resistanceValue, resistancePropertiesParent, prefab);
+            newPropertyDisplay.gameObject.name = resistanceName;
+            newPropertyDisplay.displayType = PropertyDisplayTypes.Float;
             controlledDisplays.Add(resistanceName, newPropertyDisplay);
         }
     }

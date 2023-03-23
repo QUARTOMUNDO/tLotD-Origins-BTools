@@ -62,4 +62,12 @@ namespace UtilDefinitions
 
     }
 
+    public delegate void DelString(string arg);
+    public delegate void DelStringString(string arg, string arg1);
+    public delegate void DelBool(bool arg);
+    public delegate void DelInt(int arg);
+    public delegate void DelFloat(float arg);
+
+    
+
 }

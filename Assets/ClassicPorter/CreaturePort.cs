@@ -225,31 +225,31 @@ public class NatureResistance
 [System.Serializable]
 public class CharacterAttributes
 {
-    public int baseLevel = 0;
-    public float attackPower = 0f;
-    public float bodyPower = 2.8f;
-    public bool inflictsBodyDamage = true;
-    public bool inflictsAttackDamage = false;
     public string normalSplash = "CrautaryusLight";
     public string weakSplash = "CrautaryusLight";
     public string defenceSplash = "CrautaryusLight";
     public string abnormalSplash = "CrautaryusLight";
+    public bool sufferCriticable = false;
+    public bool damagerCriticable = false;
+    public bool regenerable = false;
+    public bool degenerable = false;
+    public bool inflictsBodyDamage = true;
+    public bool inflictsAttackDamage = false;
+    public int baseLevel = 0;
+    public int pullTypeID = 0;
+    public float mysticalFactor = 100;
+    public float attackPower = 0f;
+    public float bodyPower = 2.8f;
     public float strengthFactor = 100f;
     public float resistanceFactor = 100f;
     public float efficiencyFactor = 100f;
     public float peripheralFactor = 25f;
-    public float mysticalFactor = 100;
-    public bool sufferCriticable = false;
-    public bool damagerCriticable = false;
     public float bodyDamageRepeatTime = 0.5f;
     public float bodyAttackWeight = 0.8f;
     public float bodySufferWeight = 0.4f;
     public float attackDamageRepeatTime = 0.5f;
     public float attackWeight = 0f;
     public float pullDirection = -55;
-    public int pullTypeID = 0;
-    public bool regenerable = false;
-    public bool degenerable = false;
 
     public CharacterAttributes()
     {

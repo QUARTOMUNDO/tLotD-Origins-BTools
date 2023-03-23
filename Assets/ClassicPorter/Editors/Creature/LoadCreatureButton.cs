@@ -28,7 +28,7 @@ public class LoadCreatureButton : MonoBehaviour
     }
 
 
-    private void LoadCreature()
+    public void LoadCreature()
     {
         if (creatureDisplay)
         {

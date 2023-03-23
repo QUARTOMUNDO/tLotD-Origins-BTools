@@ -22,12 +22,14 @@ public class CreatureEditorDisplay : MonoBehaviour
             Destroy(creatureButtonList.GetChild(i).gameObject, 0.1f);
         }
 
+        bool loadedDefault = false;
         foreach (CreatureData creature in creatures)
         {
             spawnedObject = Instantiate(loadCreatureButtonPrefab, creatureButtonList);
             if (spawnedObject.TryGetComponent(out spawnedButton))
             {
                 spawnedButton.Setup(creature, display);
+                if (!loadedDefault) { loadedDefault = true; spawnedButton.LoadCreature(); }
             }
         }
     }
