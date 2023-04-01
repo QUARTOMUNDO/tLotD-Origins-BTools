@@ -13,7 +13,7 @@ public class CreatureData
     {
         NatureResistance,
         CharacterAttributes,
-        BehaviourProperties,
+        BehaviorProperties,
         CreaturePhysics,
         Loot,
         CustomProperties
@@ -24,7 +24,7 @@ public class CreatureData
 
     public NatureResistance natureResistance;
     public CharacterAttributes characterAttributes;
-    public BehaviourProperties behaviourProperties;
+    public BehaviorProperties behaviorProperties;
     public CreaturePhysics creaturePhysics;
     public Loot loot;
 
@@ -34,7 +34,7 @@ public class CreatureData
     {
         natureResistance = new NatureResistance();
         characterAttributes = new CharacterAttributes();
-        behaviourProperties = new BehaviourProperties();
+        behaviorProperties = new BehaviorProperties();
         creaturePhysics = new CreaturePhysics();
         loot = new Loot();
     }
@@ -62,7 +62,7 @@ public class CreatureData
         //                break;
         //            case CreaturePropertyType.CharacterAttributes:
         //                break;
-        //            case CreaturePropertyType.BehaviourProperties:
+        //            case CreaturePropertyType.BehaviorProperties:
         //                break;
         //            case CreaturePropertyType.CreaturePhysics:
         //                break;
@@ -100,9 +100,9 @@ public class CreatureData
                     characterAttributes = new CharacterAttributes(property);
 
                     break;
-                case CreaturePropertyType.BehaviourProperties:
+                case CreaturePropertyType.BehaviorProperties:
 
-                    behaviourProperties = new BehaviourProperties(property);
+                    behaviorProperties = new BehaviorProperties(property);
 
                     break;
                 case CreaturePropertyType.CreaturePhysics:
@@ -220,6 +220,18 @@ public class NatureResistance
     public NatureResistance()
     {
     }
+
+    public NameFloatPair GetResistance(string resistanceName)
+    {
+        NameFloatPair result = new NameFloatPair(resistanceName, 0f);
+        for (int i = 0; i < resistances.Count; i++)
+        {
+            if (resistances[i].name == resistanceName) return resistances[i];
+        }
+        Debug.LogWarning("WARNING: Attempt to get resistance [ " + resistanceName + " ] from a creature failed. Returning default resistance");
+        return result;
+    }
+
 }
 
 [System.Serializable]
@@ -321,15 +333,19 @@ public class CharacterAttributes
 }
 
 [System.Serializable]
-public class BehaviourProperties
+public class BehaviorProperties
 {
-    public float timeAgonizing = 0;
     public bool retainDeath = false;
     public bool craven = false;
     public bool startAggressive = true;
     public bool naturallyAggressive = true;
     public bool racialAggressive = true;
     public bool naturallyProtector = false;
+    public bool groundAdapt = false;
+    public bool invertableCharacter = true;
+    public bool delayedInverted = false;
+    public int jumpFrame = 0;
+    public float timeAgonizing = 0f;
     public float actionsMaxRange = 2000f;
     public float patrolRange = 500f;
     public float followRange = 900f;
@@ -337,22 +353,18 @@ public class BehaviourProperties
     public float meleeRange = 100f;
     public float idealRange = 50f;
     public float speed = 4f;
-    public bool groundAdapt = false;
-    public bool invertableCharacter = true;
-    public bool delayedInverted = false;
     public float jumpFrequency = 0f;
-    public int jumpFrame = 0;
     public float patrolRangeRatio = 2f;
     public float actionDelay = 60f;
 
-    public BehaviourProperties()
+    public BehaviorProperties()
     {
     }
 
-    public BehaviourProperties(XElement property)
-    {
+    public BehaviorProperties(XElement property)
+    {        
         if (property != null && property.HasAttributes)
-        {
+        {            
             if (property.Attribute("timeAgonizing") != null) float.TryParse(property.Attribute("timeAgonizing").Value, out timeAgonizing);
             if (property.Attribute("retainDeath") != null) bool.TryParse(property.Attribute("retainDeath").Value, out retainDeath);
             if (property.Attribute("craven") != null) bool.TryParse(property.Attribute("craven").Value, out craven);

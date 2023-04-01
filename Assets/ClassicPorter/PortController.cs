@@ -17,6 +17,7 @@ public class PortController : MonoBehaviour
     //[Multiline(30)]
     public List<string> creatureNodes = new List<string>();
     public List<CreatureData> creatures = new List<CreatureData>();
+    public Dictionary<string, CreatureData> defaultCreatures = new Dictionary<string, CreatureData>();
 
     public static PortController single;
 
@@ -75,13 +76,15 @@ public class PortController : MonoBehaviour
     [ContextMenu("TestFunction2")]
     public void LoadCreaturesFromXml()
     {
-        
+
         //XmlDocument xmlDocument = new XmlDocument();
         //xmlDocument.Load(sourceXML_Path);
         XDocument xDocument = XDocument.Load(sourceXML_Path);
         XElement root = xDocument.Element("Characters");
         creatureNodes.Clear();
         creatures.Clear();
+        defaultCreatures.Clear();
+
         int n = 0;
         foreach (XElement creatureElement in root.Elements())
         {
@@ -91,8 +94,14 @@ public class PortController : MonoBehaviour
             {
                 creatures.Add(new CreatureData(creatureElement));
 
+                if (!defaultCreatures.TryAdd(creatureElement.Attribute("varName").Value, new CreatureData(creatureElement)))
+                {
+                    Debug.LogWarning("WARNING: attempt to load creature [ "+ creatureElement.Attribute("varName").Value+ " ] from Xml document [ "+sourceXML_Path+" ], " +
+                        "but a creature with the same varName was already declared before");
+                }
+
                 foreach (XElement propertyElement in creatureElement.Elements())
-                {                    
+                {
                     str += "\n  Property node: [ " + propertyElement.Name + " ]";
                     foreach (XAttribute propertyAttribute in propertyElement.Attributes())
                     {

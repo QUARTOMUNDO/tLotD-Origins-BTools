@@ -10,6 +10,7 @@ public class PropertyDisplay : MonoBehaviour
 
     public TMP_Text propertyName;
     public TMP_InputField propertyValue;
+    public TMP_Text propertyDefaultValue;
     public PropertyDisplayTypes displayType = PropertyDisplayTypes.String;
     string defaultValue = "";
 
@@ -21,13 +22,15 @@ public class PropertyDisplay : MonoBehaviour
     public event DelString OnValueChanged;
     public event DelStringString OnValueChanged2;
 
-    public void Setup(string newName, string newValue, PropertyDisplayTypes type = PropertyDisplayTypes.String)
+    public void Setup(string newName, string newValue, PropertyDisplayTypes type = PropertyDisplayTypes.String, string newDefaultValue = "DefaultValue")
     {
         propertyName.text = newName;
         propertyValue.text = newValue;
         displayType = type;
-        defaultValue = newValue;
-        propertyValue.onValueChanged.AddListener(ValueChangedResponse);
+        defaultValue = newDefaultValue;
+        propertyDefaultValue.text = defaultValue;
+        propertyValue.onEndEdit.AddListener(ValueChangedResponse);
+        UpdateTextColor();
     }
 
     public void Setup(NamePair namePair, PropertyDisplayTypes type = PropertyDisplayTypes.String)
@@ -83,17 +86,25 @@ public class PropertyDisplay : MonoBehaviour
             default:
                 break;
         }
-
+        UpdateTextColor();
         OnValueChanged?.Invoke(propertyValue.text);
         OnValueChanged2?.Invoke(gameObject.name, propertyValue.text);
 
     }
 
+    private void UpdateTextColor()
+    {
+        propertyValue.textComponent.color = propertyValue.text.Equals(defaultValue) ? Color.white : Color.green;
+    }
+
     private void OnDrawGizmosSelected()
     {
-        gameObject.name = previewPropertyName;
-        if (propertyName) propertyName.text = previewPropertyName;
-        if (propertyValue) propertyValue.text = previewPropertyValue;
+        if (enablePreview)
+        {
+            gameObject.name = previewPropertyName;
+            if (propertyName) propertyName.text = previewPropertyName;
+            if (propertyValue) propertyValue.text = previewPropertyValue;
+        }
     }
 
 }
