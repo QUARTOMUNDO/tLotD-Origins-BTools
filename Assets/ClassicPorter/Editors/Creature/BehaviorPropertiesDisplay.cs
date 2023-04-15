@@ -135,36 +135,31 @@ public class BehaviorPropertiesDisplay : MonoBehaviour
         }
     }
 
-    public void Setup(ref CreatureData creatureData)
+    public void Setup(ref CreatureEntry creatureEntry)
     {
-        targetCreature = creatureData;
-        if (!PortController.single.defaultCreatures.TryGetValue(creatureData.varName, out CreatureData defaultData))
-        {
-            Debug.LogWarning("WARNING: Failed to load defaults for creature [ " + creatureData.varName + " ], using ordinary defaults");
-            defaultData = new CreatureData();
-        }
+        targetCreature = creatureEntry;
 
-        retainDeath.Setup("retainDeath", creatureData.behaviorProperties.retainDeath.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.behaviorProperties.retainDeath.ToString());
-        craven.Setup("craven", creatureData.behaviorProperties.craven.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.behaviorProperties.craven.ToString());
-        startAggressive.Setup("startAggressive", creatureData.behaviorProperties.startAggressive.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.behaviorProperties.startAggressive.ToString());
-        naturallyAggressive.Setup("naturallyAggressive", creatureData.behaviorProperties.naturallyAggressive.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.behaviorProperties.naturallyAggressive.ToString());
-        racialAggressive.Setup("racialAggressive", creatureData.behaviorProperties.racialAggressive.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.behaviorProperties.racialAggressive.ToString());
-        naturallyProtector.Setup("naturallyProtector", creatureData.behaviorProperties.naturallyProtector.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.behaviorProperties.naturallyProtector.ToString());
-        groundAdapt.Setup("groundAdapt", creatureData.behaviorProperties.groundAdapt.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.behaviorProperties.groundAdapt.ToString());
-        invertableCharacter.Setup("invertableCharacter", creatureData.behaviorProperties.invertableCharacter.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.behaviorProperties.invertableCharacter.ToString());
-        delayedInverted.Setup("delayedInverted", creatureData.behaviorProperties.delayedInverted.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.behaviorProperties.delayedInverted.ToString());
-        jumpFrame.Setup("jumpFrame", creatureData.behaviorProperties.jumpFrame.ToString(), UtilDefinitions.PropertyDisplayTypes.Int, defaultData.behaviorProperties.jumpFrame.ToString());
-        timeAgonizing.Setup("timeAgonizing", creatureData.behaviorProperties.timeAgonizing.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.timeAgonizing.ToString());
-        actionsMaxRange.Setup("actionsMaxRange", creatureData.behaviorProperties.actionsMaxRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.actionsMaxRange.ToString());
-        patrolRange.Setup("patrolRange", creatureData.behaviorProperties.patrolRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.patrolRange.ToString());
-        followRange.Setup("followRange", creatureData.behaviorProperties.followRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.followRange.ToString());
-        combatRange.Setup("combatRange", creatureData.behaviorProperties.combatRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.combatRange.ToString());
-        meleeRange.Setup("meleeRange", creatureData.behaviorProperties.meleeRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.meleeRange.ToString());
-        idealRange.Setup("idealRange", creatureData.behaviorProperties.idealRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.idealRange.ToString());
-        speed.Setup("speed", creatureData.behaviorProperties.speed.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.speed.ToString());
-        jumpFrequency.Setup("jumpFrequency", creatureData.behaviorProperties.jumpFrequency.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.jumpFrequency.ToString());
-        patrolRangeRatio.Setup("patrolRangeRatio", creatureData.behaviorProperties.patrolRangeRatio.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.patrolRangeRatio.ToString());
-        actionDelay.Setup("actionDelay", creatureData.behaviorProperties.actionDelay.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.behaviorProperties.actionDelay.ToString());
+        retainDeath.Setup("retainDeath", creatureEntry.currentData.behaviorProperties.retainDeath.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.behaviorProperties.retainDeath.ToString(), creatureEntry.sourceData.behaviorProperties.retainDeath.ToString());
+        craven.Setup("craven", creatureEntry.currentData.behaviorProperties.craven.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.behaviorProperties.craven.ToString(), creatureEntry.sourceData.behaviorProperties.craven.ToString());
+        startAggressive.Setup("startAggressive", creatureEntry.currentData.behaviorProperties.startAggressive.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.behaviorProperties.startAggressive.ToString(), creatureEntry.sourceData.behaviorProperties.startAggressive.ToString());
+        naturallyAggressive.Setup("naturallyAggressive", creatureEntry.currentData.behaviorProperties.naturallyAggressive.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.behaviorProperties.naturallyAggressive.ToString(), creatureEntry.sourceData.behaviorProperties.naturallyAggressive.ToString());
+        racialAggressive.Setup("racialAggressive", creatureEntry.currentData.behaviorProperties.racialAggressive.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.behaviorProperties.racialAggressive.ToString(), creatureEntry.sourceData.behaviorProperties.racialAggressive.ToString());
+        naturallyProtector.Setup("naturallyProtector", creatureEntry.currentData.behaviorProperties.naturallyProtector.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.behaviorProperties.naturallyProtector.ToString(), creatureEntry.sourceData.behaviorProperties.naturallyProtector.ToString());
+        groundAdapt.Setup("groundAdapt", creatureEntry.currentData.behaviorProperties.groundAdapt.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.behaviorProperties.groundAdapt.ToString(), creatureEntry.sourceData.behaviorProperties.groundAdapt.ToString());
+        invertableCharacter.Setup("invertableCharacter", creatureEntry.currentData.behaviorProperties.invertableCharacter.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.behaviorProperties.invertableCharacter.ToString(), creatureEntry.sourceData.behaviorProperties.invertableCharacter.ToString());
+        delayedInverted.Setup("delayedInverted", creatureEntry.currentData.behaviorProperties.delayedInverted.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.behaviorProperties.delayedInverted.ToString(), creatureEntry.sourceData.behaviorProperties.delayedInverted.ToString());
+        jumpFrame.Setup("jumpFrame", creatureEntry.currentData.behaviorProperties.jumpFrame.ToString(), UtilDefinitions.PropertyDisplayTypes.Int, creatureEntry.defaultData.behaviorProperties.jumpFrame.ToString(), creatureEntry.sourceData.behaviorProperties.jumpFrame.ToString());
+        timeAgonizing.Setup("timeAgonizing", creatureEntry.currentData.behaviorProperties.timeAgonizing.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.timeAgonizing.ToString(), creatureEntry.sourceData.behaviorProperties.timeAgonizing.ToString());
+        actionsMaxRange.Setup("actionsMaxRange", creatureEntry.currentData.behaviorProperties.actionsMaxRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.actionsMaxRange.ToString(), creatureEntry.sourceData.behaviorProperties.actionsMaxRange.ToString());
+        patrolRange.Setup("patrolRange", creatureEntry.currentData.behaviorProperties.patrolRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.patrolRange.ToString(), creatureEntry.sourceData.behaviorProperties.patrolRange.ToString());
+        followRange.Setup("followRange", creatureEntry.currentData.behaviorProperties.followRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.followRange.ToString(), creatureEntry.sourceData.behaviorProperties.followRange.ToString());
+        combatRange.Setup("combatRange", creatureEntry.currentData.behaviorProperties.combatRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.combatRange.ToString(), creatureEntry.sourceData.behaviorProperties.combatRange.ToString());
+        meleeRange.Setup("meleeRange", creatureEntry.currentData.behaviorProperties.meleeRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.meleeRange.ToString(), creatureEntry.sourceData.behaviorProperties.meleeRange.ToString());
+        idealRange.Setup("idealRange", creatureEntry.currentData.behaviorProperties.idealRange.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.idealRange.ToString(), creatureEntry.sourceData.behaviorProperties.idealRange.ToString());
+        speed.Setup("speed", creatureEntry.currentData.behaviorProperties.speed.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.speed.ToString(), creatureEntry.sourceData.behaviorProperties.speed.ToString());
+        jumpFrequency.Setup("jumpFrequency", creatureEntry.currentData.behaviorProperties.jumpFrequency.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.jumpFrequency.ToString(), creatureEntry.sourceData.behaviorProperties.jumpFrequency.ToString());
+        patrolRangeRatio.Setup("patrolRangeRatio", creatureEntry.currentData.behaviorProperties.patrolRangeRatio.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.patrolRangeRatio.ToString(), creatureEntry.sourceData.behaviorProperties.patrolRangeRatio.ToString());
+        actionDelay.Setup("actionDelay", creatureEntry.currentData.behaviorProperties.actionDelay.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.behaviorProperties.actionDelay.ToString(), creatureEntry.sourceData.behaviorProperties.actionDelay.ToString());
     }
 
 }

@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class CreatureDisplay : MonoBehaviour
 {
-    [SerializeField] private CreatureData creatureData = null;
+    [SerializeField] private CreatureEntry creatureEntry = null;
 
-    public CreatureData CreatureData
+    public CreatureEntry CreatureEntry_P
     {
-        get => creatureData; set
+        get => creatureEntry; set
         {
-            creatureData = value;
-            if (creatureData != null)
+            creatureEntry = value;
+            if (creatureEntry != null)
             {
-                DisplayCreature(ref creatureData);
+                DisplayCreature(ref creatureEntry);
             }
         }
     }
@@ -30,16 +30,17 @@ public class CreatureDisplay : MonoBehaviour
     public PropertyDisplay nameDisplay;
     public PropertyDisplay varNameDisplay;
 
-    public void DisplayCreature(ref CreatureData creature)
+    public void DisplayCreature(ref CreatureEntry creature)
     {
-        if (!PortController.single.defaultCreatures.TryGetValue(creatureData.varName, out CreatureData defaultData))
-        {
-            Debug.LogWarning("WARNING: Failed to load defaults for creature [ " + creatureData.varName + " ], using ordinary defaults");
-            defaultData = new CreatureData();
-        }
+        //if (!PortController.single.creatures.TryGetValue(creatureEntry.VarName, out CreatureEntry entry))
+        //{
+        //    entry = new CreatureEntry(new CreatureData(), new CreatureData(), new CreatureData());
+        //}
+        if (!creature.defaultData) Debug.LogWarning("WARNING: Failed to load DEFAULT data for creature [ " + creatureEntry.VarName + " ], using ordinary defaults");
+        if (!creature.sourceData) Debug.LogWarning("WARNING: Failed to load SOURCE data for creature [ " + creatureEntry.VarName + " ], using ordinary defaults");
 
-        nameDisplay.Setup("Creature name: ", creature.name, UtilDefinitions.PropertyDisplayTypes.String, defaultData.name);
-        varNameDisplay.Setup("Var name: ", creature.varName, UtilDefinitions.PropertyDisplayTypes.String, defaultData.varName);
+        nameDisplay.Setup("Creature name: ", creature.currentData.name, UtilDefinitions.PropertyDisplayTypes.String, creature.defaultData.name, creature.sourceData.name);
+        varNameDisplay.Setup("Var name: ", creature.VarName, UtilDefinitions.PropertyDisplayTypes.String, creature.VarName);
 
         if (natureResistanceDisplay) { natureResistanceDisplay.Setup(ref creature); }
         if (characterAttributesDisplay) { characterAttributesDisplay.Setup(ref creature); }

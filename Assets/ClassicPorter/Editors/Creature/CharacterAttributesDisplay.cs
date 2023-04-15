@@ -101,40 +101,36 @@ public class CharacterAttributesDisplay : MonoBehaviour
         }
     }
 
-    public void Setup(ref CreatureData creatureData)
+    public void Setup(ref CreatureEntry creatureEntry)
     {
-        targetCreature = creatureData;
-        if (!PortController.single.defaultCreatures.TryGetValue(creatureData.varName, out CreatureData defaultData))
-        {
-            Debug.LogWarning("WARNING: Failed to load defaults for creature [ " + creatureData.varName + " ], using ordinary defaults");
-            defaultData = new CreatureData();
-        }
+        targetCreature = creatureEntry;
 
-        normalSplash.Setup("normalSplash", creatureData.characterAttributes.normalSplash, UtilDefinitions.PropertyDisplayTypes.String, defaultData.characterAttributes.normalSplash.ToString());
-        weakSplash.Setup("weakSplash", creatureData.characterAttributes.weakSplash, UtilDefinitions.PropertyDisplayTypes.String, defaultData.characterAttributes.weakSplash.ToString());
-        defenceSplash.Setup("defenceSplash", creatureData.characterAttributes.defenceSplash, UtilDefinitions.PropertyDisplayTypes.String, defaultData.characterAttributes.defenceSplash.ToString());
-        abnormalSplash.Setup("abnormalSplash", creatureData.characterAttributes.abnormalSplash, UtilDefinitions.PropertyDisplayTypes.String, defaultData.characterAttributes.abnormalSplash.ToString());
-        sufferCriticable.Setup("sufferCriticable", creatureData.characterAttributes.sufferCriticable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.characterAttributes.sufferCriticable.ToString());
-        damagerCriticable.Setup("damagerCriticable", creatureData.characterAttributes.damagerCriticable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.characterAttributes.damagerCriticable.ToString());
-        regenerable.Setup("regenerable", creatureData.characterAttributes.regenerable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.characterAttributes.regenerable.ToString());
-        degenerable.Setup("degenerable", creatureData.characterAttributes.degenerable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.characterAttributes.degenerable.ToString());
-        inflictsBodyDamage.Setup("inflictsBodyDamage", creatureData.characterAttributes.inflictsBodyDamage.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.characterAttributes.inflictsBodyDamage.ToString());
-        inflictsAttackDamage.Setup("inflictsAttackDamage", creatureData.characterAttributes.inflictsAttackDamage.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, defaultData.characterAttributes.inflictsAttackDamage.ToString());
-        baseLevel.Setup("baseLevel", creatureData.characterAttributes.baseLevel.ToString(), UtilDefinitions.PropertyDisplayTypes.Int, defaultData.characterAttributes.baseLevel.ToString());
-        pullTypeID.Setup("pullTypeID", creatureData.characterAttributes.pullTypeID.ToString(), UtilDefinitions.PropertyDisplayTypes.Int, defaultData.characterAttributes.pullTypeID.ToString());
-        mysticalFactor.Setup("mysticalFactor", creatureData.characterAttributes.mysticalFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.mysticalFactor.ToString());
-        attackPower.Setup("attackPower", creatureData.characterAttributes.attackPower.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.attackPower.ToString());
-        bodyPower.Setup("bodyPower", creatureData.characterAttributes.bodyPower.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.bodyPower.ToString());
-        strengthFactor.Setup("strengthFactor", creatureData.characterAttributes.strengthFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.strengthFactor.ToString());
-        resistanceFactor.Setup("resistanceFactor", creatureData.characterAttributes.resistanceFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.resistanceFactor.ToString());
-        efficiencyFactor.Setup("efficiencyFactor", creatureData.characterAttributes.efficiencyFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.efficiencyFactor.ToString());
-        peripheralFactor.Setup("peripheralFactor", creatureData.characterAttributes.peripheralFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.peripheralFactor.ToString());
-        bodyDamageRepeatTime.Setup("bodyDamageRepeatTime", creatureData.characterAttributes.bodyDamageRepeatTime.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.bodyDamageRepeatTime.ToString());
-        bodyAttackWeight.Setup("bodyAttackWeight", creatureData.characterAttributes.bodyAttackWeight.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.bodyAttackWeight.ToString());
-        bodySufferWeight.Setup("bodySufferWeight", creatureData.characterAttributes.bodySufferWeight.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.bodySufferWeight.ToString());
-        attackDamageRepeatTime.Setup("attackDamageRepeatTime", creatureData.characterAttributes.attackDamageRepeatTime.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.attackDamageRepeatTime.ToString());
-        attackWeight.Setup("attackWeight", creatureData.characterAttributes.attackWeight.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.attackWeight.ToString());
-        pullDirection.Setup("pullDirection", creatureData.characterAttributes.pullDirection.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, defaultData.characterAttributes.pullDirection.ToString());
+
+        normalSplash.Setup("normalSplash", creatureEntry.currentData.characterAttributes.normalSplash, UtilDefinitions.PropertyDisplayTypes.String, creatureEntry.defaultData.characterAttributes.normalSplash.ToString(), creatureEntry.sourceData.characterAttributes.normalSplash.ToString());
+        weakSplash.Setup("weakSplash", creatureEntry.currentData.characterAttributes.weakSplash, UtilDefinitions.PropertyDisplayTypes.String, creatureEntry.defaultData.characterAttributes.weakSplash.ToString(), creatureEntry.sourceData.characterAttributes.weakSplash.ToString());
+        defenceSplash.Setup("defenceSplash", creatureEntry.currentData.characterAttributes.defenceSplash, UtilDefinitions.PropertyDisplayTypes.String, creatureEntry.defaultData.characterAttributes.defenceSplash.ToString(), creatureEntry.sourceData.characterAttributes.defenceSplash.ToString());
+        abnormalSplash.Setup("abnormalSplash", creatureEntry.currentData.characterAttributes.abnormalSplash, UtilDefinitions.PropertyDisplayTypes.String, creatureEntry.defaultData.characterAttributes.abnormalSplash.ToString(), creatureEntry.sourceData.characterAttributes.abnormalSplash.ToString());
+        sufferCriticable.Setup("sufferCriticable", creatureEntry.currentData.characterAttributes.sufferCriticable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.sufferCriticable.ToString(), creatureEntry.sourceData.characterAttributes.sufferCriticable.ToString());
+        damagerCriticable.Setup("damagerCriticable", creatureEntry.currentData.characterAttributes.damagerCriticable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.damagerCriticable.ToString(), creatureEntry.sourceData.characterAttributes.damagerCriticable.ToString());
+        regenerable.Setup("regenerable", creatureEntry.currentData.characterAttributes.regenerable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.regenerable.ToString(), creatureEntry.sourceData.characterAttributes.regenerable.ToString());
+        degenerable.Setup("degenerable", creatureEntry.currentData.characterAttributes.degenerable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.degenerable.ToString(), creatureEntry.sourceData.characterAttributes.degenerable.ToString());
+        inflictsBodyDamage.Setup("inflictsBodyDamage", creatureEntry.currentData.characterAttributes.inflictsBodyDamage.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.inflictsBodyDamage.ToString(), creatureEntry.sourceData.characterAttributes.inflictsBodyDamage.ToString());
+        inflictsAttackDamage.Setup("inflictsAttackDamage", creatureEntry.currentData.characterAttributes.inflictsAttackDamage.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.inflictsAttackDamage.ToString(), creatureEntry.sourceData.characterAttributes.inflictsAttackDamage.ToString());
+        baseLevel.Setup("baseLevel", creatureEntry.currentData.characterAttributes.baseLevel.ToString(), UtilDefinitions.PropertyDisplayTypes.Int, creatureEntry.defaultData.characterAttributes.baseLevel.ToString(), creatureEntry.sourceData.characterAttributes.baseLevel.ToString());
+        pullTypeID.Setup("pullTypeID", creatureEntry.currentData.characterAttributes.pullTypeID.ToString(), UtilDefinitions.PropertyDisplayTypes.Int, creatureEntry.defaultData.characterAttributes.pullTypeID.ToString(), creatureEntry.sourceData.characterAttributes.pullTypeID.ToString());
+        mysticalFactor.Setup("mysticalFactor", creatureEntry.currentData.characterAttributes.mysticalFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.mysticalFactor.ToString(), creatureEntry.sourceData.characterAttributes.mysticalFactor.ToString());
+        attackPower.Setup("attackPower", creatureEntry.currentData.characterAttributes.attackPower.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.attackPower.ToString(), creatureEntry.sourceData.characterAttributes.attackPower.ToString());
+        bodyPower.Setup("bodyPower", creatureEntry.currentData.characterAttributes.bodyPower.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodyPower.ToString(), creatureEntry.sourceData.characterAttributes.bodyPower.ToString());
+        strengthFactor.Setup("strengthFactor", creatureEntry.currentData.characterAttributes.strengthFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.strengthFactor.ToString(), creatureEntry.sourceData.characterAttributes.strengthFactor.ToString());
+        resistanceFactor.Setup("resistanceFactor", creatureEntry.currentData.characterAttributes.resistanceFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.resistanceFactor.ToString(), creatureEntry.sourceData.characterAttributes.resistanceFactor.ToString());
+        efficiencyFactor.Setup("efficiencyFactor", creatureEntry.currentData.characterAttributes.efficiencyFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.efficiencyFactor.ToString(), creatureEntry.sourceData.characterAttributes.efficiencyFactor.ToString());
+        peripheralFactor.Setup("peripheralFactor", creatureEntry.currentData.characterAttributes.peripheralFactor.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.peripheralFactor.ToString(), creatureEntry.sourceData.characterAttributes.peripheralFactor.ToString());
+        bodyDamageRepeatTime.Setup("bodyDamageRepeatTime", creatureEntry.currentData.characterAttributes.bodyDamageRepeatTime.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodyDamageRepeatTime.ToString(), creatureEntry.sourceData.characterAttributes.bodyDamageRepeatTime.ToString());
+        bodyAttackWeight.Setup("bodyAttackWeight", creatureEntry.currentData.characterAttributes.bodyAttackWeight.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodyAttackWeight.ToString(), creatureEntry.sourceData.characterAttributes.bodyAttackWeight.ToString());
+        bodySufferWeight.Setup("bodySufferWeight", creatureEntry.currentData.characterAttributes.bodySufferWeight.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodySufferWeight.ToString(), creatureEntry.sourceData.characterAttributes.bodySufferWeight.ToString());
+        attackDamageRepeatTime.Setup("attackDamageRepeatTime", creatureEntry.currentData.characterAttributes.attackDamageRepeatTime.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.attackDamageRepeatTime.ToString(), creatureEntry.sourceData.characterAttributes.attackDamageRepeatTime.ToString());
+        attackWeight.Setup("attackWeight", creatureEntry.currentData.characterAttributes.attackWeight.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.attackWeight.ToString(), creatureEntry.sourceData.characterAttributes.attackWeight.ToString());
+        pullDirection.Setup("pullDirection", creatureEntry.currentData.characterAttributes.pullDirection.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.pullDirection.ToString(), creatureEntry.sourceData.characterAttributes.pullDirection.ToString());
     }
 
     private void OnDrawGizmosSelected()

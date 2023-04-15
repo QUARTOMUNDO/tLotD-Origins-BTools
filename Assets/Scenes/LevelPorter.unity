@@ -633,12 +633,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2db45d0958689f4ca3c7e3600a8a409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugMode: 0
   propertyDisplayPrefab: {fileID: 1496110219927115149, guid: 94fc1f952acd8f444bd5a474c7239d1f, type: 3}
   propertyDisplayPrefabSmall: {fileID: 1496110219927115149, guid: 2be3dc0c533dd5e429ca4d3177c0000f, type: 3}
-  sourceXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/CharacterProperties_uncompressed.xml
-  modifiedXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/test.xml
+  defaultXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/CharacterProperties_uncompressed.xml
+  sourceXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/CharacterProperties_uncompressed_Modifiable.xml
+  outputXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/
   creatureNodes: []
-  creatures: []
+  creaturesLoaded: []
 --- !u!1 &940193323
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,16 +8,20 @@ using System;
 
 public class PortController : MonoBehaviour
 {
-
+    [Header("DEBUG")]
+    public bool debugMode = false;
+    [Header("CONFIG")]
     public GameObject propertyDisplayPrefab;
     public GameObject propertyDisplayPrefabSmall;
+    public string defaultXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/Test.xml";
     public string sourceXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/Test.xml";
-    public string modifiedXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/";
+    public string outputXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/";
 
     //[Multiline(30)]
     public List<string> creatureNodes = new List<string>();
-    public List<CreatureData> creatures = new List<CreatureData>();
+    public List<CreatureData> creaturesLoaded = new List<CreatureData>();
     public Dictionary<string, CreatureData> defaultCreatures = new Dictionary<string, CreatureData>();
+    public Dictionary<string, CreatureEntry> creatures = new Dictionary<string, CreatureEntry>();
 
     public static PortController single;
 
@@ -29,7 +33,8 @@ public class PortController : MonoBehaviour
         }
         single = this;
 
-        LoadCreaturesFromXml();
+        //LoadCreaturesFromXml();
+        LoadCreatures();
 
     }
 
@@ -66,8 +71,8 @@ public class PortController : MonoBehaviour
         print("print 3: [" + leg3.Attributes.GetNamedItem("state") + "]");
         print("print 4: [" + leg4.Attributes.GetNamedItem("state") == null + "]");
         xmlDocument.AppendChild(root);
-        xmlDocument.Save(modifiedXML_Path);
-        if (File.Exists(modifiedXML_Path))
+        xmlDocument.Save(outputXML_Path);
+        if (File.Exists(outputXML_Path))
         {
             print("Success");
         }
@@ -82,7 +87,7 @@ public class PortController : MonoBehaviour
         XDocument xDocument = XDocument.Load(sourceXML_Path);
         XElement root = xDocument.Element("Characters");
         creatureNodes.Clear();
-        creatures.Clear();
+        creaturesLoaded.Clear();
         defaultCreatures.Clear();
 
         int n = 0;
@@ -92,11 +97,11 @@ public class PortController : MonoBehaviour
             //string str = "[ " + creatureElement.Attributes.GetNamedItem("varName").Value + " ] " + creatureElement.Attributes.GetNamedItem("name").Value + "\n";
             if (creatureElement.HasElements)
             {
-                creatures.Add(new CreatureData(creatureElement));
+                creaturesLoaded.Add(new CreatureData(creatureElement));
 
                 if (!defaultCreatures.TryAdd(creatureElement.Attribute("varName").Value, new CreatureData(creatureElement)))
                 {
-                    Debug.LogWarning("WARNING: attempt to load creature [ "+ creatureElement.Attribute("varName").Value+ " ] from Xml document [ "+sourceXML_Path+" ], " +
+                    Debug.LogWarning("WARNING: attempt to load creature [ " + creatureElement.Attribute("varName").Value + " ] from Xml document [ " + sourceXML_Path + " ], " +
                         "but a creature with the same varName was already declared before");
                 }
 
@@ -147,6 +152,116 @@ public class PortController : MonoBehaviour
         #endregion
 
     }
+
+    public void LoadCreatures()
+    {
+        XDocument xDocSource = XDocument.Load(sourceXML_Path);
+        creaturesLoaded.Clear();
+        defaultCreatures.Clear();
+
+        creatures.Clear();
+        //Loading defaults
+        LoadCreatureDefaults(defaultXML_Path);
+        //Loading source and current
+        LoadCreatureFile(sourceXML_Path, true);
+    }
+
+    private void LoadCreatureDefaults(string path)
+    {
+        XDocument xDoc = XDocument.Load(path);
+        CreatureEntry creatureEntry = null;
+        CreatureData creatureData = null;
+        int n = 0;
+        foreach (XElement creatureElement in xDoc.Element("Characters").Elements())
+        {
+            string str = "[ " + creatureElement.Attribute("varName").Value + " ] " + creatureElement.Attribute("name").Value + "\n";
+
+            if (creatureElement.HasElements)
+            {
+                creatureData = new CreatureData(creatureElement);
+                if (creatures.TryGetValue(creatureElement.Attribute("varName").Value, out creatureEntry))
+                {
+                    if (creatureEntry.defaultData)
+                    {
+                        Debug.LogWarning("WARNING: attempt to load DEFAULTS for creature [ " + creatureElement.Attribute("varName").Value
+                            + " ] from Xml document [ " + path + " ], "
+                            + "but a creature with the same varName was already declared before");
+                    }
+                    creatureEntry.defaultData = creatureData;
+                }
+                else
+                {
+                    creatures.Add(creatureElement.Attribute("varName").Value, new CreatureEntry(defaultData: creatureData));
+                }
+
+                //DEBUG
+                if (debugMode)
+                {
+                    foreach (XElement propertyElement in creatureElement.Elements())
+                    {
+                        str += "\n  Property node: [ " + propertyElement.Name + " ]";
+                        foreach (XAttribute propertyAttribute in propertyElement.Attributes())
+                        {
+                            str += "\n  " + propertyAttribute.Name + " = " + propertyAttribute.Value;
+                        }
+                    }
+                }
+
+            }
+            if (debugMode) print("Creature [ " + n + " ] \n" + str);
+            n++;
+        }
+    }
+
+    private void LoadCreatureFile(string path, bool overrideCurrent = true)
+    {
+        XDocument xDoc = XDocument.Load(path);
+        CreatureEntry creatureEntry = null;
+        CreatureData creatureData = null;
+        int n = 0;
+        foreach (XElement creatureElement in xDoc.Element("Characters").Elements())
+        {
+            string str = "[ " + creatureElement.Attribute("varName").Value + " ] " + creatureElement.Attribute("name").Value + "\n";
+
+            if (creatureElement.HasElements)
+            {
+                creatureData = new CreatureData(creatureElement);
+                if (creatures.TryGetValue(creatureElement.Attribute("varName").Value, out creatureEntry))
+                {
+                    if (creatureEntry.sourceData)
+                    {
+                        Debug.LogWarning("WARNING: attempt to load SOURCE for creature [ " + creatureElement.Attribute("varName").Value
+                            + " ] from Xml document [ " + path + " ], "
+                            + "but a creature with the same varName was already declared before");
+                    }
+                    creatureEntry.sourceData = creatureData;
+                }
+                else
+                {
+                    creatureEntry = new CreatureEntry(sourceData: creatureData);
+                    creatures.Add(creatureElement.Attribute("varName").Value, creatureEntry);
+                }
+                if (overrideCurrent) creatureEntry.currentData = new CreatureData(creatureElement);
+
+                //DEBUG
+                if (debugMode)
+                {
+                    foreach (XElement propertyElement in creatureElement.Elements())
+                    {
+                        str += "\n  Property node: [ " + propertyElement.Name + " ]";
+                        foreach (XAttribute propertyAttribute in propertyElement.Attributes())
+                        {
+                            str += "\n  " + propertyAttribute.Name + " = " + propertyAttribute.Value;
+                        }
+                    }
+                }
+
+            }
+            if (debugMode) print("Creature [ " + n + " ] \n" + str);
+            n++;
+        }
+    }
+
 
     /*
      ------------------------------------------------------------------------

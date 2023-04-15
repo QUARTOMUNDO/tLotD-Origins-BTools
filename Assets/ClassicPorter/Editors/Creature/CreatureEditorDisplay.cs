@@ -10,10 +10,10 @@ public class CreatureEditorDisplay : MonoBehaviour
 
     public void SetupFromController()
     {
-        Setup(PortController.single.creatures);
+        Setup(new List<CreatureEntry>(PortController.single.creatures.Values));
     }
 
-    public void Setup(List<CreatureData> creatures)
+    public void Setup(List<CreatureEntry> creatures)
     {
         GameObject spawnedObject;
         LoadCreatureButton spawnedButton;
@@ -23,7 +23,7 @@ public class CreatureEditorDisplay : MonoBehaviour
         }
 
         bool loadedDefault = false;
-        foreach (CreatureData creature in creatures)
+        foreach (CreatureEntry creature in creatures)
         {
             spawnedObject = Instantiate(loadCreatureButtonPrefab, creatureButtonList);
             if (spawnedObject.TryGetComponent(out spawnedButton))

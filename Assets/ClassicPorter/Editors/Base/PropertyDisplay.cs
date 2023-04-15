@@ -11,8 +11,10 @@ public class PropertyDisplay : MonoBehaviour
     public TMP_Text propertyName;
     public TMP_InputField propertyValue;
     public TMP_Text propertyDefaultValue;
+    public TMP_Text propertySourceValue;
     public PropertyDisplayTypes displayType = PropertyDisplayTypes.String;
     string defaultValue = "";
+    string sourceValue = "";
 
     [Header("Preview")]
     public bool enablePreview = true;
@@ -22,13 +24,15 @@ public class PropertyDisplay : MonoBehaviour
     public event DelString OnValueChanged;
     public event DelStringString OnValueChanged2;
 
-    public void Setup(string newName, string newValue, PropertyDisplayTypes type = PropertyDisplayTypes.String, string newDefaultValue = "DefaultValue")
+    public void Setup(string newName, string newValue, PropertyDisplayTypes type = PropertyDisplayTypes.String, string newDefaultValue = "DefaultValue", string newSourceValue = "SourceValue")
     {
         propertyName.text = newName;
         propertyValue.text = newValue;
         displayType = type;
         defaultValue = newDefaultValue;
+        sourceValue = newSourceValue;
         propertyDefaultValue.text = defaultValue;
+        propertySourceValue.text = sourceValue;
         propertyValue.onEndEdit.AddListener(ValueChangedResponse);
         UpdateTextColor();
     }
@@ -94,7 +98,9 @@ public class PropertyDisplay : MonoBehaviour
 
     private void UpdateTextColor()
     {
-        propertyValue.textComponent.color = propertyValue.text.Equals(defaultValue) ? Color.white : Color.green;
+        if (propertyValue.text.Equals(defaultValue)){propertyValue.textComponent.color = Color.white; return;}
+        if (propertyValue.text.Equals(sourceValue)){propertyValue.textComponent.color = Color.blue; return;}
+        propertyValue.textComponent.color = Color.green;        
     }
 
     private void OnDrawGizmosSelected()

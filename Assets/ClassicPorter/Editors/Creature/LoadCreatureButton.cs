@@ -20,7 +20,7 @@ public class LoadCreatureButton : MonoBehaviour
         if (button) button.onClick.AddListener(LoadCreature);
     }
 
-    public void Setup(CreatureData creatureData, CreatureDisplay display)
+    public void Setup(CreatureEntry creatureData, CreatureDisplay display)
     {
         creature = creatureData;
         creatureDisplay = display;
@@ -32,7 +32,7 @@ public class LoadCreatureButton : MonoBehaviour
     {
         if (creatureDisplay)
         {
-            creatureDisplay.CreatureData = creature;
+            creatureDisplay.CreatureEntry_P = CreatureEntry.Get(creature.varName);
         }
     }
 }

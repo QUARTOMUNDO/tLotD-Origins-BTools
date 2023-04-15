@@ -155,6 +155,8 @@ public class CreatureData
 
     #endregion
 
+    public static implicit operator bool(CreatureData a) { return a != null; }
+
     #region Creature to Xml
 
 

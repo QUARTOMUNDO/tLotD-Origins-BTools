@@ -11,5 +11,5 @@ public class ProgressLog : ScriptableObject
     public string date = "day/month/year";
     public float hours = 0f;
     public float minutes = 0f;
-    [Multiline(15)]public string details = "did this thing";
+    [Multiline(20)]public string details = "did this thing";
 }
