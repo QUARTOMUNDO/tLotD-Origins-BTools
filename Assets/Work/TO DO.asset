@@ -16,13 +16,7 @@ MonoBehaviour:
   date: ???
   hours: 0
   minutes: 0
-  details: 'Implement loot and custom properties
-
-    Display, edit and save structure
-
-
-    Implement
-    Save and Export button
+  details: 'Implement custom properties
 
 
     Have buttons to return to Source value

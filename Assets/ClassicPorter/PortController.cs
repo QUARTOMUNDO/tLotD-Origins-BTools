@@ -5,6 +5,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 using System;
+using UtilDefinitions;
 
 public class PortController : MonoBehaviour
 {
@@ -15,13 +16,15 @@ public class PortController : MonoBehaviour
     public GameObject propertyDisplayPrefabSmall;
     public string defaultXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/Test.xml";
     public string sourceXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/Test.xml";
-    public string outputXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/";
+    public string exportXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/";
 
     //[Multiline(30)]
     public List<string> creatureNodes = new List<string>();
     public List<CreatureData> creaturesLoaded = new List<CreatureData>();
     public Dictionary<string, CreatureData> defaultCreatures = new Dictionary<string, CreatureData>();
     public Dictionary<string, CreatureEntry> creatures = new Dictionary<string, CreatureEntry>();
+
+    public event DelPortController OnCreatureReload;
 
     public static PortController single;
 
@@ -71,8 +74,8 @@ public class PortController : MonoBehaviour
         print("print 3: [" + leg3.Attributes.GetNamedItem("state") + "]");
         print("print 4: [" + leg4.Attributes.GetNamedItem("state") == null + "]");
         xmlDocument.AppendChild(root);
-        xmlDocument.Save(outputXML_Path);
-        if (File.Exists(outputXML_Path))
+        xmlDocument.Save(exportXML_Path);
+        if (File.Exists(exportXML_Path))
         {
             print("Success");
         }
@@ -164,6 +167,7 @@ public class PortController : MonoBehaviour
         LoadCreatureDefaults(defaultXML_Path);
         //Loading source and current
         LoadCreatureFile(sourceXML_Path, true);
+        OnCreatureReload?.Invoke(this);
     }
 
     private void LoadCreatureDefaults(string path)
@@ -260,6 +264,45 @@ public class PortController : MonoBehaviour
             if (debugMode) print("Creature [ " + n + " ] \n" + str);
             n++;
         }
+    }
+
+    public void SaveCreaturesToSource()
+    {
+        ExportCreaturesToXmlAtPath(sourceXML_Path);
+        Debug.Log("Saved [ " + creatures.Keys.Count + " ] creatures to source Xml [" + sourceXML_Path + "]");
+    }
+
+    public void ExportCreaturesToXml()
+    {
+        ExportCreaturesToXmlAtPath(exportXML_Path);
+        Debug.Log("Exported [ " + creatures.Keys.Count + " ] creatures to output Xml [" + exportXML_Path + "]");
+    }
+
+    private void ExportCreaturesToXmlAtPath(string path)
+    {
+        FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
+        XDocument doc = new XDocument();
+        XElement root = new XElement("Characters");
+
+        foreach (CreatureEntry entry in creatures.Values)
+        {
+            root.Add(CreatureData.XmlFromCreature(entry.currentData));
+        }
+
+        doc.Add(root);
+        doc.Save(stream);
+        stream.Close();
+        LoadCreatures();
+    }
+
+    public void RequestCreatureReload()
+    {
+        OnCreatureReload?.Invoke(this);
+    }
+
+    public void Quit()
+    {
+        Application.Quit(0);
     }
 
 

@@ -159,7 +159,22 @@ public class CreatureData
 
     #region Creature to Xml
 
+    public static XElement XmlFromCreature(CreatureData creatureData)
+    {
+        XElement element = new XElement("Characters");
+        XAttribute name = new XAttribute("name", creatureData.name);
+        XAttribute varName = new XAttribute("varName", creatureData.varName);
+        element.Add(varName);
+        element.Add(name);
 
+        element.Add(creatureData.natureResistance.GetXElement());
+        element.Add(creatureData.characterAttributes.GetXElement());
+        element.Add(creatureData.behaviorProperties.GetXElement());
+        element.Add(creatureData.creaturePhysics.GetXElement());
+        element.Add(creatureData.loot.GetXElement());
+
+        return element;
+    }
 
     #endregion
 
@@ -221,6 +236,23 @@ public class NatureResistance
 
     public NatureResistance()
     {
+    }
+
+    public XElement GetXElement()
+    {
+        XElement element = new XElement("NatureResistance");
+        List<XAttribute> attributes = new List<XAttribute>();
+        foreach (NameFloatPair resistance in resistances)
+        {
+            attributes.Add(new XAttribute(resistance.name, resistance.number));
+        }
+
+        foreach (XAttribute attribute in attributes)
+        {
+            element.Add(attribute);
+        }
+
+        return element;
     }
 
     public NameFloatPair GetResistance(string resistanceName)
@@ -332,6 +364,45 @@ public class CharacterAttributes
         this.degenerable = degenerable;
     }
 
+    public XElement GetXElement()
+    {
+        XElement element = new XElement("CharacterAttributes");
+        List<XAttribute> attributes = new List<XAttribute>();
+
+        attributes.Add(new XAttribute("normalSplash"             ,normalSplash            ));
+        attributes.Add(new XAttribute("weakSplash"               ,weakSplash              ));
+        attributes.Add(new XAttribute("defenceSplash"            ,defenceSplash           ));
+        attributes.Add(new XAttribute("abnormalSplash"           ,abnormalSplash          ));
+        attributes.Add(new XAttribute("sufferCriticable"         ,sufferCriticable        ));
+        attributes.Add(new XAttribute("damagerCriticable"        ,damagerCriticable       ));
+        attributes.Add(new XAttribute("regenerable"              ,regenerable             ));
+        attributes.Add(new XAttribute("degenerable"              ,degenerable             ));
+        attributes.Add(new XAttribute("inflictsBodyDamage"       ,inflictsBodyDamage      ));
+        attributes.Add(new XAttribute("inflictsAttackDamage"     ,inflictsAttackDamage    ));
+        attributes.Add(new XAttribute("baseLevel"                ,baseLevel               ));
+        attributes.Add(new XAttribute("pullTypeID"               ,pullTypeID              ));
+        attributes.Add(new XAttribute("mysticalFactor"           ,mysticalFactor          ));
+        attributes.Add(new XAttribute("attackPower"              ,attackPower             ));
+        attributes.Add(new XAttribute("bodyPower"                ,bodyPower               ));
+        attributes.Add(new XAttribute("strengthFactor"           ,strengthFactor          ));
+        attributes.Add(new XAttribute("resistanceFactor"         ,resistanceFactor        ));
+        attributes.Add(new XAttribute("efficiencyFactor"         ,efficiencyFactor        ));
+        attributes.Add(new XAttribute("peripheralFactor"         ,peripheralFactor        ));
+        attributes.Add(new XAttribute("bodyDamageRepeatTime"     ,bodyDamageRepeatTime    ));
+        attributes.Add(new XAttribute("bodyAttackWeight"         ,bodyAttackWeight        ));
+        attributes.Add(new XAttribute("bodySufferWeight"         ,bodySufferWeight        ));
+        attributes.Add(new XAttribute("attackDamageRepeatTime"   ,attackDamageRepeatTime  ));
+        attributes.Add(new XAttribute("attackWeight"             ,attackWeight            ));
+        attributes.Add(new XAttribute("pullDirection"            , pullDirection          ));
+
+        foreach (XAttribute attribute in attributes)
+        {
+            element.Add(attribute);
+        }
+
+        return element;
+    }
+
 }
 
 [System.Serializable]
@@ -364,9 +435,9 @@ public class BehaviorProperties
     }
 
     public BehaviorProperties(XElement property)
-    {        
+    {
         if (property != null && property.HasAttributes)
-        {            
+        {
             if (property.Attribute("timeAgonizing") != null) float.TryParse(property.Attribute("timeAgonizing").Value, out timeAgonizing);
             if (property.Attribute("retainDeath") != null) bool.TryParse(property.Attribute("retainDeath").Value, out retainDeath);
             if (property.Attribute("craven") != null) bool.TryParse(property.Attribute("craven").Value, out craven);
@@ -392,6 +463,41 @@ public class BehaviorProperties
         }
     }
 
+    public XElement GetXElement()
+    {
+        XElement element = new XElement("BehaviorProperties");
+        List<XAttribute> attributes = new List<XAttribute>();
+
+        attributes.Add(new XAttribute("retainDeath"     ,retainDeath));
+        attributes.Add(new XAttribute("craven"          ,craven));
+        attributes.Add(new XAttribute("startAggressive"     ,startAggressive));
+        attributes.Add(new XAttribute("naturallyAggressive"     ,naturallyAggressive));
+        attributes.Add(new XAttribute("racialAggressive"     ,racialAggressive));
+        attributes.Add(new XAttribute("naturallyProtector"     ,naturallyProtector));
+        attributes.Add(new XAttribute("groundAdapt"     ,groundAdapt));
+        attributes.Add(new XAttribute("invertableCharacter"     ,invertableCharacter));
+        attributes.Add(new XAttribute("delayedInverted"     ,delayedInverted));
+        attributes.Add(new XAttribute("jumpFrame"     ,jumpFrame));
+        attributes.Add(new XAttribute("timeAgonizing"     ,timeAgonizing));
+        attributes.Add(new XAttribute("actionsMaxRange"     ,actionsMaxRange));
+        attributes.Add(new XAttribute("patrolRange"     ,patrolRange));
+        attributes.Add(new XAttribute("followRange"     ,followRange));
+        attributes.Add(new XAttribute("combatRange"     ,combatRange));
+        attributes.Add(new XAttribute("meleeRange"     ,meleeRange));
+        attributes.Add(new XAttribute("idealRange"     ,idealRange));
+        attributes.Add(new XAttribute("speed"           ,speed));
+        attributes.Add(new XAttribute("jumpFrequency"     ,jumpFrequency));
+        attributes.Add(new XAttribute("patrolRangeRatio"     ,patrolRangeRatio));
+        attributes.Add(new XAttribute("actionDelay"     ,actionDelay));
+
+        foreach (XAttribute attribute in attributes)
+        {
+            element.Add(attribute);
+        }
+
+        return element;
+    }
+
 }
 
 [System.Serializable]
@@ -413,15 +519,37 @@ public class CreaturePhysics
     {
         if (property != null && property.HasAttributes)
         {
-            if (property.Attribute("height") != null) float.TryParse(property.Attribute("height").Value, out height);
-            if (property.Attribute("width") != null) float.TryParse(property.Attribute("width").Value, out width);
-            if (property.Attribute("offsetX") != null) float.TryParse(property.Attribute("offsetX").Value, out offsetX);
-            if (property.Attribute("offsetY") != null) float.TryParse(property.Attribute("offsetY").Value, out offsetY);
-            if (property.Attribute("density") != null) float.TryParse(property.Attribute("density").Value, out density);
-            if (property.Attribute("friction") != null) float.TryParse(property.Attribute("friction").Value, out friction);
-            if (property.Attribute("fixedRotation") != null) bool.TryParse(property.Attribute("fixedRotation").Value, out fixedRotation);
+            if (property.Attribute("height"         ) != null) float.TryParse(property.Attribute("height").Value, out height);
+            if (property.Attribute("width"          ) != null) float.TryParse(property.Attribute("width").Value, out width);
+            if (property.Attribute("offsetX"        ) != null) float.TryParse(property.Attribute("offsetX").Value, out offsetX);
+            if (property.Attribute("offsetY"        ) != null) float.TryParse(property.Attribute("offsetY").Value, out offsetY);
+            if (property.Attribute("density"        ) != null) float.TryParse(property.Attribute("density").Value, out density);
+            if (property.Attribute("friction"       ) != null) float.TryParse(property.Attribute("friction").Value, out friction);
+            if (property.Attribute("fixedRotation"      ) != null) bool.TryParse(property.Attribute("fixedRotation").Value, out fixedRotation);
         }
     }
+
+    public XElement GetXElement()
+    {
+        XElement element = new XElement("CreaturePhysics");
+        List<XAttribute> attributes = new List<XAttribute>();
+
+        attributes.Add(new XAttribute("height"               , height               ));
+        attributes.Add(new XAttribute("width"                , width                ));
+        attributes.Add(new XAttribute("offsetX"              , offsetX              ));
+        attributes.Add(new XAttribute("offsetY"              , offsetY              ));
+        attributes.Add(new XAttribute("density"              , density              ));
+        attributes.Add(new XAttribute("friction"             , friction             ));
+        attributes.Add(new XAttribute("fixedRotation"       ,  fixedRotation        ));
+
+        foreach (XAttribute attribute in attributes)
+        {
+            element.Add(attribute);
+        }
+
+        return element;
+    }
+
 }
 
 [System.Serializable]
@@ -440,6 +568,22 @@ public class Loot
             if (property.Attribute("deepAmountRatio") != null) float.TryParse(property.Attribute("deepAmountRatio").Value, out deepAmountRatio);
         }
     }
+
+    public XElement GetXElement()
+    {
+        XElement element = new XElement("Loot");
+        List<XAttribute> attributes = new List<XAttribute>();
+
+        attributes.Add(new XAttribute("deepAmountRatio", deepAmountRatio));
+
+        foreach (XAttribute attribute in attributes)
+        {
+            element.Add(attribute);
+        }
+
+        return element;
+    }
+
 }
 
 /*

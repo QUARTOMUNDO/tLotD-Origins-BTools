@@ -45,8 +45,8 @@ public class CreatureDisplay : MonoBehaviour
         if (natureResistanceDisplay) { natureResistanceDisplay.Setup(ref creature); }
         if (characterAttributesDisplay) { characterAttributesDisplay.Setup(ref creature); }
         if (behaviorPropertiesDisplay) { behaviorPropertiesDisplay.Setup(ref creature); }
-        //if (creaturePhysicsDisplay) { creaturePhysicsDisplay.Setup(ref creature); }
-        //if (lootDisplay) { lootDisplay.Setup(ref creature); }
+        if (creaturePhysicsDisplay) { creaturePhysicsDisplay.Setup(ref creature); }
+        if (lootDisplay) { lootDisplay.Setup(ref creature); }
 
     }
 

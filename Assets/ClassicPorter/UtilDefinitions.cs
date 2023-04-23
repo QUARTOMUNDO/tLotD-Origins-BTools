@@ -67,7 +67,14 @@ namespace UtilDefinitions
     public delegate void DelBool(bool arg);
     public delegate void DelInt(int arg);
     public delegate void DelFloat(float arg);
+    public delegate void DelPortController(PortController arg);
 
+
+    /// <summary>
+        /// Custom Unity event that takes a no parameter
+        /// </summary>
+    [System.Serializable]
+    public class UEvent : UnityEngine.Events.UnityEvent { }
     
 
 }

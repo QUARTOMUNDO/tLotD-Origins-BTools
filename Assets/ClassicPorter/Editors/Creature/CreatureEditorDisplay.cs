@@ -8,6 +8,22 @@ public class CreatureEditorDisplay : MonoBehaviour
     public Transform creatureButtonList;
     public GameObject loadCreatureButtonPrefab;
 
+    private void OnEnable()
+    {
+        PortController.single.OnCreatureReload += OnCreatureReloadResponse;
+    }
+
+    private void OnDisable()
+    {
+        PortController.single.OnCreatureReload -= OnCreatureReloadResponse;        
+    }
+
+    private void OnCreatureReloadResponse(PortController arg)
+    {
+        SetupFromController();
+        Debug.Log("Updated creature editor from loaded creatures");
+    }
+
     public void SetupFromController()
     {
         Setup(new List<CreatureEntry>(PortController.single.creatures.Values));
@@ -32,6 +48,16 @@ public class CreatureEditorDisplay : MonoBehaviour
                 if (!loadedDefault) { loadedDefault = true; spawnedButton.LoadCreature(); }
             }
         }
+    }
+
+    public void SaveCreaturesToSource()
+    {
+        PortController.single.SaveCreaturesToSource();
+    }
+
+    public void ExportCreaturesToXml()
+    {
+        PortController.single.ExportCreaturesToXml();
     }
 
 }
