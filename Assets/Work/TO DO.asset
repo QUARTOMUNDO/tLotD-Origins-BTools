@@ -16,10 +16,9 @@ MonoBehaviour:
   date: ???
   hours: 0
   minutes: 0
-  details: 'Implement custom properties
-
-
-    Have buttons to return to Source value
-
-    and
-    to Default value (low priority)'
+  details: " - Trocar configura\xE7\xE3o pra abrir windowed\r\n - Salvar em armazenamento
+    permanente \nos paths configurados\r\n - Adicionar Dialog pra erros no \ncarregamento
+    dos xml\r\n - Adicionar em Loot as propriedades \nde NatureDrops e ObjectDrops\r\n\tS\xE3o
+    pares (Name,Float) cujo nome e valor \n\tpodem ser editados no property editor\r\n\tA
+    quantidade de elementos nessas 2 \n\tlistas podem variar\r\n - Trocar a quantidade
+    de resist\xEAncias para \nser edit\xE1vel como as listas acima"

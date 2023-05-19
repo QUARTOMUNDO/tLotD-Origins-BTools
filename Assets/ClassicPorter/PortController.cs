@@ -156,8 +156,19 @@ public class PortController : MonoBehaviour
 
     }
 
+
     public void LoadCreatures()
     {
+        CreatureEditorSaveData data = SaveData.LoadFile<CreatureEditorSaveData>("CreatureEditorData");
+        if (data)
+        {
+            defaultXML_Path = data.defaultXML_Path;
+            sourceXML_Path = data.sourceXML_Path;
+            exportXML_Path = data.exportXML_Path;
+            Debug.Log("loaded the following creature xml paths from persistent data: \n Default: " + defaultXML_Path + "\n Source: " + sourceXML_Path + "\n Export: " + exportXML_Path);
+        }
+        else Debug.LogWarning("Failed to find CreatureEditorData on persistent data, using engine defaults");
+
         XDocument xDocSource = XDocument.Load(sourceXML_Path);
         creaturesLoaded.Clear();
         defaultCreatures.Clear();
@@ -297,7 +308,8 @@ public class PortController : MonoBehaviour
 
     public void RequestCreatureReload()
     {
-        OnCreatureReload?.Invoke(this);
+        LoadCreatures();
+        //OnCreatureReload?.Invoke(this);
     }
 
     public void Quit()

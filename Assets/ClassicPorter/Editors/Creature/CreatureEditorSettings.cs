@@ -32,7 +32,11 @@ public class CreatureEditorSettings : MonoBehaviour
 
     public void DefaultsPathChangedResponse(string newPath)
     {
-        if (System.IO.File.Exists(newPath)) PortController.single.defaultXML_Path = newPath;
+        if (System.IO.File.Exists(newPath))
+        {
+            PortController.single.defaultXML_Path = newPath;
+            SavePaths();
+        }
         else
         {
             UnityEngine.Debug.LogError("Failed to change defaults path, xml file does not exist on path");
@@ -42,7 +46,11 @@ public class CreatureEditorSettings : MonoBehaviour
     public void SourcePathChangedResponse(string newPath)
     {
 
-        if (System.IO.File.Exists(newPath)) PortController.single.sourceXML_Path = newPath;
+        if (System.IO.File.Exists(newPath))
+        {
+            PortController.single.sourceXML_Path = newPath;
+            SavePaths();
+        }
         else
         {
             UnityEngine.Debug.LogError("Failed to change source path, xml file does not exist on path");
@@ -52,7 +60,11 @@ public class CreatureEditorSettings : MonoBehaviour
     public void ExportPathChangedResponse(string newPath)
     {
 
-        if (newPath.EndsWith(".xml")) PortController.single.exportXML_Path = newPath;
+        if (newPath.EndsWith(".xml"))
+        {
+            PortController.single.exportXML_Path = newPath;
+            SavePaths();
+        }
         else
         {
             UnityEngine.Debug.LogError("Failed to change export path, make sure the path ends with the desired file name with .xml at the end");
@@ -63,6 +75,26 @@ public class CreatureEditorSettings : MonoBehaviour
     {
         PortController.single.RequestCreatureReload();
     }
+
+    public void SavePaths()
+    {
+        CreatureEditorSaveData data = new CreatureEditorSaveData();
+        data.defaultXML_Path = DefaultsPath.text;
+        data.sourceXML_Path = SourcePath.text;
+        data.exportXML_Path = ExportPath.text;
+        data.SaveFile("CreatureEditorData");
+    }
+
+    //public void LoadPaths()
+    //{
+    //    CreatureEditorSaveData data = SaveData.LoadFile<CreatureEditorSaveData>("CreatureEditorData");
+    //    if (data)
+    //    {
+    //        PortController.single.defaultXML_Path = data.defaultXML_Path;
+    //        PortController.single.sourceXML_Path = data.sourceXML_Path;
+    //        PortController.single.exportXML_Path = data.exportXML_Path;
+    //    }
+    //}
 
     public void BrowseToDefaults()
     {
