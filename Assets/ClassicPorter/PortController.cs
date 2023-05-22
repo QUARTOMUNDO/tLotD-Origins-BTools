@@ -14,6 +14,7 @@ public class PortController : MonoBehaviour
     [Header("CONFIG")]
     public GameObject propertyDisplayPrefab;
     public GameObject propertyDisplayPrefabSmall;
+    public GameObject propertyPairDisplayPrefab;
     public string defaultXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/Test.xml";
     public string sourceXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/Test.xml";
     public string exportXML_Path = "F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/";

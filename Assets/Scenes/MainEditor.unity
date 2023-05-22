@@ -908,6 +908,7 @@ MonoBehaviour:
   debugMode: 0
   propertyDisplayPrefab: {fileID: 1496110219927115149, guid: 94fc1f952acd8f444bd5a474c7239d1f, type: 3}
   propertyDisplayPrefabSmall: {fileID: 1496110219927115149, guid: 2be3dc0c533dd5e429ca4d3177c0000f, type: 3}
+  propertyPairDisplayPrefab: {fileID: 1496110219927115149, guid: 8aa7d13dc7965344fa8200e6469ae330, type: 3}
   defaultXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/CharacterProperties_uncompressed.xml
   sourceXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/CharacterProperties_uncompressed_Modifiable.xml
   exportXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/
@@ -1859,6 +1860,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1455
       objectReference: {fileID: 0}
+    - target: {fileID: 7536533643100606777, guid: 413923f0035e408498faacf272782aba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7626671078488884257, guid: 413923f0035e408498faacf272782aba, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1878,6 +1883,10 @@ PrefabInstance:
     - target: {fileID: 7866627437606628021, guid: 413923f0035e408498faacf272782aba, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -122.991394
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160447288888442838, guid: 413923f0035e408498faacf272782aba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 413923f0035e408498faacf272782aba, type: 3}

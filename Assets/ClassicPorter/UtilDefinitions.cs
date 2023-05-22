@@ -68,6 +68,7 @@ namespace UtilDefinitions
     public delegate void DelInt(int arg);
     public delegate void DelFloat(float arg);
     public delegate void DelPortController(PortController arg);
+    public delegate void DelPropertyPairDisplay(PropertyPairDisplay arg);
 
 
     /// <summary>
