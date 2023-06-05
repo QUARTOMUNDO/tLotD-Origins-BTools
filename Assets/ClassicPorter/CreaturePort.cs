@@ -225,7 +225,7 @@ public class NatureResistance
             resistances.Clear();
             foreach (XAttribute resistance in property.Attributes())
             {
-                resistances.Add(new NameFloatPair(resistance.Name.ToString(), float.Parse(resistance.Value)));
+                resistances.Add(new NameFloatPair(resistance.Name.ToString(), float.Parse(resistance.Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture)));
             }
         }
         else
@@ -579,7 +579,7 @@ public class Loot
         {
             foreach (var drop in natureDropsElement.Attributes())
             {
-                natureDrops.Add(new NameFloatPair(drop.Name.ToString(), float.Parse(drop.Value)));
+                natureDrops.Add(new NameFloatPair(drop.Name.ToString(), float.Parse(drop.Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture)));
             }
         }
 
@@ -590,7 +590,7 @@ public class Loot
         {
             foreach (var drop2 in objectDropsElement.Attributes())
             {
-                objectDrops.Add(new NameFloatPair(drop2.Name.ToString(), float.Parse(drop2.Value)));
+                objectDrops.Add(new NameFloatPair(drop2.Name.ToString(), float.Parse(drop2.Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture)));
             }
         }
 

@@ -51,7 +51,7 @@ public class LootDisplay : MonoBehaviour
     {
         switch (arg)
         {
-            case "deepAmountRatio": targetCreature.loot.deepAmountRatio = float.Parse(arg1); break;
+            case "deepAmountRatio": targetCreature.loot.deepAmountRatio = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
 
             default:
                 break;

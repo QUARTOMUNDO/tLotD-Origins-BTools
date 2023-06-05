@@ -65,12 +65,12 @@ public class CreaturePhysicsDisplay : MonoBehaviour
     {
         switch (arg)
         {
-            case "height": targetCreature.creaturePhysics.height = float.Parse(arg1); break;
-            case "width": targetCreature.creaturePhysics.width = float.Parse(arg1); break;
-            case "offsetX": targetCreature.creaturePhysics.offsetX = float.Parse(arg1); break;
-            case "offsetY": targetCreature.creaturePhysics.offsetY = float.Parse(arg1); break;
-            case "density": targetCreature.creaturePhysics.density = float.Parse(arg1); break;
-            case "friction": targetCreature.creaturePhysics.friction = float.Parse(arg1); break;
+            case "height": targetCreature.creaturePhysics.height = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "width": targetCreature.creaturePhysics.width = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "offsetX": targetCreature.creaturePhysics.offsetX = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "offsetY": targetCreature.creaturePhysics.offsetY = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "density": targetCreature.creaturePhysics.density = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "friction": targetCreature.creaturePhysics.friction = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
             case "fixedRotation": targetCreature.creaturePhysics.fixedRotation = bool.Parse(arg1); break;
 
             default:

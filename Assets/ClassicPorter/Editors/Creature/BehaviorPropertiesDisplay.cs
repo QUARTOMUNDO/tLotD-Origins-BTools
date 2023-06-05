@@ -119,17 +119,17 @@ public class BehaviorPropertiesDisplay : MonoBehaviour
             case "invertableCharacter": targetCreature.behaviorProperties.invertableCharacter = bool.Parse(arg1); break;
             case "delayedInverted": targetCreature.behaviorProperties.delayedInverted = bool.Parse(arg1); break;
             case "jumpFrame": targetCreature.behaviorProperties.jumpFrame = int.Parse(arg1); break;
-            case "timeAgonizing": targetCreature.behaviorProperties.timeAgonizing = float.Parse(arg1); break;
-            case "actionsMaxRange": targetCreature.behaviorProperties.actionsMaxRange = float.Parse(arg1); break;
-            case "patrolRange": targetCreature.behaviorProperties.patrolRange = float.Parse(arg1); break;
-            case "followRange": targetCreature.behaviorProperties.followRange = float.Parse(arg1); break;
-            case "combatRange": targetCreature.behaviorProperties.combatRange = float.Parse(arg1); break;
-            case "meleeRange": targetCreature.behaviorProperties.meleeRange = float.Parse(arg1); break;
-            case "idealRange": targetCreature.behaviorProperties.idealRange = float.Parse(arg1); break;
-            case "speed": targetCreature.behaviorProperties.speed = float.Parse(arg1); break;
-            case "jumpFrequency": targetCreature.behaviorProperties.jumpFrequency = float.Parse(arg1); break;
-            case "patrolRangeRatio": targetCreature.behaviorProperties.patrolRangeRatio = float.Parse(arg1); break;
-            case "actionDelay": targetCreature.behaviorProperties.actionDelay = float.Parse(arg1); break;
+            case "timeAgonizing": targetCreature.behaviorProperties.timeAgonizing = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "actionsMaxRange": targetCreature.behaviorProperties.actionsMaxRange = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "patrolRange": targetCreature.behaviorProperties.patrolRange = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "followRange": targetCreature.behaviorProperties.followRange = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "combatRange": targetCreature.behaviorProperties.combatRange = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "meleeRange": targetCreature.behaviorProperties.meleeRange = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "idealRange": targetCreature.behaviorProperties.idealRange = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "speed": targetCreature.behaviorProperties.speed = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "jumpFrequency": targetCreature.behaviorProperties.jumpFrequency = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "patrolRangeRatio": targetCreature.behaviorProperties.patrolRangeRatio = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "actionDelay": targetCreature.behaviorProperties.actionDelay = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
             default:
                 break;
         }

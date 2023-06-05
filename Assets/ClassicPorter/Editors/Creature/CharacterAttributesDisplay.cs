@@ -81,19 +81,19 @@ public class CharacterAttributesDisplay : MonoBehaviour
             case "inflictsAttackDamage": targetCreature.characterAttributes.inflictsAttackDamage = bool.Parse(arg1); break;
             case "baseLevel": targetCreature.characterAttributes.baseLevel = int.Parse(arg1); break;
             case "pullTypeID": targetCreature.characterAttributes.pullTypeID = int.Parse(arg1); break;
-            case "mysticalFactor": targetCreature.characterAttributes.mysticalFactor = float.Parse(arg1); break;
-            case "attackPower": targetCreature.characterAttributes.attackPower = float.Parse(arg1); break;
-            case "bodyPower": targetCreature.characterAttributes.bodyPower = float.Parse(arg1); break;
-            case "strengthFactor": targetCreature.characterAttributes.strengthFactor = float.Parse(arg1); break;
-            case "resistanceFactor": targetCreature.characterAttributes.resistanceFactor = float.Parse(arg1); break;
-            case "efficiencyFactor": targetCreature.characterAttributes.efficiencyFactor = float.Parse(arg1); break;
-            case "peripheralFactor": targetCreature.characterAttributes.peripheralFactor = float.Parse(arg1); break;
-            case "bodyDamageRepeatTime": targetCreature.characterAttributes.bodyDamageRepeatTime = float.Parse(arg1); break;
-            case "bodyAttackWeight": targetCreature.characterAttributes.bodyAttackWeight = float.Parse(arg1); break;
-            case "bodySufferWeight": targetCreature.characterAttributes.bodySufferWeight = float.Parse(arg1); break;
-            case "attackDamageRepeatTime": targetCreature.characterAttributes.attackDamageRepeatTime = float.Parse(arg1); break;
-            case "attackWeight": targetCreature.characterAttributes.attackWeight = float.Parse(arg1); break;
-            case "pullDirection": targetCreature.characterAttributes.pullDirection = float.Parse(arg1); break;
+            case "mysticalFactor": targetCreature.characterAttributes.mysticalFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "attackPower": targetCreature.characterAttributes.attackPower = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "bodyPower": targetCreature.characterAttributes.bodyPower = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "strengthFactor": targetCreature.characterAttributes.strengthFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "resistanceFactor": targetCreature.characterAttributes.resistanceFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "efficiencyFactor": targetCreature.characterAttributes.efficiencyFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "peripheralFactor": targetCreature.characterAttributes.peripheralFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "bodyDamageRepeatTime": targetCreature.characterAttributes.bodyDamageRepeatTime = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "bodyAttackWeight": targetCreature.characterAttributes.bodyAttackWeight = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "bodySufferWeight": targetCreature.characterAttributes.bodySufferWeight = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "attackDamageRepeatTime": targetCreature.characterAttributes.attackDamageRepeatTime = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "attackWeight": targetCreature.characterAttributes.attackWeight = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            case "pullDirection": targetCreature.characterAttributes.pullDirection = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
 
 
             default:
