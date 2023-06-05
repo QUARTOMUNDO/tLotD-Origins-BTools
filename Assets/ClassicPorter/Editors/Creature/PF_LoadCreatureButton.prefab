@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Creature Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3c15b71ef35dc9644b78245ba0477e4d, type: 2}
+  m_sharedMaterial: {fileID: -4133801461673154440, guid: 3c15b71ef35dc9644b78245ba0477e4d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.7
+  m_fontSize: 36.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -174,7 +174,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 80}
+  m_SizeDelta: {x: 350, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9075112539659447914
 CanvasRenderer:
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -236,9 +236,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9339623, g: 0.78886825, b: 0.58739763, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0.8591555, b: 0.35534585, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -276,39 +276,43 @@ MonoBehaviour:
     name: Creature in game name
     varName: Creature file name
     characterAttributes:
-      baseLevel: 0
-      attackPower: 0
-      bodyPower: 2.8
-      inflictsBodyDamage: 1
-      inflictsAttackDamage: 0
       normalSplash: CrautaryusLight
       weakSplash: CrautaryusLight
       defenceSplash: CrautaryusLight
       abnormalSplash: CrautaryusLight
+      sufferCriticable: 0
+      damagerCriticable: 0
+      regenerable: 0
+      degenerable: 0
+      inflictsBodyDamage: 1
+      inflictsAttackDamage: 0
+      baseLevel: 0
+      pullTypeID: 0
+      mysticalFactor: 100
+      attackPower: 0
+      bodyPower: 2.8
       strengthFactor: 100
       resistanceFactor: 100
       efficiencyFactor: 100
       peripheralFactor: 25
-      mysticalFactor: 100
-      sufferCriticable: 0
-      damagerCriticable: 0
       bodyDamageRepeatTime: 0.5
       bodyAttackWeight: 0.8
       bodySufferWeight: 0.4
       attackDamageRepeatTime: 0.5
       attackWeight: 0
       pullDirection: -55
-      pullTypeID: 0
-      regenerable: 0
-      degenerable: 0
-    behaviourProperties:
-      timeAgonizing: 0
+    behaviorProperties:
       retainDeath: 0
       craven: 0
       startAggressive: 1
       naturallyAggressive: 1
       racialAggressive: 1
       naturallyProtector: 0
+      groundAdapt: 0
+      invertableCharacter: 1
+      delayedInverted: 0
+      jumpFrame: 0
+      timeAgonizing: 0
       actionsMaxRange: 2000
       patrolRange: 500
       followRange: 900
@@ -316,11 +320,7 @@ MonoBehaviour:
       meleeRange: 100
       idealRange: 50
       speed: 4
-      groundAdapt: 0
-      invertableCharacter: 1
-      delayedInverted: 0
       jumpFrequency: 0
-      jumpFrame: 0
       patrolRangeRatio: 2
       actionDelay: 60
     creaturePhysics:
