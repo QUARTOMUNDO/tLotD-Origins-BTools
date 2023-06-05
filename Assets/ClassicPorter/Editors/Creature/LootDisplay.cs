@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UtilDefinitions;
 using System;
+using System.Globalization;
 
 public class LootDisplay : MonoBehaviour
 {
@@ -129,7 +130,7 @@ public class LootDisplay : MonoBehaviour
         float parsedValue = 0f;
         foreach (PropertyPairDisplay display in natureDropsDisplays)
         {
-            if (float.TryParse(display.propertyValue.text, out parsedValue))
+            if (float.TryParse(display.propertyValue.text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out parsedValue))
             {
                 targetCreature.loot.natureDrops.Add(new NameFloatPair(display.propertyName.text, parsedValue));
             }
@@ -142,7 +143,7 @@ public class LootDisplay : MonoBehaviour
         float parsedValue = 0f;
         foreach (PropertyPairDisplay display in objectDropsDisplays)
         {
-            if (float.TryParse(display.propertyValue.text, out parsedValue))
+            if (float.TryParse(display.propertyValue.text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out parsedValue))
             {
                 targetCreature.loot.objectDrops.Add(new NameFloatPair(display.propertyName.text, parsedValue));
             }

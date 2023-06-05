@@ -306,8 +306,8 @@ public class CharacterAttributes
         if (property != null && property.HasAttributes)
         {
             if (property.Attribute("baseLevel") != null) int.TryParse(property.Attribute("baseLevel").Value, out baseLevel);
-            if (property.Attribute("attackPower") != null) float.TryParse(property.Attribute("attackPower").Value, out attackPower);
-            if (property.Attribute("bodyPower") != null) float.TryParse(property.Attribute("bodyPower").Value, out bodyPower);
+            if (property.Attribute("attackPower") != null) float.TryParse(property.Attribute("attackPower").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out attackPower);
+            if (property.Attribute("bodyPower") != null) float.TryParse(property.Attribute("bodyPower").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out bodyPower);
             if (property.Attribute("inflictsBodyDamage") != null) bool.TryParse(property.Attribute("inflictsBodyDamage").Value, out inflictsBodyDamage);
             if (property.Attribute("inflictsAttackDamage") != null) bool.TryParse(property.Attribute("inflictsAttackDamage").Value, out inflictsAttackDamage);
             //String values \/
@@ -316,19 +316,19 @@ public class CharacterAttributes
             if (property.Attribute("inflictsBodyDamage") != null) defenceSplash = property.Attribute("defenceSplash").Value;
             if (property.Attribute("inflictsBodyDamage") != null) abnormalSplash = property.Attribute("abnormalSplash").Value;
             //String values /\
-            if (property.Attribute("strengthFactor") != null) float.TryParse(property.Attribute("strengthFactor").Value, out strengthFactor);
-            if (property.Attribute("resistanceFactor") != null) float.TryParse(property.Attribute("resistanceFactor").Value, out resistanceFactor);
-            if (property.Attribute("efficiencyFactor") != null) float.TryParse(property.Attribute("efficiencyFactor").Value, out efficiencyFactor);
-            if (property.Attribute("peripheralFactor") != null) float.TryParse(property.Attribute("peripheralFactor").Value, out peripheralFactor);
-            if (property.Attribute("mysticalFactor") != null) float.TryParse(property.Attribute("mysticalFactor").Value, out mysticalFactor);
+            if (property.Attribute("strengthFactor") != null) float.TryParse(property.Attribute("strengthFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out strengthFactor);
+            if (property.Attribute("resistanceFactor") != null) float.TryParse(property.Attribute("resistanceFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out resistanceFactor);
+            if (property.Attribute("efficiencyFactor") != null) float.TryParse(property.Attribute("efficiencyFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out efficiencyFactor);
+            if (property.Attribute("peripheralFactor") != null) float.TryParse(property.Attribute("peripheralFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out peripheralFactor);
+            if (property.Attribute("mysticalFactor") != null) float.TryParse(property.Attribute("mysticalFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out mysticalFactor);
             if (property.Attribute("sufferCriticable") != null) bool.TryParse(property.Attribute("sufferCriticable").Value, out sufferCriticable);
             if (property.Attribute("damagerCriticable") != null) bool.TryParse(property.Attribute("damagerCriticable").Value, out damagerCriticable);
-            if (property.Attribute("bodyDamageRepeatTime") != null) float.TryParse(property.Attribute("bodyDamageRepeatTime").Value, out bodyDamageRepeatTime);
-            if (property.Attribute("bodyAttackWeight") != null) float.TryParse(property.Attribute("bodyAttackWeight").Value, out bodyAttackWeight);
-            if (property.Attribute("bodySufferWeight") != null) float.TryParse(property.Attribute("bodySufferWeight").Value, out bodySufferWeight);
-            if (property.Attribute("attackDamageRepeatTime") != null) float.TryParse(property.Attribute("attackDamageRepeatTime").Value, out attackDamageRepeatTime);
-            if (property.Attribute("attackWeight") != null) float.TryParse(property.Attribute("attackWeight").Value, out attackWeight);
-            if (property.Attribute("pullDirection") != null) float.TryParse(property.Attribute("pullDirection").Value, out pullDirection);
+            if (property.Attribute("bodyDamageRepeatTime") != null) float.TryParse(property.Attribute("bodyDamageRepeatTime").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out bodyDamageRepeatTime);
+            if (property.Attribute("bodyAttackWeight") != null) float.TryParse(property.Attribute("bodyAttackWeight").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out bodyAttackWeight);
+            if (property.Attribute("bodySufferWeight") != null) float.TryParse(property.Attribute("bodySufferWeight").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out bodySufferWeight);
+            if (property.Attribute("attackDamageRepeatTime") != null) float.TryParse(property.Attribute("attackDamageRepeatTime").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out attackDamageRepeatTime);
+            if (property.Attribute("attackWeight") != null) float.TryParse(property.Attribute("attackWeight").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out attackWeight);
+            if (property.Attribute("pullDirection") != null) float.TryParse(property.Attribute("pullDirection").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out pullDirection);
             if (property.Attribute("pullTypeID") != null) int.TryParse(property.Attribute("pullTypeID").Value, out pullTypeID);
             if (property.Attribute("regenerable") != null) bool.TryParse(property.Attribute("regenerable").Value, out regenerable);
             if (property.Attribute("degenerable") != null) bool.TryParse(property.Attribute("degenerable").Value, out degenerable);
@@ -438,27 +438,27 @@ public class BehaviorProperties
     {
         if (property != null && property.HasAttributes)
         {
-            if (property.Attribute("timeAgonizing") != null) float.TryParse(property.Attribute("timeAgonizing").Value, out timeAgonizing);
+            if (property.Attribute("timeAgonizing") != null) float.TryParse(property.Attribute("timeAgonizing").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out timeAgonizing);
             if (property.Attribute("retainDeath") != null) bool.TryParse(property.Attribute("retainDeath").Value, out retainDeath);
             if (property.Attribute("craven") != null) bool.TryParse(property.Attribute("craven").Value, out craven);
             if (property.Attribute("startAggressive") != null) bool.TryParse(property.Attribute("startAggressive").Value, out startAggressive);
             if (property.Attribute("naturallyAggressive") != null) bool.TryParse(property.Attribute("naturallyAggressive").Value, out naturallyAggressive);
             if (property.Attribute("racialAggressive") != null) bool.TryParse(property.Attribute("racialAggressive").Value, out racialAggressive);
             if (property.Attribute("naturallyProtector") != null) bool.TryParse(property.Attribute("naturallyProtector").Value, out naturallyProtector);
-            if (property.Attribute("actionsMaxRange") != null) float.TryParse(property.Attribute("actionsMaxRange").Value, out actionsMaxRange);
-            if (property.Attribute("patrolRange") != null) float.TryParse(property.Attribute("patrolRange").Value, out patrolRange);
-            if (property.Attribute("followRange") != null) float.TryParse(property.Attribute("followRange").Value, out followRange);
-            if (property.Attribute("combatRange") != null) float.TryParse(property.Attribute("combatRange").Value, out combatRange);
-            if (property.Attribute("meleeRange") != null) float.TryParse(property.Attribute("meleeRange").Value, out meleeRange);
-            if (property.Attribute("idealRange") != null) float.TryParse(property.Attribute("idealRange").Value, out idealRange);
-            if (property.Attribute("speed") != null) float.TryParse(property.Attribute("speed").Value, out speed);
+            if (property.Attribute("actionsMaxRange") != null) float.TryParse(property.Attribute("actionsMaxRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out actionsMaxRange);
+            if (property.Attribute("patrolRange") != null) float.TryParse(property.Attribute("patrolRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out patrolRange);
+            if (property.Attribute("followRange") != null) float.TryParse(property.Attribute("followRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out followRange);
+            if (property.Attribute("combatRange") != null) float.TryParse(property.Attribute("combatRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out combatRange);
+            if (property.Attribute("meleeRange") != null) float.TryParse(property.Attribute("meleeRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out meleeRange);
+            if (property.Attribute("idealRange") != null) float.TryParse(property.Attribute("idealRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out idealRange);
+            if (property.Attribute("speed") != null) float.TryParse(property.Attribute("speed").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out speed);
             if (property.Attribute("groundAdapt") != null) bool.TryParse(property.Attribute("groundAdapt").Value, out groundAdapt);
             if (property.Attribute("invertableCharacter") != null) bool.TryParse(property.Attribute("invertableCharacter").Value, out invertableCharacter);
             if (property.Attribute("delayedInverted") != null) bool.TryParse(property.Attribute("delayedInverted").Value, out delayedInverted);
-            if (property.Attribute("jumpFrequency") != null) float.TryParse(property.Attribute("jumpFrequency").Value, out jumpFrequency);
+            if (property.Attribute("jumpFrequency") != null) float.TryParse(property.Attribute("jumpFrequency").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out jumpFrequency);
             if (property.Attribute("jumpFrame") != null) int.TryParse(property.Attribute("jumpFrame").Value, out jumpFrame);
-            if (property.Attribute("patrolRangeRatio") != null) float.TryParse(property.Attribute("patrolRangeRatio").Value, out patrolRangeRatio);
-            if (property.Attribute("actionDelay") != null) float.TryParse(property.Attribute("actionDelay").Value, out actionDelay);
+            if (property.Attribute("patrolRangeRatio") != null) float.TryParse(property.Attribute("patrolRangeRatio").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out patrolRangeRatio);
+            if (property.Attribute("actionDelay") != null) float.TryParse(property.Attribute("actionDelay").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out actionDelay);
 
         }
     }
@@ -519,12 +519,12 @@ public class CreaturePhysics
     {
         if (property != null && property.HasAttributes)
         {
-            if (property.Attribute("height") != null) float.TryParse(property.Attribute("height").Value, out height);
-            if (property.Attribute("width") != null) float.TryParse(property.Attribute("width").Value, out width);
-            if (property.Attribute("offsetX") != null) float.TryParse(property.Attribute("offsetX").Value, out offsetX);
-            if (property.Attribute("offsetY") != null) float.TryParse(property.Attribute("offsetY").Value, out offsetY);
-            if (property.Attribute("density") != null) float.TryParse(property.Attribute("density").Value, out density);
-            if (property.Attribute("friction") != null) float.TryParse(property.Attribute("friction").Value, out friction);
+            if (property.Attribute("height") != null) float.TryParse(property.Attribute("height").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out height);
+            if (property.Attribute("width") != null) float.TryParse(property.Attribute("width").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out width);
+            if (property.Attribute("offsetX") != null) float.TryParse(property.Attribute("offsetX").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out offsetX);
+            if (property.Attribute("offsetY") != null) float.TryParse(property.Attribute("offsetY").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out offsetY);
+            if (property.Attribute("density") != null) float.TryParse(property.Attribute("density").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out density);
+            if (property.Attribute("friction") != null) float.TryParse(property.Attribute("friction").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out friction);
             if (property.Attribute("fixedRotation") != null) bool.TryParse(property.Attribute("fixedRotation").Value, out fixedRotation);
         }
     }
@@ -570,7 +570,7 @@ public class Loot
 
         if (property.HasAttributes)
         {
-            if (property.Attribute("deepAmountRatio") != null) float.TryParse(property.Attribute("deepAmountRatio").Value, out deepAmountRatio);
+            if (property.Attribute("deepAmountRatio") != null) float.TryParse(property.Attribute("deepAmountRatio").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out deepAmountRatio);
         }
 
         XElement natureDropsElement = property.Element("NatureDrops");

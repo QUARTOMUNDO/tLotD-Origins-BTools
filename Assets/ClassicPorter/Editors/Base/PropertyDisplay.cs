@@ -79,7 +79,7 @@ public class PropertyDisplay : MonoBehaviour
 
                 break;
             case PropertyDisplayTypes.Float:
-                if (!float.TryParse(newValue, out float a)) { propertyValue.text = defaultValue; return; }
+                if (!float.TryParse(newValue, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float a)) { propertyValue.text = defaultValue; return; }
                 break;
             case PropertyDisplayTypes.Int:
                 if (!int.TryParse(newValue, out int b)) { propertyValue.text = defaultValue; return; }

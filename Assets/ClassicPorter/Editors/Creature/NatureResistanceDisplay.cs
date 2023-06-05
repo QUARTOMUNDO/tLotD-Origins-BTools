@@ -108,7 +108,7 @@ public class NatureResistanceDisplay : MonoBehaviour
         float parsedValue = 0f;
         foreach (PropertyPairDisplay display in controlledDisplays)
         {
-            if (float.TryParse(display.propertyValue.text, out parsedValue))
+            if (float.TryParse(display.propertyValue.text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out parsedValue))
             {
                 targetCreature.natureResistance.resistances.Add(new NameFloatPair(display.propertyName.text, parsedValue));
             }
