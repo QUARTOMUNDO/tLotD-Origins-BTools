@@ -288,6 +288,10 @@ public class PortController : MonoBehaviour
     {
         ExportCreaturesToXmlAtPath(exportXML_Path);
         Debug.Log("Exported [ " + creatures.Keys.Count + " ] creatures to output Xml [" + exportXML_Path + "]");
+
+        SephiusEngineSocket client = new SephiusEngineSocket();
+        client.SendCommand("Update Character Properties");
+        print("Update Character Properties");
     }
 
     private void ExportCreaturesToXmlAtPath(string path)
