@@ -6,6 +6,7 @@ using TMPro;
 using UtilDefinitions;
 using System;
 using System.Globalization;
+using System.ComponentModel;
 
 public class LootDisplay : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class LootDisplay : MonoBehaviour
     public Transform objectDropsContainer;
 
     List<PropertyPairDisplay> natureDropsDisplays = new List<PropertyPairDisplay>();
-    List<PropertyPairDisplay> objectDropsDisplays = new List<PropertyPairDisplay>();
+    List<PropertyIntFloatDisplay> objectDropsDisplays = new List<PropertyIntFloatDisplay>();
 
     public PropertyDisplay deepAmountRatio;
 
@@ -79,10 +80,10 @@ public class LootDisplay : MonoBehaviour
 
 
         ClearDisplayContainer(objectDropsContainer, objectDropsDisplays);
-        foreach (NameFloatPair item in targetCreature.loot.objectDrops)
+        foreach (LootObjectDropElement item in targetCreature.loot.objectDrops)
         {
-            PropertyPairDisplay spawnedDisplay = PropertyPairDisplay.Spawn(item.name, item.number.ToString(), objectDropsContainer);
-            spawnedDisplay.Setup(item.name, item.number.ToString(), PropertyDisplayTypes.Float);
+            PropertyIntFloatDisplay spawnedDisplay = PropertyIntFloatDisplay.Spawn(item.name, item.amount.ToString(CultureInfo.InvariantCulture), item.chance.ToString(CultureInfo.InvariantCulture), objectDropsContainer);
+            spawnedDisplay.Setup(item.name, item.amount.ToString(CultureInfo.InvariantCulture), item.chance.ToString(CultureInfo.InvariantCulture), PropertyDisplayTypes.Float);
             objectDropsDisplays.Add(spawnedDisplay);
             spawnedDisplay.OnDeleteRequested += ObjectDropsOnDeleteRequestedResponse;
             spawnedDisplay.OnValueChanged2 += ObjectDropsOnValueChanged2Response;
@@ -107,7 +108,7 @@ public class LootDisplay : MonoBehaviour
         Destroy(arg.gameObject, 0.1f);
     }
 
-    private void ObjectDropsOnDeleteRequestedResponse(PropertyPairDisplay arg)
+    private void ObjectDropsOnDeleteRequestedResponse(PropertyIntFloatDisplay arg)
     {
         objectDropsDisplays.Remove(arg);
         arg.gameObject.SetActive(false);
@@ -115,6 +116,15 @@ public class LootDisplay : MonoBehaviour
     }
 
     private static void ClearDisplayContainer(Transform container, List<PropertyPairDisplay> list)
+    {
+        for (int i = 0; i < container.childCount; i++)
+        {
+            container.GetChild(i).gameObject.SetActive(false);
+            Destroy(container.GetChild(i).gameObject, 0.1f);
+        }
+        list.Clear();
+    }
+    private static void ClearDisplayContainer(Transform container, List<PropertyIntFloatDisplay> list)
     {
         for (int i = 0; i < container.childCount; i++)
         {
@@ -140,20 +150,22 @@ public class LootDisplay : MonoBehaviour
     void UpdateObjectDrops()
     {
         targetCreature.loot.objectDrops.Clear();
-        float parsedValue = 0f;
-        foreach (PropertyPairDisplay display in objectDropsDisplays)
+        int parsedValue1 = 0;
+        float parsedValue2 = 0f;
+        foreach (PropertyIntFloatDisplay display in objectDropsDisplays)
         {
-            if (float.TryParse(display.propertyValue.text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out parsedValue))
+            if (float.TryParse(display.propertyValue.text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out parsedValue2)
+                && int.TryParse(display.propertyAmount.text, out parsedValue1))
             {
-                targetCreature.loot.objectDrops.Add(new NameFloatPair(display.propertyName.text, parsedValue));
+                targetCreature.loot.objectDrops.Add(new LootObjectDropElement(display.propertyName.text, parsedValue1, parsedValue2));
             }
         }
     }
 
-    private void AddObjectDropDisplay(string name, string number)
+    private void AddObjectDropDisplay(string name,string newAmount, string newValue)
     {
-        PropertyPairDisplay spawnedDisplay = PropertyPairDisplay.Spawn(name, number, objectDropsContainer);
-        spawnedDisplay.Setup(name, number, PropertyDisplayTypes.Float);
+        PropertyIntFloatDisplay spawnedDisplay = PropertyIntFloatDisplay.Spawn(name, newAmount, newValue, objectDropsContainer);
+        spawnedDisplay.Setup(name, newAmount, newValue, PropertyDisplayTypes.Float);
         objectDropsDisplays.Add(spawnedDisplay);
         spawnedDisplay.OnDeleteRequested += ObjectDropsOnDeleteRequestedResponse;
         spawnedDisplay.OnValueChanged2 += ObjectDropsOnValueChanged2Response;
@@ -161,7 +173,7 @@ public class LootDisplay : MonoBehaviour
 
     private void AddObjectDropDisplay()
     {
-        AddObjectDropDisplay("NewObjectDrop","0");
+        AddObjectDropDisplay("NewObjectDrop","1","0.1");
     }
 
     private void AddNatureDropDisplay(string name, string number)

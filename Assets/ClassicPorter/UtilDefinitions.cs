@@ -12,6 +12,7 @@ namespace UtilDefinitions
         Bool
     }
 
+    [System.Serializable]
     public class NameFloatPair
     {
         public string name = "";
@@ -33,6 +34,21 @@ namespace UtilDefinitions
         public static implicit operator float(NameFloatPair a)
         {
             return a.number;
+        }
+    }
+
+    [System.Serializable]
+    public class LootObjectDropElement
+    {
+        public string name = "";
+        public int amount = 0;
+        public float chance = 0f;
+
+        public LootObjectDropElement(string name = "", int amount = 0, float chance = 0f)
+        {
+            this.name = name;
+            this.amount = amount;
+            this.chance = chance;
         }
     }
 
@@ -64,18 +80,20 @@ namespace UtilDefinitions
 
     public delegate void DelString(string arg);
     public delegate void DelStringString(string arg, string arg1);
+    public delegate void DelStringStringString(string arg, string arg1, string arg2);
     public delegate void DelBool(bool arg);
     public delegate void DelInt(int arg);
     public delegate void DelFloat(float arg);
     public delegate void DelPortController(PortController arg);
     public delegate void DelPropertyPairDisplay(PropertyPairDisplay arg);
+    public delegate void DelPropertyIntFloatDisplay(PropertyIntFloatDisplay arg);
 
 
     /// <summary>
-        /// Custom Unity event that takes a no parameter
-        /// </summary>
+    /// Custom Unity event that takes a no parameter
+    /// </summary>
     [System.Serializable]
     public class UEvent : UnityEngine.Events.UnityEvent { }
-    
+
 
 }

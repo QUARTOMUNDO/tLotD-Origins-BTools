@@ -557,7 +557,7 @@ public class Loot
 {
     public float deepAmountRatio = 0.5f;
     public List<NameFloatPair> natureDrops = new List<NameFloatPair>();
-    public List<NameFloatPair> objectDrops = new List<NameFloatPair>();
+    public List<LootObjectDropElement> objectDrops = new List<LootObjectDropElement>();
 
 
     public Loot()
@@ -584,13 +584,23 @@ public class Loot
         }
 
         XElement objectDropsElement = property.Element("ObjectDrops");
-        objectDrops = new List<NameFloatPair>();
+        objectDrops = new List<LootObjectDropElement>();
 
         if (objectDropsElement != null && objectDropsElement.HasAttributes)
         {
+            string[] amountValueArray = new string[2];
+
             foreach (var drop2 in objectDropsElement.Attributes())
             {
-                objectDrops.Add(new NameFloatPair(drop2.Name.ToString(), float.Parse(drop2.Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture)));
+                amountValueArray = drop2.Value.Split("|");
+                if (amountValueArray.Length == 2)
+                {
+                    objectDrops.Add(new LootObjectDropElement(drop2.Name.ToString(), int.Parse(amountValueArray[0]), float.Parse(amountValueArray[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture)));
+                }
+                else
+                {
+                    Debug.LogError("Failed to parse object drop "+drop2.Name+ " [ "+drop2.Value+" ] as a loot object drop. Please check format {name='amount|chance'}");
+                }
             }
         }
 
@@ -614,9 +624,9 @@ public class Loot
             natureDropsElement.Add(new XAttribute(pair.name, pair.number));
         }
 
-        foreach (NameFloatPair pair2 in objectDrops)
+        foreach (LootObjectDropElement pair2 in objectDrops)
         {
-            objectDropsElement.Add(new XAttribute(pair2.name, pair2.number));
+            objectDropsElement.Add(new XAttribute(pair2.name, pair2.amount.ToString(System.Globalization.CultureInfo.InvariantCulture)+"|"+pair2.chance.ToString(System.Globalization.CultureInfo.InvariantCulture)));
         }
 
 

@@ -1050,7 +1050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 369.31, y: 110.08}
+  m_AnchoredPosition: {x: 369.31, y: 110.08002}
   m_SizeDelta: {x: 639.29, y: 146.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &917521407
@@ -1101,9 +1101,10 @@ MonoBehaviour:
   propertyDisplayPrefab: {fileID: 1496110219927115149, guid: 94fc1f952acd8f444bd5a474c7239d1f, type: 3}
   propertyDisplayPrefabSmall: {fileID: 1496110219927115149, guid: 2be3dc0c533dd5e429ca4d3177c0000f, type: 3}
   propertyPairDisplayPrefab: {fileID: 1496110219927115149, guid: 8aa7d13dc7965344fa8200e6469ae330, type: 3}
-  defaultXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/CharacterProperties_uncompressed.xml
-  sourceXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/CharacterProperties_uncompressed_Modifiable.xml
-  exportXML_Path: F:/UnityProjects/QUARTOMUNDO/tLotD_Classic/Assets/Data/
+  propertyIntFloatDisplayPrefab: {fileID: 1496110219927115149, guid: d65b782d5adbc3846826f09623fdc3aa, type: 3}
+  defaultXML_Path: C:\UnityProjects\tLotD_Classic\Assets\Data\BACKUP_CharacterProperties_uncompressed.xml
+  sourceXML_Path: C:\UnityProjects\tLotD_Classic\Assets\Data\CharacterProperties_uncompressed.xml
+  exportXML_Path: C:\UnityProjects\tLotD_Classic\Assets\Data\CharacterProperties_uncompressed_Modifiable.xml
   creatureNodes: []
   creaturesLoaded: []
 --- !u!1 &940193323
@@ -1979,6 +1980,10 @@ PrefabInstance:
     - target: {fileID: 2995627641465705798, guid: 413923f0035e408498faacf272782aba, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995627641702027962, guid: 413923f0035e408498faacf272782aba, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 4291991186833360961, guid: 413923f0035e408498faacf272782aba, type: 3}
       propertyPath: m_IsActive
