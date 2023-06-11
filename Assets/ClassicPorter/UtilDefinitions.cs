@@ -46,7 +46,12 @@ namespace UtilDefinitions
 
         public LootObjectDropElement(string name = "", int amount = 0, float chance = 0f)
         {
-            this.name = name;
+            if (!name.Contains(" ")){
+                this.name = name;
+            }
+            else{
+                this.name = "INVALID";
+            }
             this.amount = amount;
             this.chance = chance;
         }

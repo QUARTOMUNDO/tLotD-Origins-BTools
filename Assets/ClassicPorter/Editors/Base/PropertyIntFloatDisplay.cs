@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UtilDefinitions;
+using static System.Net.Mime.MediaTypeNames;
 
 public class PropertyIntFloatDisplay : MonoBehaviour
 {
@@ -33,7 +34,13 @@ public class PropertyIntFloatDisplay : MonoBehaviour
 
     public void Setup(string newName, string newAmount, string newValue, PropertyDisplayTypes amountType = PropertyDisplayTypes.Int, PropertyDisplayTypes valueType = PropertyDisplayTypes.Float, string newDefaultValue = "DefaultValue", string newSourceValue = "SourceValue")
     {
-        propertyName.text = newName;
+        if (!newName.Contains(" ")){
+            propertyName.text = newName;
+        }
+        else{
+            propertyName.text = "INVALID";
+        }
+
         gameObject.name = newName;
         propertyValue.text = newValue;
         propertyAmount.text = newAmount;
@@ -156,13 +163,20 @@ public class PropertyIntFloatDisplay : MonoBehaviour
 
     private void NameChangedResponse(string newName)
     {
+        if (!newName.Contains(" ")){
+            name = newName;
+        }
+        else {
+            name = "INVALID";
+            propertyName.text = name;
+        }
+
         if (newName == "")
         {
             previewPropertyName = name;
             return;
         }
 
-        name = newName;
         //OnValueChanged?.Invoke(propertyValue.text);
         OnValueChanged2?.Invoke(gameObject.name, propertyValue.text);
         OnValueChanged3?.Invoke(gameObject.name, propertyAmount.text, propertyValue.text);

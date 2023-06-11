@@ -57,7 +57,7 @@ public class CreatureEditorDisplay : MonoBehaviour
 
     public void ExportCreaturesToXml()
     {
-        PortController.single.ExportCreaturesToXml();
+        PortController.single.SaveCreaturesToFinal();
     }
 
 }

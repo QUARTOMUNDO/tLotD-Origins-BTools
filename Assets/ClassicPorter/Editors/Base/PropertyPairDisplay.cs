@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UtilDefinitions;
+using static System.Net.Mime.MediaTypeNames;
 
 public class PropertyPairDisplay : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PropertyPairDisplay : MonoBehaviour
     public TMP_Text propertySourceValue;
     public Button deleteButton;
     public PropertyDisplayTypes displayType = PropertyDisplayTypes.String;
-    string defaultValue = "";
+    string defaultValue = "0";
     string sourceValue = "";
 
     [Header("Preview")]
@@ -29,7 +30,13 @@ public class PropertyPairDisplay : MonoBehaviour
 
     public void Setup(string newName, string newValue, PropertyDisplayTypes type = PropertyDisplayTypes.String, string newDefaultValue = "DefaultValue", string newSourceValue = "SourceValue")
     {
-        propertyName.text = newName;
+        if (!newName.Contains(" ")){
+            propertyName.text = newName;
+        }
+        else{
+            propertyName.text = "INVALID";
+        }
+
         gameObject.name = newName;
         propertyValue.text = newValue;
         displayType = type;
@@ -102,13 +109,13 @@ public class PropertyPairDisplay : MonoBehaviour
 
                 break;
             case PropertyDisplayTypes.Float:
-                if (!float.TryParse(newValue, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float a)) { propertyValue.text = defaultValue; return; }
+                if (!float.TryParse(newValue, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float a)) { propertyValue.text = "0"; return; }
                 break;
             case PropertyDisplayTypes.Int:
-                if (!int.TryParse(newValue, out int b)) { propertyValue.text = defaultValue; return; }
+                if (!int.TryParse(newValue, out int b)) { propertyValue.text = "0"; return; }
                 break;
             case PropertyDisplayTypes.Bool:
-                if (!bool.TryParse(newValue, out bool c)) { propertyValue.text = defaultValue; return; }
+                if (!bool.TryParse(newValue, out bool c)) { propertyValue.text = "0"; return; }
                 break;
             default:
                 break;
@@ -121,13 +128,20 @@ public class PropertyPairDisplay : MonoBehaviour
 
     private void NameChangedResponse(string newName)
     {
+        if (!newName.Contains(" ")){
+            name = newName;
+        }
+        else{
+            name = "INVALID";
+            propertyName.text = name;
+        }
+
         if (newName == "")
         {
             previewPropertyName = name;
             return;
         }
 
-        name = newName;
         //OnValueChanged?.Invoke(propertyValue.text);
         OnValueChanged2?.Invoke(gameObject.name, propertyValue.text);
     }

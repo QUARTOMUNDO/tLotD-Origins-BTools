@@ -43,122 +43,6 @@ public class PortController : MonoBehaviour
         Debug.LogError("Begin Debugging");
     }
 
-
-    [ContextMenu("TestFunction")]
-    public void TestFunction()
-    {
-        XmlDocument xmlDocument = new XmlDocument();
-        XmlElement root = xmlDocument.CreateElement("test");
-        XmlElement dog = xmlDocument.CreateElement("dog");
-        root.AppendChild(dog);
-        XmlElement leg1 = xmlDocument.CreateElement("leg");
-        leg1.InnerText = "Left Hind Leg";
-        leg1.SetAttribute("state", "stronger");
-        dog.AppendChild(leg1);
-        XmlElement leg2 = xmlDocument.CreateElement("leg");
-        leg2.InnerText = "Right Hind Leg";
-        leg2.SetAttribute("state", "hurt");
-        dog.AppendChild(leg2);
-        XmlElement leg3 = xmlDocument.CreateElement("leg");
-        leg3.InnerText = "Left Front Leg";
-        dog.AppendChild(leg3);
-        XmlElement leg4 = xmlDocument.CreateElement("leg");
-        leg4.InnerText = "Right Front Leg";
-        dog.AppendChild(leg4);
-        XmlElement snout = xmlDocument.CreateElement("snout");
-        snout.InnerText = "A beautiful wet snout";
-        dog.AppendChild(snout);
-        XmlElement tail = xmlDocument.CreateElement("snout");
-        tail.InnerText = "A joyful long tail";
-        dog.AppendChild(tail);
-        print("print 1: [" + leg1.Attributes.GetNamedItem("state") == null + "]");
-        print("print 2: [" + leg2.Attributes.GetNamedItem("state").NodeType + "]");
-        print("print 3: [" + leg3.Attributes.GetNamedItem("state") + "]");
-        print("print 4: [" + leg4.Attributes.GetNamedItem("state") == null + "]");
-        xmlDocument.AppendChild(root);
-        xmlDocument.Save(exportXML_Path);
-        if (File.Exists(exportXML_Path))
-        {
-            print("Success");
-        }
-    }
-
-    [ContextMenu("TestFunction2")]
-    public void LoadCreaturesFromXml()
-    {
-
-        //XmlDocument xmlDocument = new XmlDocument();
-        //xmlDocument.Load(sourceXML_Path);
-        XDocument xDocument = XDocument.Load(sourceXML_Path);
-        XElement root = xDocument.Element("Characters");
-        creatureNodes.Clear();
-        creaturesLoaded.Clear();
-        defaultCreatures.Clear();
-
-        int n = 0;
-        foreach (XElement creatureElement in root.Elements())
-        {
-            string str = "[ " + creatureElement.Attribute("varName").Value + " ] " + creatureElement.Attribute("name").Value + "\n";
-            //string str = "[ " + creatureElement.Attributes.GetNamedItem("varName").Value + " ] " + creatureElement.Attributes.GetNamedItem("name").Value + "\n";
-            if (creatureElement.HasElements)
-            {
-                creaturesLoaded.Add(new CreatureData(creatureElement));
-
-                if (!defaultCreatures.TryAdd(creatureElement.Attribute("varName").Value, new CreatureData(creatureElement)))
-                {
-                    Debug.LogWarning("WARNING: attempt to load creature [ " + creatureElement.Attribute("varName").Value + " ] from Xml document [ " + sourceXML_Path + " ], " +
-                        "but a creature with the same varName was already declared before");
-                }
-
-                foreach (XElement propertyElement in creatureElement.Elements())
-                {
-                    str += "\n  Property node: [ " + propertyElement.Name + " ]";
-                    foreach (XAttribute propertyAttribute in propertyElement.Attributes())
-                    {
-                        str += "\n  " + propertyAttribute.Name + " = " + propertyAttribute.Value;
-                    }
-                }
-            }
-            creatureNodes.Add(str);
-            print("Creature [ " + n + " ] \n" + str);
-            n++;
-        }
-
-        #region XmlDocument version
-
-        /*
-        XmlNode root = xmlDocument.FirstChild;
-        creatureNodes.Clear();
-        creatures.Clear();
-        int n = 0;
-        foreach (XmlNode creatureNode in root.ChildNodes)
-        {
-            string str = "[ "+creatureNode.Attributes.GetNamedItem("varName").Value+" ] "+ creatureNode.Attributes.GetNamedItem("name").Value + "\n";
-            if (creatureNode.ChildNodes.Count>0)
-            {
-                creatures.Add(new CreatureData(creatureNode));
-
-                for (int i = 0; i < creatureNode.ChildNodes.Count; i++)
-                {
-                    XmlNode propertyNode = creatureNode.ChildNodes[i];
-                    str += "\n  Property node: [ " +propertyNode.Name+" ]";
-                    for (int j = 0; j < propertyNode.Attributes.Count; j++)
-                    {
-                        str += "\n  " + creatureNode.ChildNodes[i].Attributes[j].Name + " = " + creatureNode.ChildNodes[i].Attributes[j].Value; 
-                    }
-                }
-            }
-            creatureNodes.Add(str);
-            print("Creature [ "+n+" ] \n"+ str);
-            n++;
-        }    
-        */
-
-        #endregion
-
-    }
-
-
     public void LoadCreatures()
     {
         CreatureEditorSaveData data = SaveData.LoadFile<CreatureEditorSaveData>("CreatureEditorData");
@@ -179,7 +63,7 @@ public class PortController : MonoBehaviour
         //Loading defaults
         LoadCreatureDefaults(defaultXML_Path);
         //Loading source and current
-        LoadCreatureFile(sourceXML_Path, true);
+        LoadCreatureSource(sourceXML_Path, true);
         OnCreatureReload?.Invoke(this);
     }
 
@@ -230,7 +114,7 @@ public class PortController : MonoBehaviour
         }
     }
 
-    private void LoadCreatureFile(string path, bool overrideCurrent = true)
+    private void LoadCreatureSource(string path, bool overrideCurrent = true)
     {
         XDocument xDoc = XDocument.Load(path);
         CreatureEntry creatureEntry = null;
@@ -285,7 +169,7 @@ public class PortController : MonoBehaviour
         Debug.Log("Saved [ " + creatures.Keys.Count + " ] creatures to source Xml [" + sourceXML_Path + "]");
     }
 
-    public void ExportCreaturesToXml()
+    public void SaveCreaturesToFinal()
     {
         ExportCreaturesToXmlAtPath(exportXML_Path);
         Debug.Log("Exported [ " + creatures.Keys.Count + " ] creatures to output Xml [" + exportXML_Path + "]");
@@ -297,15 +181,15 @@ public class PortController : MonoBehaviour
 
     private void ExportCreaturesToXmlAtPath(string path)
     {
-        FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
         XDocument doc = new XDocument();
         XElement root = new XElement("Characters");
 
         foreach (CreatureEntry entry in creatures.Values)
         {
-            root.Add(CreatureData.XmlFromCreature(entry.currentData));
+            root.Add(CreatureData.GetXMLElement(entry.currentData));
         }
 
+        FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
         doc.Add(root);
         doc.Save(stream);
         stream.Close();

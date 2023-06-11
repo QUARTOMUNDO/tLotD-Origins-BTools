@@ -159,11 +159,12 @@ public class CreatureData
 
     #region Creature to Xml
 
-    public static XElement XmlFromCreature(CreatureData creatureData)
+    public static XElement GetXMLElement(CreatureData creatureData)
     {
-        XElement element = new XElement("Characters");
+        XElement element = new XElement("Character");
         XAttribute name = new XAttribute("name", creatureData.name);
         XAttribute varName = new XAttribute("varName", creatureData.varName);
+
         element.Add(varName);
         element.Add(name);
 
@@ -301,6 +302,10 @@ public class CharacterAttributes
     {
     }
 
+    /// <summary>
+    /// Read from XML Element
+    /// </summary>
+    /// <param name="property"></param>
     public CharacterAttributes(XElement property)
     {
         if (property != null && property.HasAttributes)
@@ -335,6 +340,9 @@ public class CharacterAttributes
         }
     }
 
+    /// <summary>
+    /// Normal constructor
+    /// </summary>
     public CharacterAttributes(int baseLevel, float attackPower, float bodyPower, bool inflictsBodyDamage, bool inflictsAttackDamage, string normalSplash, string weakSplash, string defenceSplash, string abnormalSplash, float strengthFactor, float resistanceFactor, float efficiencyFactor, float peripheralFactor, float mysticalFactor, bool sufferCriticable, bool damagerCriticable, float bodyDamageRepeatTime, float bodyAttackWeight, float bodySufferWeight, float attackDamageRepeatTime, float attackWeight, float pullDirection, int pullTypeID, bool regenerable, bool degenerable)
     {
         this.baseLevel = baseLevel;
@@ -363,7 +371,11 @@ public class CharacterAttributes
         this.regenerable = regenerable;
         this.degenerable = degenerable;
     }
-
+    
+    /// <summary>
+    /// Read from attributes data and create XML Element
+    /// </summary>
+    /// <returns></returns>
     public XElement GetXElement()
     {
         XElement element = new XElement("CharacterAttributes");
