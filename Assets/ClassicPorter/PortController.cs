@@ -40,7 +40,7 @@ public class PortController : MonoBehaviour
 
         //LoadCreaturesFromXml();
         LoadCreatures();
-
+        Debug.LogError("Begin Debugging");
     }
 
 

@@ -2,7 +2,7 @@
 <Characters>
   <Characters varName="SEPHIUS" name="Sephius">
     <NatureResistance Physical="25" Air="0" Fire="0" Corruption="0" Darkness="50" Bio="0" Earth="0" Ice="0" Light="50" Psionica="0" Water="100" />
-    <CharacterAttributes normalSplash="StrongSephius" weakSplash="WeakSephius" defenceSplash="Metal" abnormalSplash="StrongSephius" sufferCriticable="true" damagerCriticable="true" regenerable="true" degenerable="false" inflictsBodyDamage="false" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="100" attackPower="1" bodyPower="1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="100" bodyDamageRepeatTime="0.5" bodyAttackWeight="1" bodySufferWeight="1" attackDamageRepeatTime="0.5" attackWeight="1" pullDirection="-55" />
+    <CharacterAttributes normalSplash="StrongSephius" weakSplash="WeakSephius" defenceSplash="Metal" abnormalSplash="StrongSephius" sufferCriticable="true" damagerCriticable="true" regenerable="true" degenerable="false" inflictsBodyDamage="false" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="50" attackPower="1" bodyPower="1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="100" bodyDamageRepeatTime="0.5" bodyAttackWeight="1" bodySufferWeight="1" attackDamageRepeatTime="0.5" attackWeight="1" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="5000" followRange="7500" combatRange="350" meleeRange="100" idealRange="50" speed="7" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
     <CreaturePhysics height="130" width="35" offsetX="0" offsetY="-3" density="14.5" friction="0.2" fixedRotation="false" />
     <Loot deepAmountRatio="1">
@@ -17,7 +17,7 @@
     <CreaturePhysics height="60" width="60" offsetX="0" offsetY="-10" density="15" friction="0.5" fixedRotation="true" />
     <Loot deepAmountRatio="0.5">
       <NatureDrops />
-      <ObjectDrops Item1="1|0.1" Item2="10|0.05" TestItem="50|0.001" />
+      <ObjectDrops />
     </Loot>
   </Characters>
   <Characters varName="DISERTHEUS_GRAND" name="Grand Disertheus">
@@ -430,4 +430,5 @@
       <ObjectDrops />
     </Loot>
   </Characters>
+</Characters> </Characters>
 </Characters>

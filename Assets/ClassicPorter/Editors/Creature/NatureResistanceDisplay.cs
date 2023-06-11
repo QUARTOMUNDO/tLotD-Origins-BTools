@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 using UtilDefinitions;
@@ -120,13 +121,13 @@ public class NatureResistanceDisplay : MonoBehaviour
 
         if (controlledDisplaysMap.TryGetValue(resistanceName, out PropertyDisplay display))
         {
-            display.Setup(resistanceName, resistanceValue.ToString(), PropertyDisplayTypes.Float, newDefaultValue: defaultResistanceValue, newSourceValue: sourceResistanceValue);
+            display.Setup(resistanceName, resistanceValue.ToString(CultureInfo.InvariantCulture), PropertyDisplayTypes.Float, newDefaultValue: defaultResistanceValue, newSourceValue: sourceResistanceValue);
         }
         else
         {
             GameObject prefab = resistancePropertyPrefabOverride;
             if (!prefab) prefab = PortController.single.propertyDisplayPrefabSmall;
-            PropertyDisplay newPropertyDisplay = PropertyDisplay.Spawn(resistanceName, resistanceValue, resistancePropertiesParent, prefab);
+            PropertyDisplay newPropertyDisplay = PropertyDisplay.Spawn(resistanceName, resistanceValue.ToString(CultureInfo.InvariantCulture), resistancePropertiesParent, prefab);
             newPropertyDisplay.Setup(resistanceName, resistanceValue, PropertyDisplayTypes.Float, newDefaultValue: defaultResistanceValue, newSourceValue: sourceResistanceValue);
             newPropertyDisplay.gameObject.name = resistanceName;
             newPropertyDisplay.OnValueChanged2 += ResistanceValueChangeResponse;

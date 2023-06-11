@@ -65,7 +65,7 @@ public class LootDisplay : MonoBehaviour
         targetCreature = creatureEntry;
         targetCreatureEntry = creatureEntry;
 
-        deepAmountRatio.Setup("deepAmountRatio", creatureEntry.currentData.loot.deepAmountRatio.ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.loot.deepAmountRatio.ToString(), creatureEntry.sourceData.loot.deepAmountRatio.ToString());
+        deepAmountRatio.Setup("deepAmountRatio", creatureEntry.currentData.loot.deepAmountRatio.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.loot.deepAmountRatio.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.loot.deepAmountRatio.ToString(CultureInfo.InvariantCulture));
 
 
         ClearDisplayContainer(natureDropsContainer, natureDropsDisplays);
@@ -82,11 +82,12 @@ public class LootDisplay : MonoBehaviour
         ClearDisplayContainer(objectDropsContainer, objectDropsDisplays);
         foreach (LootObjectDropElement item in targetCreature.loot.objectDrops)
         {
-            PropertyIntFloatDisplay spawnedDisplay = PropertyIntFloatDisplay.Spawn(item.name, item.amount.ToString(CultureInfo.InvariantCulture), item.chance.ToString(CultureInfo.InvariantCulture), objectDropsContainer);
-            spawnedDisplay.Setup(item.name, item.amount.ToString(CultureInfo.InvariantCulture), item.chance.ToString(CultureInfo.InvariantCulture), PropertyDisplayTypes.Float);
-            objectDropsDisplays.Add(spawnedDisplay);
-            spawnedDisplay.OnDeleteRequested += ObjectDropsOnDeleteRequestedResponse;
-            spawnedDisplay.OnValueChanged2 += ObjectDropsOnValueChanged2Response;
+            AddObjectDropDisplay(item.name, item.amount.ToString(CultureInfo.InvariantCulture), item.chance.ToString(CultureInfo.InvariantCulture));
+            //PropertyIntFloatDisplay spawnedDisplay = PropertyIntFloatDisplay.Spawn(item.name, item.amount.ToString(CultureInfo.InvariantCulture), item.chance.ToString(CultureInfo.InvariantCulture), objectDropsContainer);
+            //spawnedDisplay.Setup(item.name, item.amount.ToString(CultureInfo.InvariantCulture), item.chance.ToString(CultureInfo.InvariantCulture), PropertyDisplayTypes.Float);
+            //objectDropsDisplays.Add(spawnedDisplay);
+            //spawnedDisplay.OnDeleteRequested += ObjectDropsOnDeleteRequestedResponse;
+            //spawnedDisplay.OnValueChanged2 += ObjectDropsOnValueChanged2Response;
         }
 
     }
@@ -106,6 +107,7 @@ public class LootDisplay : MonoBehaviour
         natureDropsDisplays.Remove(arg);
         arg.gameObject.SetActive(false);
         Destroy(arg.gameObject, 0.1f);
+        UpdateNatureDrops();
     }
 
     private void ObjectDropsOnDeleteRequestedResponse(PropertyIntFloatDisplay arg)
@@ -113,6 +115,7 @@ public class LootDisplay : MonoBehaviour
         objectDropsDisplays.Remove(arg);
         arg.gameObject.SetActive(false);
         Destroy(arg.gameObject, 0.1f);
+        UpdateObjectDrops(); 
     }
 
     private static void ClearDisplayContainer(Transform container, List<PropertyPairDisplay> list)

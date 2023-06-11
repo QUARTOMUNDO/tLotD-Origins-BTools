@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class CreaturePhysicsDisplay : MonoBehaviour
@@ -83,12 +84,12 @@ public class CreaturePhysicsDisplay : MonoBehaviour
     {
         targetCreature = creatureEntry;
 
-        height       .Setup("height"        , creatureEntry.currentData.creaturePhysics.height       .ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.height       .ToString(), creatureEntry.sourceData.creaturePhysics.height       .ToString());
-        width        .Setup("width"         , creatureEntry.currentData.creaturePhysics.width        .ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.width        .ToString(), creatureEntry.sourceData.creaturePhysics.width        .ToString());
-        offsetX      .Setup("offsetX"       , creatureEntry.currentData.creaturePhysics.offsetX      .ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.offsetX      .ToString(), creatureEntry.sourceData.creaturePhysics.offsetX      .ToString());
-        offsetY      .Setup("offsetY"       , creatureEntry.currentData.creaturePhysics.offsetY      .ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.offsetY      .ToString(), creatureEntry.sourceData.creaturePhysics.offsetY      .ToString());
-        density      .Setup("density"       , creatureEntry.currentData.creaturePhysics.density      .ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.density      .ToString(), creatureEntry.sourceData.creaturePhysics.density      .ToString());
-        friction     .Setup("friction"      , creatureEntry.currentData.creaturePhysics.friction     .ToString(), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.friction     .ToString(), creatureEntry.sourceData.creaturePhysics.friction     .ToString());
+        height       .Setup("height"        , creatureEntry.currentData.creaturePhysics.height       .ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.height       .ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.height       .ToString(CultureInfo.InvariantCulture));
+        width        .Setup("width"         , creatureEntry.currentData.creaturePhysics.width        .ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.width        .ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.width        .ToString(CultureInfo.InvariantCulture));
+        offsetX      .Setup("offsetX"       , creatureEntry.currentData.creaturePhysics.offsetX      .ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.offsetX      .ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.offsetX      .ToString(CultureInfo.InvariantCulture));
+        offsetY      .Setup("offsetY"       , creatureEntry.currentData.creaturePhysics.offsetY      .ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.offsetY      .ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.offsetY      .ToString(CultureInfo.InvariantCulture));
+        density      .Setup("density"       , creatureEntry.currentData.creaturePhysics.density      .ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.density      .ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.density      .ToString(CultureInfo.InvariantCulture));
+        friction     .Setup("friction"      , creatureEntry.currentData.creaturePhysics.friction     .ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.friction     .ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.friction     .ToString(CultureInfo.InvariantCulture));
         fixedRotation.Setup("fixedRotation" , creatureEntry.currentData.creaturePhysics.fixedRotation.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool , creatureEntry.defaultData.creaturePhysics.fixedRotation.ToString(), creatureEntry.sourceData.creaturePhysics.fixedRotation.ToString());
         
     }
