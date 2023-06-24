@@ -184,13 +184,24 @@ public class PortController : MonoBehaviour
         XDocument doc = new XDocument();
         XElement root = new XElement("Characters");
 
-        foreach (CreatureEntry entry in creatures.Values)
+        try
         {
-            root.Add(CreatureData.GetXMLElement(entry.currentData));
+            foreach (CreatureEntry entry in creatures.Values)
+            {
+                root.Add(CreatureData.GetXMLElement(entry.currentData));
+            }
+
+            doc.Add(root);
+
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError("ERROR: Failed to create xml document ["+exception.Message+"]");
+            return;
         }
 
         FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
-        doc.Add(root);
+        stream.SetLength(0);
         doc.Save(stream);
         stream.Close();
         LoadCreatures();

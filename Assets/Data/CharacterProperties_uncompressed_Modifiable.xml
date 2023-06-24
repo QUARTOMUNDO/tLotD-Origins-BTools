@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Characters>
-  <Characters varName="SEPHIUS" name="Sephius">
+  <Character varName="SEPHIUS" name="Sephius">
     <NatureResistance Physical="25" Air="0" Fire="0" Corruption="0" Darkness="50" Bio="0" Earth="0" Ice="0" Light="50" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="StrongSephius" weakSplash="WeakSephius" defenceSplash="Metal" abnormalSplash="StrongSephius" sufferCriticable="true" damagerCriticable="true" regenerable="true" degenerable="false" inflictsBodyDamage="false" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="50" attackPower="1" bodyPower="1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="100" bodyDamageRepeatTime="0.5" bodyAttackWeight="1" bodySufferWeight="1" attackDamageRepeatTime="0.5" attackWeight="1" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="5000" followRange="7500" combatRange="350" meleeRange="100" idealRange="50" speed="7" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -9,18 +9,18 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="DISERTHEUS_BIG" name="Big Disertheus">
+  </Character>
+  <Character varName="DISERTHEUS_BIG" name="Big Disertheus">
     <NatureResistance Physical="0" Air="100" Fire="100" Corruption="100" Darkness="0" Bio="100" Earth="100" Ice="100" Light="100" Psionica="100" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="2" pullTypeID="0" mysticalFactor="100" attackPower="0" bodyPower="2.8" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="25" bodyDamageRepeatTime="0.5" bodyAttackWeight="0.8" bodySufferWeight="0.4" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="900" combatRange="850" meleeRange="100" idealRange="50" speed="4" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
     <CreaturePhysics height="60" width="60" offsetX="0" offsetY="-10" density="15" friction="0.5" fixedRotation="true" />
     <Loot deepAmountRatio="0.5">
-      <NatureDrops />
-      <ObjectDrops />
+      <NatureDrops NatureDrop1="1" NatureDrop2="2" />
+      <ObjectDrops NewObjectDrop="1|0.1" NewObjectDrop2="5|0.05" />
     </Loot>
-  </Characters>
-  <Characters varName="DISERTHEUS_GRAND" name="Grand Disertheus">
+  </Character>
+  <Character varName="DISERTHEUS_GRAND" name="Grand Disertheus">
     <NatureResistance Physical="0" Air="100" Fire="100" Corruption="100" Darkness="0" Bio="100" Earth="100" Ice="100" Light="100" Psionica="100" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="2" pullTypeID="0" mysticalFactor="100" attackPower="0" bodyPower="3.5" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="30" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.5" bodySufferWeight="0.9" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="900" combatRange="850" meleeRange="100" idealRange="50" speed="6" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -29,8 +29,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="DISERTHEUS_SMALL" name="Small Disertheus">
+  </Character>
+  <Character varName="DISERTHEUS_SMALL" name="Small Disertheus">
     <NatureResistance Physical="0" Air="100" Fire="100" Corruption="100" Darkness="0" Bio="100" Earth="100" Ice="100" Light="100" Psionica="100" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="0" pullTypeID="0" mysticalFactor="100" attackPower="0" bodyPower="1.7" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="18" bodyDamageRepeatTime="0.5" bodyAttackWeight="0.7" bodySufferWeight="0.3" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="900" combatRange="850" meleeRange="60" idealRange="60" speed="3" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -39,8 +39,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="PALE_CORPSE_1" name="Pale Corpse">
+  </Character>
+  <Character varName="PALE_CORPSE_1" name="Pale Corpse">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="0" Bio="0" Earth="0" Ice="0" Light="0" Psionica="0" Water="0" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="0" pullTypeID="0" mysticalFactor="100" attackPower="0" bodyPower="1.6" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="7" bodyDamageRepeatTime="0.5" bodyAttackWeight="0.8" bodySufferWeight="0.4" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="900" combatRange="850" meleeRange="100" idealRange="50" speed="0.9" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -49,8 +49,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="ENTITY_EARTH_DARK" name="Dark Earth Entity">
+  </Character>
+  <Character varName="ENTITY_EARTH_DARK" name="Dark Earth Entity">
     <NatureResistance Physical="60" Air="80" Fire="95" Corruption="30" Darkness="110" Bio="100" Earth="200" Ice="95" Light="90" Psionica="5000" Water="100" />
     <CharacterAttributes normalSplash="Earth" weakSplash="Earth" defenceSplash="Earth" abnormalSplash="Earth" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="2" pullTypeID="1" mysticalFactor="0" attackPower="2.5" bodyPower="0.8" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="60" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.6" bodySufferWeight="1.7" attackDamageRepeatTime="0.5" attackWeight="2.5" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="850" combatRange="500" meleeRange="200" idealRange="150" speed="1" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -59,8 +59,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="ENTITY_EARTH_LIGHT" name="Light Earth Entity">
+  </Character>
+  <Character varName="ENTITY_EARTH_LIGHT" name="Light Earth Entity">
     <NatureResistance Physical="60" Air="80" Fire="95" Corruption="30" Darkness="90" Bio="100" Earth="200" Ice="95" Light="110" Psionica="5000" Water="100" />
     <CharacterAttributes normalSplash="Earth" weakSplash="Earth" defenceSplash="Earth" abnormalSplash="Earth" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="2" pullTypeID="1" mysticalFactor="0" attackPower="1.8" bodyPower="0.9" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="60" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.5" bodySufferWeight="1.6" attackDamageRepeatTime="0.5" attackWeight="3" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="850" combatRange="500" meleeRange="200" idealRange="150" speed="1" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -69,8 +69,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="ENTITY_FIRE" name="Fire Entity">
+  </Character>
+  <Character varName="ENTITY_FIRE" name="Fire Entity">
     <NatureResistance Physical="99" Air="-10" Fire="200" Corruption="-20" Darkness="100" Bio="100" Earth="90" Ice="-200" Light="90" Psionica="100" Water="-500" />
     <CharacterAttributes normalSplash="Fire" weakSplash="Fire" defenceSplash="Fire" abnormalSplash="Fire" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="5000" attackPower="2" bodyPower="0.9" strengthFactor="100" resistanceFactor="5000" efficiencyFactor="100" peripheralFactor="60" bodyDamageRepeatTime="0.5" bodyAttackWeight="2" bodySufferWeight="1.4" attackDamageRepeatTime="0.5" attackWeight="4" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="850" combatRange="650" meleeRange="200" idealRange="150" speed="0.45" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -79,8 +79,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="ENTITY_DARK_FLAME" name="Dark Flame Entity">
+  </Character>
+  <Character varName="ENTITY_DARK_FLAME" name="Dark Flame Entity">
     <NatureResistance Physical="99" Air="-10" Fire="200" Corruption="-21" Darkness="200" Bio="100" Earth="90" Ice="-200" Light="90" Psionica="100" Water="-500" />
     <CharacterAttributes normalSplash="Fire" weakSplash="Fire" defenceSplash="Fire" abnormalSplash="Fire" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="5000" attackPower="3" bodyPower="1.6" strengthFactor="100" resistanceFactor="5000" efficiencyFactor="100" peripheralFactor="105" bodyDamageRepeatTime="0.5" bodyAttackWeight="2.6" bodySufferWeight="1.7" attackDamageRepeatTime="0.5" attackWeight="5" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="850" combatRange="650" meleeRange="200" idealRange="150" speed="1" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -89,8 +89,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="ENTITY_ICE" name="Ice Entity">
+  </Character>
+  <Character varName="ENTITY_ICE" name="Ice Entity">
     <NatureResistance Physical="70" Air="500" Fire="-200" Corruption="-20" Darkness="70" Bio="100" Earth="50" Ice="200" Light="90" Psionica="100" Water="500" />
     <CharacterAttributes normalSplash="Ice" weakSplash="Ice" defenceSplash="Ice" abnormalSplash="Ice" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="5000" attackPower="0.5" bodyPower="1.5" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="80" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.3" bodySufferWeight="1.5" attackDamageRepeatTime="0.5" attackWeight="3" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="850" combatRange="650" meleeRange="200" idealRange="150" speed="1.5" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -99,8 +99,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="ENTITY_ICE_GREAT" name="Great Ice Entity">
+  </Character>
+  <Character varName="ENTITY_ICE_GREAT" name="Great Ice Entity">
     <NatureResistance Physical="70" Air="500" Fire="-200" Corruption="-20" Darkness="70" Bio="100" Earth="50" Ice="200" Light="90" Psionica="100" Water="500" />
     <CharacterAttributes normalSplash="Ice" weakSplash="Ice" defenceSplash="Ice" abnormalSplash="Ice" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="5000" attackPower="2" bodyPower="1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="100" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.7" bodySufferWeight="1.6" attackDamageRepeatTime="0.5" attackWeight="3.5" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="850" combatRange="650" meleeRange="200" idealRange="150" speed="1" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -109,8 +109,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="ENTITY_WATER" name="Water Entity">
+  </Character>
+  <Character varName="ENTITY_WATER" name="Water Entity">
     <NatureResistance Physical="99" Air="-10" Fire="90" Corruption="90" Darkness="90" Bio="90" Earth="90" Ice="0" Light="100" Psionica="5000" Water="7000" />
     <CharacterAttributes normalSplash="Water" weakSplash="Water" defenceSplash="Water" abnormalSplash="Ice" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="0" attackPower="3.5" bodyPower="0.5" strengthFactor="100" resistanceFactor="5000" efficiencyFactor="100" peripheralFactor="30" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.4" bodySufferWeight="1.7" attackDamageRepeatTime="0.5" attackWeight="0.5" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="850" combatRange="500" meleeRange="200" idealRange="150" speed="0.7" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -119,8 +119,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="GUEHNON_FOAL" name="Foal Guehnon">
+  </Character>
+  <Character varName="GUEHNON_FOAL" name="Foal Guehnon">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="0" Earth="0" Ice="0" Light="-100" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="2" pullTypeID="1" mysticalFactor="100" attackPower="2" bodyPower="1.3" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="60" bodyDamageRepeatTime="1" bodyAttackWeight="1.9" bodySufferWeight="1.7" attackDamageRepeatTime="0.5" attackWeight="2.5" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="900" combatRange="850" meleeRange="350" idealRange="110" speed="1.32" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -129,8 +129,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="GUEHNON_GROWN" name="Grown Guehnon">
+  </Character>
+  <Character varName="GUEHNON_GROWN" name="Grown Guehnon">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="0" Earth="0" Ice="0" Light="-100" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="3" pullTypeID="1" mysticalFactor="100" attackPower="3.5" bodyPower="2" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="600" bodyDamageRepeatTime="1" bodyAttackWeight="2" bodySufferWeight="2.6" attackDamageRepeatTime="0.5" attackWeight="3" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="6000" patrolRange="500" followRange="900" combatRange="5000" meleeRange="350" idealRange="150" speed="2" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -139,8 +139,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="SIHLUS_GROWN" name="Sihlus Grown">
+  </Character>
+  <Character varName="SIHLUS_GROWN" name="Sihlus Grown">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="-100" Bio="0" Earth="0" Ice="0" Light="200" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="100" attackPower="2.5" bodyPower="1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="120" bodyDamageRepeatTime="1" bodyAttackWeight="2" bodySufferWeight="2.6" attackDamageRepeatTime="0.5" attackWeight="3" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="900" combatRange="850" meleeRange="350" idealRange="150" speed="1" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -149,8 +149,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="GUEHNON_YOUNG" name="Young Guehnon">
+  </Character>
+  <Character varName="GUEHNON_YOUNG" name="Young Guehnon">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="0" Earth="0" Ice="0" Light="-100" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="2" pullTypeID="1" mysticalFactor="100" attackPower="3" bodyPower="0.9" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="110" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.9" bodySufferWeight="1.4" attackDamageRepeatTime="0.5" attackWeight="2.6" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="900" combatRange="850" meleeRange="350" idealRange="120" speed="1.7" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -159,8 +159,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="NOPROTONE_LOKMO_KNIGHT" name="Noprotone Lokmo Knight">
+  </Character>
+  <Character varName="NOPROTONE_LOKMO_KNIGHT" name="Noprotone Lokmo Knight">
     <NatureResistance Physical="50" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="0" Earth="20" Ice="0" Light="-100" Psionica="90" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="3" pullTypeID="1" mysticalFactor="100" attackPower="1.8" bodyPower="0.3" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="50" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.7" bodySufferWeight="1.6" attackDamageRepeatTime="0.5" attackWeight="2" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="220" idealRange="120" speed="1.2" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -169,8 +169,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="NOPROTONE_LOKMO_RANGER" name="Noprotone Lokmo Ranger">
+  </Character>
+  <Character varName="NOPROTONE_LOKMO_RANGER" name="Noprotone Lokmo Ranger">
     <NatureResistance Physical="60" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="0" Earth="20" Ice="0" Light="-100" Psionica="90" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="3" pullTypeID="1" mysticalFactor="100" attackPower="2" bodyPower="0.3" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="65" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.9" bodySufferWeight="1.1" attackDamageRepeatTime="0.5" attackWeight="1.8" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="220" idealRange="120" speed="1.7" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -179,8 +179,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="NOPROTONE_LOKMO_WARRIOR" name="Noprotone Lokmo Warrior">
+  </Character>
+  <Character varName="NOPROTONE_LOKMO_WARRIOR" name="Noprotone Lokmo Warrior">
     <NatureResistance Physical="70" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="0" Earth="20" Ice="0" Light="-100" Psionica="90" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="3" pullTypeID="1" mysticalFactor="100" attackPower="2.5" bodyPower="0.3" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="90" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.5" bodySufferWeight="1.8" attackDamageRepeatTime="0.5" attackWeight="2.2" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="220" idealRange="120" speed="1.7" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -189,8 +189,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="VARMAHON_NERCANTE_ASSASSIN" name="Varmahon Nercante Assassin">
+  </Character>
+  <Character varName="VARMAHON_NERCANTE_ASSASSIN" name="Varmahon Nercante Assassin">
     <NatureResistance Physical="20" Air="0" Fire="0" Corruption="10" Darkness="200" Bio="0" Earth="0" Ice="0" Light="-100" Psionica="20" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="true" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="3" pullTypeID="1" mysticalFactor="100" attackPower="2" bodyPower="0.8" strengthFactor="100" resistanceFactor="100" efficiencyFactor="110" peripheralFactor="80" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.3" bodySufferWeight="1.4" attackDamageRepeatTime="0.5" attackWeight="2" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="750" meleeRange="300" idealRange="160" speed="1.2" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -199,8 +199,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="CURDEL_ALKATHO_MYSTIC" name="Curdel Alkatho Mystic">
+  </Character>
+  <Character varName="CURDEL_ALKATHO_MYSTIC" name="Curdel Alkatho Mystic">
     <NatureResistance Physical="20" Air="0" Fire="0" Corruption="10" Darkness="-100" Bio="0" Earth="0" Ice="0" Light="200" Psionica="20" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="true" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="3" pullTypeID="1" mysticalFactor="10000" attackPower="2" bodyPower="0.8" strengthFactor="100" resistanceFactor="100" efficiencyFactor="110" peripheralFactor="80" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.3" bodySufferWeight="1.4" attackDamageRepeatTime="0.5" attackWeight="2" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="180" idealRange="120" speed="1.2" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -209,8 +209,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="HALUGARDE_ALKAMO_KNIGHT" name="Halugarde Alkamo Knight">
+  </Character>
+  <Character varName="HALUGARDE_ALKAMO_KNIGHT" name="Halugarde Alkamo Knight">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="0" Bio="0" Earth="0" Ice="0" Light="0" Psionica="0" Water="0" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="3" pullTypeID="0" mysticalFactor="100" attackPower="2" bodyPower="0.3" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="80" bodyDamageRepeatTime="0.5" bodyAttackWeight="0.8" bodySufferWeight="0.4" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="900" combatRange="850" meleeRange="100" idealRange="50" speed="4" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -219,8 +219,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="DELKA_SURVIVOR" name="Delka Survivor">
+  </Character>
+  <Character varName="DELKA_SURVIVOR" name="Delka Survivor">
     <NatureResistance Physical="20" Air="0" Fire="0" Corruption="10" Darkness="-100" Bio="0" Earth="0" Ice="0" Light="200" Psionica="20" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="true" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="3" pullTypeID="1" mysticalFactor="100" attackPower="1.5" bodyPower="0.8" strengthFactor="100" resistanceFactor="100" efficiencyFactor="110" peripheralFactor="60" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.3" bodySufferWeight="1.4" attackDamageRepeatTime="0.5" attackWeight="2" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="180" idealRange="120" speed="1.2" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -229,8 +229,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="LOST_MOSTHICYUS_DARK" name="Lost Mosthicyus Dark">
+  </Character>
+  <Character varName="LOST_MOSTHICYUS_DARK" name="Lost Mosthicyus Dark">
     <NatureResistance Physical="100" Air="100" Fire="100" Corruption="100" Darkness="500" Bio="100" Earth="100" Ice="100" Light="-200" Psionica="100" Water="100" />
     <CharacterAttributes normalSplash="Dark" weakSplash="Dark" defenceSplash="Dark" abnormalSplash="Dark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="3" pullTypeID="0" mysticalFactor="100" attackPower="3" bodyPower="2" strengthFactor="100" resistanceFactor="50000" efficiencyFactor="100" peripheralFactor="70" bodyDamageRepeatTime="0.5" bodyAttackWeight="4" bodySufferWeight="0.2" attackDamageRepeatTime="0.5" attackWeight="4" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="1000" combatRange="850" meleeRange="300" idealRange="50" speed="0.35" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -239,8 +239,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="LOST_MOSTHICYUS_LIGHT" name="Lost Mosthicyus Light">
+  </Character>
+  <Character varName="LOST_MOSTHICYUS_LIGHT" name="Lost Mosthicyus Light">
     <NatureResistance Physical="100" Air="100" Fire="100" Corruption="100" Darkness="-200" Bio="100" Earth="100" Ice="100" Light="500" Psionica="100" Water="100" />
     <CharacterAttributes normalSplash="Light" weakSplash="Light" defenceSplash="Light" abnormalSplash="Light" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="3" pullTypeID="0" mysticalFactor="100" attackPower="3" bodyPower="2" strengthFactor="100" resistanceFactor="50000" efficiencyFactor="100" peripheralFactor="70" bodyDamageRepeatTime="0.5" bodyAttackWeight="4" bodySufferWeight="0.2" attackDamageRepeatTime="0.5" attackWeight="4" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="1000" combatRange="850" meleeRange="300" idealRange="50" speed="0.35" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -249,8 +249,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="PLATHANUS_BUD_DARK" name="Dark Plathanus Bud">
+  </Character>
+  <Character varName="PLATHANUS_BUD_DARK" name="Dark Plathanus Bud">
     <NatureResistance Physical="15" Air="0" Fire="-100" Corruption="0" Darkness="200" Bio="100" Earth="200" Ice="80" Light="100" Psionica="100" Water="110" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="0" pullTypeID="1" mysticalFactor="5000" attackPower="2" bodyPower="1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="25" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.5" bodySufferWeight="0.2" attackDamageRepeatTime="0.5" attackWeight="2" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="false" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="false" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="0" followRange="300" combatRange="300" meleeRange="300" idealRange="100" speed="0" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -259,8 +259,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="PLATHANUS_BUD_LIGHT" name="Light Plathanus Bud">
+  </Character>
+  <Character varName="PLATHANUS_BUD_LIGHT" name="Light Plathanus Bud">
     <NatureResistance Physical="15" Air="0" Fire="-100" Corruption="0" Darkness="100" Bio="100" Earth="200" Ice="80" Light="200" Psionica="100" Water="110" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="1" pullTypeID="1" mysticalFactor="5000" attackPower="2" bodyPower="1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="25" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.5" bodySufferWeight="0.2" attackDamageRepeatTime="0.5" attackWeight="2" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="false" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="false" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="0" followRange="300" combatRange="300" meleeRange="300" idealRange="150" speed="0" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -269,8 +269,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="PLATHANUS_DARK" name="Dark Plathanus">
+  </Character>
+  <Character varName="PLATHANUS_DARK" name="Dark Plathanus">
     <NatureResistance Physical="15" Air="0" Fire="-100" Corruption="0" Darkness="200" Bio="100" Earth="200" Ice="80" Light="100" Psionica="100" Water="110" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="1" pullTypeID="1" mysticalFactor="5000" attackPower="2.5" bodyPower="1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="30" bodyDamageRepeatTime="0.5" bodyAttackWeight="5" bodySufferWeight="0.4" attackDamageRepeatTime="0.5" attackWeight="4" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="false" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="false" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="0" followRange="750" combatRange="650" meleeRange="400" idealRange="150" speed="0" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -279,8 +279,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="PLATHANUS_LIGHT" name="Light Plathanus">
+  </Character>
+  <Character varName="PLATHANUS_LIGHT" name="Light Plathanus">
     <NatureResistance Physical="15" Air="0" Fire="-100" Corruption="0" Darkness="100" Bio="100" Earth="200" Ice="80" Light="200" Psionica="100" Water="110" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="2" pullTypeID="1" mysticalFactor="5000" attackPower="2.5" bodyPower="1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="32" bodyDamageRepeatTime="0.5" bodyAttackWeight="3" bodySufferWeight="0.4" attackDamageRepeatTime="0.5" attackWeight="4" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="false" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="false" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="0" followRange="750" combatRange="650" meleeRange="400" idealRange="100" speed="0" jumpFrequency="60" patrolRangeRatio="1" actionDelay="30" />
@@ -289,8 +289,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="SETH_GROWN" name="Grown Seth">
+  </Character>
+  <Character varName="SETH_GROWN" name="Grown Seth">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="80" Earth="0" Ice="0" Light="-100" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="2" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="2" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="30" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.6" bodySufferWeight="0.4" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="1" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="100" idealRange="50" speed="0.6" jumpFrequency="10" patrolRangeRatio="1" actionDelay="60" />
@@ -299,8 +299,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="SETH_YOUNG" name="Young Seth">
+  </Character>
+  <Character varName="SETH_YOUNG" name="Young Seth">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="80" Earth="0" Ice="0" Light="-100" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="1" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="0.6" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="5" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.5" bodySufferWeight="0.3" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="1" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="100" idealRange="50" speed="0.3" jumpFrequency="1" patrolRangeRatio="1" actionDelay="60" />
@@ -309,8 +309,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="STRATHON_MIST" name="Strahton Mist">
+  </Character>
+  <Character varName="STRATHON_MIST" name="Strahton Mist">
     <NatureResistance Physical="70" Air="-10" Fire="100" Corruption="80" Darkness="200" Bio="80" Earth="100" Ice="100" Light="50" Psionica="100" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="3" pullTypeID="1" mysticalFactor="0" attackPower="0" bodyPower="1" strengthFactor="100" resistanceFactor="300" efficiencyFactor="100" peripheralFactor="10" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.2" bodySufferWeight="0.8" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-5" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="true" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="2000" followRange="1500" combatRange="1500" meleeRange="100" idealRange="50" speed="7" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -319,8 +319,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="STRATHON_FIRE" name="Fire Strathon">
+  </Character>
+  <Character varName="STRATHON_FIRE" name="Fire Strathon">
     <NatureResistance Physical="70" Air="-10" Fire="500" Corruption="80" Darkness="200" Bio="80" Earth="100" Ice="-100" Light="50" Psionica="100" Water="-500" />
     <CharacterAttributes normalSplash="Fire" weakSplash="Fire" defenceSplash="Fire" abnormalSplash="Fire" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="4" pullTypeID="1" mysticalFactor="0" attackPower="0" bodyPower="2" strengthFactor="100" resistanceFactor="500" efficiencyFactor="100" peripheralFactor="22" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.2" bodySufferWeight="1.2" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-5" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="true" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="2000" followRange="1500" combatRange="1500" meleeRange="100" idealRange="50" speed="9" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -329,8 +329,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="THOMOR_GROWN" name="Grown Thomor">
+  </Character>
+  <Character varName="THOMOR_GROWN" name="Grown Thomor">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="80" Earth="100" Ice="0" Light="-100" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="3" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="0.8" strengthFactor="100" resistanceFactor="150" efficiencyFactor="100" peripheralFactor="60" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.5" bodySufferWeight="0.4" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="500" combatRange="500" meleeRange="100" idealRange="50" speed="8" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -339,8 +339,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="THOMOR_YOUNG" name="Young Thomor">
+  </Character>
+  <Character varName="THOMOR_YOUNG" name="Young Thomor">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="0" Darkness="200" Bio="80" Earth="100" Ice="0" Light="-100" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="1" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="0.18" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="5" bodyDamageRepeatTime="0.5" bodyAttackWeight="0.4" bodySufferWeight="0.6" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="500" combatRange="500" meleeRange="100" idealRange="50" speed="5" jumpFrequency="0" patrolRangeRatio="2" actionDelay="60" />
@@ -349,8 +349,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="VULGOH_CREEPING_STRONG" name="Strong Creeping Vulgoh">
+  </Character>
+  <Character varName="VULGOH_CREEPING_STRONG" name="Strong Creeping Vulgoh">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="100" Darkness="-100" Bio="100" Earth="0" Ice="0" Light="200" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="1" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="0.9" strengthFactor="100" resistanceFactor="110" efficiencyFactor="100" peripheralFactor="10" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.5" bodySufferWeight="0.7" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="100" idealRange="0" speed="0.6" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -359,8 +359,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="VULGOH_CREEPING" name="Creeping Vulgoh">
+  </Character>
+  <Character varName="VULGOH_CREEPING" name="Creeping Vulgoh">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="100" Darkness="-100" Bio="100" Earth="0" Ice="0" Light="200" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="1" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="0.8" strengthFactor="100" resistanceFactor="110" efficiencyFactor="100" peripheralFactor="8" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.4" bodySufferWeight="0.4" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="100" idealRange="0" speed="0.6" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -369,8 +369,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="VULGOH_SHINY" name="Shiny Vulgoh">
+  </Character>
+  <Character varName="VULGOH_SHINY" name="Shiny Vulgoh">
     <NatureResistance Physical="0" Air="0" Fire="80" Corruption="20" Darkness="-100" Bio="100" Earth="0" Ice="80" Light="500" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="1" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="0.87" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="10" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.3" bodySufferWeight="0.8" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="100" idealRange="0" speed="0.6" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -379,8 +379,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="VULGOH_MEDIUM" name="Medium Vulgoh">
+  </Character>
+  <Character varName="VULGOH_MEDIUM" name="Medium Vulgoh">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="100" Darkness="-100" Bio="100" Earth="0" Ice="0" Light="200" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="1" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="1.1" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="27" bodyDamageRepeatTime="0.5" bodyAttackWeight="2" bodySufferWeight="0.7" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="100" idealRange="0" speed="0.6" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -389,8 +389,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="VULGOH_STRONG" name="Strong Vulgoh">
+  </Character>
+  <Character varName="VULGOH_STRONG" name="Strong Vulgoh">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="100" Darkness="-100" Bio="100" Earth="0" Ice="0" Light="200" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="1" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="1.25" strengthFactor="100" resistanceFactor="150" efficiencyFactor="100" peripheralFactor="40" bodyDamageRepeatTime="0.5" bodyAttackWeight="2" bodySufferWeight="1.4" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="100" idealRange="0" speed="0.7" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -399,8 +399,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="VULGOH_WEAK" name="Weak Vulgoh">
+  </Character>
+  <Character varName="VULGOH_WEAK" name="Weak Vulgoh">
     <NatureResistance Physical="0" Air="0" Fire="0" Corruption="100" Darkness="-100" Bio="100" Earth="0" Ice="0" Light="200" Psionica="0" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="1" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="0.87" strengthFactor="100" resistanceFactor="120" efficiencyFactor="100" peripheralFactor="9" bodyDamageRepeatTime="0.5" bodyAttackWeight="1.3" bodySufferWeight="0.8" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="100" idealRange="0" speed="0.5" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -409,8 +409,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="LUCHRION_STRONG" name="Strong Luchrion">
+  </Character>
+  <Character varName="LUCHRION_STRONG" name="Strong Luchrion">
     <NatureResistance Physical="30" Air="0" Fire="90" Corruption="100" Darkness="200" Bio="100" Earth="0" Ice="80" Light="-100" Psionica="20" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusLight" weakSplash="CrautaryusLight" defenceSplash="CrautaryusLight" abnormalSplash="CrautaryusLight" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="false" baseLevel="0" pullTypeID="1" mysticalFactor="100" attackPower="0" bodyPower="1.3" strengthFactor="100" resistanceFactor="150" efficiencyFactor="100" peripheralFactor="50" bodyDamageRepeatTime="0.5" bodyAttackWeight="3" bodySufferWeight="0.7" attackDamageRepeatTime="0.5" attackWeight="0" pullDirection="-55" />
     <BehaviorProperties retainDeath="false" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="true" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="0" actionsMaxRange="2000" patrolRange="500" followRange="750" combatRange="650" meleeRange="100" idealRange="0" speed="0.7" jumpFrequency="60" patrolRangeRatio="1" actionDelay="60" />
@@ -419,8 +419,8 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-  <Characters varName="AEKON" name="Aekon">
+  </Character>
+  <Character varName="AEKON" name="Aekon">
     <NatureResistance Physical="40" Air="0" Fire="0" Corruption="30" Darkness="200" Bio="0" Earth="50" Ice="0" Light="-100" Psionica="90" Water="100" />
     <CharacterAttributes normalSplash="CrautaryusDark" weakSplash="CrautaryusDark" defenceSplash="Metal" abnormalSplash="CrautaryusDark" sufferCriticable="false" damagerCriticable="false" regenerable="false" degenerable="false" inflictsBodyDamage="true" inflictsAttackDamage="true" baseLevel="4" pullTypeID="1" mysticalFactor="50" attackPower="4" bodyPower="1.2" strengthFactor="100" resistanceFactor="100" efficiencyFactor="100" peripheralFactor="800" bodyDamageRepeatTime="0.5" bodyAttackWeight="2.3" bodySufferWeight="22" attackDamageRepeatTime="0.5" attackWeight="7" pullDirection="-55" />
     <BehaviorProperties retainDeath="true" craven="false" startAggressive="true" naturallyAggressive="true" racialAggressive="true" naturallyProtector="false" groundAdapt="false" invertableCharacter="true" delayedInverted="false" jumpFrame="0" timeAgonizing="300" actionsMaxRange="5000" patrolRange="500" followRange="3000" combatRange="3500" meleeRange="180" idealRange="150" speed="1.5" jumpFrequency="0" patrolRangeRatio="1" actionDelay="60" />
@@ -429,6 +429,5 @@
       <NatureDrops />
       <ObjectDrops />
     </Loot>
-  </Characters>
-</Characters> </Characters>
+  </Character>
 </Characters>

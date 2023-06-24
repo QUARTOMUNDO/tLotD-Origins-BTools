@@ -21,6 +21,7 @@ public class LootDisplay : MonoBehaviour
     List<PropertyIntFloatDisplay> objectDropsDisplays = new List<PropertyIntFloatDisplay>();
 
     public PropertyDisplay deepAmountRatio;
+    HashSet<string> uniqueNames = new HashSet<string>();
 
     private void OnDrawGizmosSelected()
     {
@@ -115,7 +116,7 @@ public class LootDisplay : MonoBehaviour
         objectDropsDisplays.Remove(arg);
         arg.gameObject.SetActive(false);
         Destroy(arg.gameObject, 0.1f);
-        UpdateObjectDrops(); 
+        UpdateObjectDrops();
     }
 
     private static void ClearDisplayContainer(Transform container, List<PropertyPairDisplay> list)
@@ -141,11 +142,21 @@ public class LootDisplay : MonoBehaviour
     {
         targetCreature.loot.natureDrops.Clear();
         float parsedValue = 0f;
+        uniqueNames.Clear();
         foreach (PropertyPairDisplay display in natureDropsDisplays)
         {
             if (float.TryParse(display.propertyValue.text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out parsedValue))
             {
-                targetCreature.loot.natureDrops.Add(new NameFloatPair(display.propertyName.text, parsedValue));
+                if (!uniqueNames.Contains(display.propertyName.text))
+                {
+                    uniqueNames.Add(display.propertyName.text);
+                    targetCreature.loot.natureDrops.Add(new NameFloatPair(display.propertyName.text, parsedValue));
+                }
+                else
+                {
+                    Debug.LogError("ERROR: Duplicate nature drop name detected at [" + targetCreature.varName + "]. \n" +
+                        " Fix this before saving to avoid errors in xml");
+                }
             }
         }
     }
@@ -155,17 +166,27 @@ public class LootDisplay : MonoBehaviour
         targetCreature.loot.objectDrops.Clear();
         int parsedValue1 = 0;
         float parsedValue2 = 0f;
+        uniqueNames.Clear();
         foreach (PropertyIntFloatDisplay display in objectDropsDisplays)
         {
             if (float.TryParse(display.propertyValue.text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out parsedValue2)
                 && int.TryParse(display.propertyAmount.text, out parsedValue1))
             {
-                targetCreature.loot.objectDrops.Add(new LootObjectDropElement(display.propertyName.text, parsedValue1, parsedValue2));
+                if (!uniqueNames.Contains(display.propertyName.text))
+                {
+                    uniqueNames.Add(display.propertyName.text);
+                    targetCreature.loot.objectDrops.Add(new LootObjectDropElement(display.propertyName.text, parsedValue1, parsedValue2));
+                }
+                else
+                {
+                    Debug.LogError("ERROR: Duplicate object drop name detected at [" + targetCreature.varName + "]. \n" +
+                        " Fix this before saving to avoid errors in xml");
+                }
             }
         }
     }
 
-    private void AddObjectDropDisplay(string name,string newAmount, string newValue)
+    private void AddObjectDropDisplay(string name, string newAmount, string newValue)
     {
         PropertyIntFloatDisplay spawnedDisplay = PropertyIntFloatDisplay.Spawn(name, newAmount, newValue, objectDropsContainer);
         spawnedDisplay.Setup(name, newAmount, newValue, PropertyDisplayTypes.Float);
@@ -176,7 +197,23 @@ public class LootDisplay : MonoBehaviour
 
     private void AddObjectDropDisplay()
     {
-        AddObjectDropDisplay("NewObjectDrop","1","0.1");
+        string uniqueDropName = "NewObjectDrop";
+        int loopCount = 0;
+        bool unique = false;
+        while (!unique && loopCount < 100)
+        {
+            unique = true;
+            foreach (var item in objectDropsDisplays)
+            {
+                if (item.propertyName.text.Equals(uniqueDropName))
+                {
+                    unique = false; break;
+                }
+            }
+            loopCount++;
+            if (!unique) uniqueDropName = "NewObjectDrop" + loopCount;
+        }
+        AddObjectDropDisplay(uniqueDropName, "1", "0.1");
     }
 
     private void AddNatureDropDisplay(string name, string number)
@@ -189,8 +226,25 @@ public class LootDisplay : MonoBehaviour
     }
 
     private void AddNatureDropDisplay()
-    {        
-        AddNatureDropDisplay("NewNatureDrop","0");
+    {
+        string uniqueDropName = "NewNatureDrop";
+        int loopCount = 0;
+        bool unique = false;
+        while (!unique && loopCount < 100)
+        {
+            unique = true;
+            foreach (var item in natureDropsDisplays)
+            {
+                if (item.propertyName.text.Equals(uniqueDropName))
+                {
+                    unique = false; break;
+                }
+            }
+            loopCount++;
+            if (!unique) uniqueDropName = "NewNatureDrop" + loopCount;
+        }
+
+        AddNatureDropDisplay(uniqueDropName, "0");
     }
 
 }
