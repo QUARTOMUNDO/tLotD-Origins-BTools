@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using System.Reflection;
+using System.Linq;
+using System;
 
 public class CharacterAttributesDisplay : MonoBehaviour
 {
@@ -26,6 +29,9 @@ public class CharacterAttributesDisplay : MonoBehaviour
     public PropertyDisplay strengthFactor;
     public PropertyDisplay resistanceFactor;
     public PropertyDisplay efficiencyFactor;
+
+    public PropertyDisplay mysticalEfficiencyFactor;
+
     public PropertyDisplay peripheralFactor;
     public PropertyDisplay bodyDamageRepeatTime;
     public PropertyDisplay bodyAttackWeight;
@@ -35,7 +41,7 @@ public class CharacterAttributesDisplay : MonoBehaviour
     public PropertyDisplay pullDirection;
 
 
-
+    /*
     private void Awake()
     {
         if (normalSplash) normalSplash.OnValueChanged2 += PropertyChangeResponse; normalSplash.gameObject.name = "normalSplash";
@@ -56,6 +62,9 @@ public class CharacterAttributesDisplay : MonoBehaviour
         if (strengthFactor) strengthFactor.OnValueChanged2 += PropertyChangeResponse; strengthFactor.gameObject.name = "strengthFactor";
         if (resistanceFactor) resistanceFactor.OnValueChanged2 += PropertyChangeResponse; resistanceFactor.gameObject.name = "resistanceFactor";
         if (efficiencyFactor) efficiencyFactor.OnValueChanged2 += PropertyChangeResponse; efficiencyFactor.gameObject.name = "efficiencyFactor";
+        
+        if (mysticalEfficiencyFactor) mysticalEfficiencyFactor.OnValueChanged2 += PropertyChangeResponse; mysticalEfficiencyFactor.gameObject.name = "mysticalEfficiencyFactor";
+        
         if (peripheralFactor) peripheralFactor.OnValueChanged2 += PropertyChangeResponse; peripheralFactor.gameObject.name = "peripheralFactor";
         if (bodyDamageRepeatTime) bodyDamageRepeatTime.OnValueChanged2 += PropertyChangeResponse; bodyDamageRepeatTime.gameObject.name = "bodyDamageRepeatTime";
         if (bodyAttackWeight) bodyAttackWeight.OnValueChanged2 += PropertyChangeResponse; bodyAttackWeight.gameObject.name = "bodyAttackWeight";
@@ -64,6 +73,27 @@ public class CharacterAttributesDisplay : MonoBehaviour
         if (attackWeight) attackWeight.OnValueChanged2 += PropertyChangeResponse; attackWeight.gameObject.name = "attackWeight";
         if (pullDirection) pullDirection.OnValueChanged2 += PropertyChangeResponse; pullDirection.gameObject.name = "pullDirection";
 
+    }*/
+
+    private void Awake(){
+        BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        FieldInfo[] fields = typeof(CharacterAttributesDisplay).GetFields(flags).Where(f => typeof(PropertyDisplay).IsAssignableFrom(f.FieldType)).ToArray();
+
+        foreach (FieldInfo fieldInfo in fields) {
+            PropertyDisplay fieldDisplay = null;
+
+            string fieldName = fieldInfo.Name;
+            object fieldValueObj = fieldInfo.GetValue(this);
+
+            if (fieldValueObj != null){
+                fieldDisplay = fieldValueObj as PropertyDisplay;
+            }
+
+            if (fieldDisplay != null) {
+                fieldDisplay.OnValueChanged2 += PropertyChangeResponse;
+                fieldDisplay.gameObject.name = fieldName;
+            }
+        }
     }
 
     private void PropertyChangeResponse(string arg, string arg1)
@@ -88,6 +118,9 @@ public class CharacterAttributesDisplay : MonoBehaviour
             case "strengthFactor": targetCreature.characterAttributes.strengthFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
             case "resistanceFactor": targetCreature.characterAttributes.resistanceFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
             case "efficiencyFactor": targetCreature.characterAttributes.efficiencyFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            
+            case "mysticalEfficiencyFactor": targetCreature.characterAttributes.mysticalEfficiencyFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            
             case "peripheralFactor": targetCreature.characterAttributes.peripheralFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
             case "bodyDamageRepeatTime": targetCreature.characterAttributes.bodyDamageRepeatTime = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
             case "bodyAttackWeight": targetCreature.characterAttributes.bodyAttackWeight = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
@@ -125,6 +158,9 @@ public class CharacterAttributesDisplay : MonoBehaviour
         strengthFactor.Setup("strengthFactor", creatureEntry.currentData.characterAttributes.strengthFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.strengthFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.strengthFactor.ToString(CultureInfo.InvariantCulture));
         resistanceFactor.Setup("resistanceFactor", creatureEntry.currentData.characterAttributes.resistanceFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.resistanceFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.resistanceFactor.ToString(CultureInfo.InvariantCulture));
         efficiencyFactor.Setup("efficiencyFactor", creatureEntry.currentData.characterAttributes.efficiencyFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.efficiencyFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.efficiencyFactor.ToString(CultureInfo.InvariantCulture));
+
+        mysticalEfficiencyFactor.Setup("mysticalEfficiencyFactor", creatureEntry.currentData.characterAttributes.mysticalEfficiencyFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.mysticalEfficiencyFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.mysticalEfficiencyFactor.ToString(CultureInfo.InvariantCulture));
+        
         peripheralFactor.Setup("peripheralFactor", creatureEntry.currentData.characterAttributes.peripheralFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.peripheralFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.peripheralFactor.ToString(CultureInfo.InvariantCulture));
         bodyDamageRepeatTime.Setup("bodyDamageRepeatTime", creatureEntry.currentData.characterAttributes.bodyDamageRepeatTime.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodyDamageRepeatTime.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.bodyDamageRepeatTime.ToString(CultureInfo.InvariantCulture));
         bodyAttackWeight.Setup("bodyAttackWeight", creatureEntry.currentData.characterAttributes.bodyAttackWeight.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodyAttackWeight.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.bodyAttackWeight.ToString(CultureInfo.InvariantCulture));
@@ -154,6 +190,9 @@ public class CharacterAttributesDisplay : MonoBehaviour
         if (strengthFactor) strengthFactor.gameObject.name = "strengthFactor";
         if (resistanceFactor) resistanceFactor.gameObject.name = "resistanceFactor";
         if (efficiencyFactor) efficiencyFactor.gameObject.name = "efficiencyFactor";
+        
+        if (mysticalEfficiencyFactor) mysticalEfficiencyFactor.gameObject.name = "mysticalEfficiencyFactor";
+        
         if (peripheralFactor) peripheralFactor.gameObject.name = "peripheralFactor";
         if (bodyDamageRepeatTime) bodyDamageRepeatTime.gameObject.name = "bodyDamageRepeatTime";
         if (bodyAttackWeight) bodyAttackWeight.gameObject.name = "bodyAttackWeight";

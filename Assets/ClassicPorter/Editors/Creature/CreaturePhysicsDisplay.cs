@@ -14,6 +14,7 @@ public class CreaturePhysicsDisplay : MonoBehaviour
     public PropertyDisplay density;
     public PropertyDisplay friction;
     public PropertyDisplay fixedRotation;
+    public PropertyDisplay visualScaleRatio;
 
     /* Formatted var copy
      * 
@@ -24,7 +25,7 @@ public class CreaturePhysicsDisplay : MonoBehaviour
      * density      
      * friction     
      * fixedRotation
-     * 
+     * visualScaleRatio
      * 
      * "height"
      * "width"
@@ -33,7 +34,7 @@ public class CreaturePhysicsDisplay : MonoBehaviour
      * "density"
      * "friction"
      * "fixedRotation"
-     * 
+     * visualScaleRatio
      */
 
     private void OnDrawGizmosSelected()
@@ -44,10 +45,12 @@ public class CreaturePhysicsDisplay : MonoBehaviour
         if (offsetY) offsetY.gameObject.name = "offsetY"; offsetY.previewPropertyName = "offsetY";
         if (density) density.gameObject.name = "density"; density.previewPropertyName = "density";
         if (friction) friction.gameObject.name = "friction"; friction.previewPropertyName = "friction";
+        
+        if (visualScaleRatio) visualScaleRatio.gameObject.name = "visualScaleRatio"; visualScaleRatio.previewPropertyName = "visualScaleRatio";
+        
         if (fixedRotation) fixedRotation.gameObject.name = "fixedRotation"; fixedRotation.previewPropertyName = "fixedRotation";
 
     }
-
 
     private void Awake()
     {
@@ -57,6 +60,9 @@ public class CreaturePhysicsDisplay : MonoBehaviour
         if (offsetY) offsetY.OnValueChanged2 += PropertyChangeResponse; offsetY.gameObject.name = "offsetY";
         if (density) density.OnValueChanged2 += PropertyChangeResponse; density.gameObject.name = "density";
         if (friction) friction.OnValueChanged2 += PropertyChangeResponse; friction.gameObject.name = "friction";
+        
+        if (visualScaleRatio) visualScaleRatio.OnValueChanged2 += PropertyChangeResponse; visualScaleRatio.gameObject.name = "visualScaleRatio";
+        
         if (fixedRotation) fixedRotation.OnValueChanged2 += PropertyChangeResponse; fixedRotation.gameObject.name = "fixedRotation";
 
     }
@@ -72,6 +78,9 @@ public class CreaturePhysicsDisplay : MonoBehaviour
             case "offsetY": targetCreature.creaturePhysics.offsetY = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
             case "density": targetCreature.creaturePhysics.density = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
             case "friction": targetCreature.creaturePhysics.friction = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            
+            case "visualScaleRatio": targetCreature.creaturePhysics.visualScaleRatio = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+            
             case "fixedRotation": targetCreature.creaturePhysics.fixedRotation = bool.Parse(arg1); break;
 
             default:
@@ -90,7 +99,10 @@ public class CreaturePhysicsDisplay : MonoBehaviour
         offsetY      .Setup("offsetY"       , creatureEntry.currentData.creaturePhysics.offsetY      .ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.offsetY      .ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.offsetY      .ToString(CultureInfo.InvariantCulture));
         density      .Setup("density"       , creatureEntry.currentData.creaturePhysics.density      .ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.density      .ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.density      .ToString(CultureInfo.InvariantCulture));
         friction     .Setup("friction"      , creatureEntry.currentData.creaturePhysics.friction     .ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.friction     .ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.friction     .ToString(CultureInfo.InvariantCulture));
-        fixedRotation.Setup("fixedRotation" , creatureEntry.currentData.creaturePhysics.fixedRotation.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool , creatureEntry.defaultData.creaturePhysics.fixedRotation.ToString(), creatureEntry.sourceData.creaturePhysics.fixedRotation.ToString());
+
+        visualScaleRatio.Setup("visualScaleRatio",   creatureEntry.currentData.creaturePhysics.visualScaleRatio.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.creaturePhysics.visualScaleRatio.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.creaturePhysics.visualScaleRatio.ToString(CultureInfo.InvariantCulture));
+        
+        fixedRotation.Setup("fixedRotation" , creatureEntry.currentData.creaturePhysics.fixedRotation.ToString(),                             UtilDefinitions.PropertyDisplayTypes.Bool , creatureEntry.defaultData.creaturePhysics.fixedRotation.ToString(),                             creatureEntry.sourceData.creaturePhysics.fixedRotation.ToString());
         
     }
 

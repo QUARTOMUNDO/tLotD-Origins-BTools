@@ -15,7 +15,7 @@ public class CreatureEditorDisplay : MonoBehaviour
 
     private void OnDisable()
     {
-        PortController.single.OnCreatureReload -= OnCreatureReloadResponse;        
+        PortController.single.OnCreatureReload -= OnCreatureReloadResponse;
     }
 
     private void OnCreatureReloadResponse(PortController arg)
