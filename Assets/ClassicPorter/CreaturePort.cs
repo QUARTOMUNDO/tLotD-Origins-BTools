@@ -180,9 +180,109 @@ public class CreatureData
     }
 
     #endregion
+    
+    /// <summary>
+    /// Parse XML attribute value to taking into account the type.
+    /// </summary>
+    /// <param name="value">Value itself</param>
+    /// <param name="targetType">Value Type</param>
+    /// <param name="parsedValue"></param>
+    /// <param name="parsingSuccess"></param>
+    public static void ParseValue(string value, Type targetType, out object parsedValue, out bool parsingSuccess)
+    {
+        parsingSuccess = false;
+        parsedValue = null;
 
+        if (targetType == typeof(int))
+        {
+            int intValue;
+            if (int.TryParse(value, out intValue))
+            {
+                parsedValue = intValue;
+                parsingSuccess = true;
+            }
+        }
+        else if (targetType == typeof(float))
+        {
+            float floatValue;
+            if (float.TryParse(value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out floatValue))
+            {
+                parsedValue = floatValue;
+                parsingSuccess = true;
+            }
+        }
+        else if (targetType == typeof(bool))
+        {
+            bool boolValue;
+            if (bool.TryParse(value, out boolValue))
+            {
+                parsedValue = boolValue;
+                parsingSuccess = true;
+            }
+        }
+        else if (targetType == typeof(string))
+        {
+            parsedValue = value;
+            parsingSuccess = true;
+        }
+    }
 
+    public static void SetFromXML<T>(XElement property, T targetObject) {
+        if (property != null && property.HasAttributes){
+            BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy;
+            string[] excludedMemberNames = { "GetXElement" };
+            PropertyInfo[] properties = targetObject.GetType().GetProperties(flags);
+            FieldInfo[] fields = targetObject.GetType().GetFields(flags);
+
+            foreach (XAttribute attribute in property.Attributes()){
+                string attributeName = attribute.Name.LocalName;
+                string attributeValue = attribute.Value;
+
+                PropertyInfo propertyInfo = properties.FirstOrDefault(p => p.Name == attributeName);
+
+                if (propertyInfo != null){
+                    object parsedValue;
+                    bool parsingSuccess;
+
+                    CreatureData.ParseValue(attributeValue, propertyInfo.PropertyType, out parsedValue, out parsingSuccess);
+
+                    if (parsingSuccess){
+                        if (propertyInfo.CanWrite){
+                            propertyInfo.SetValue(targetObject, parsedValue); 
+                        }
+                        else {
+                            Debug.LogWarning("Property does not have a setter: " + attributeName);
+                        }
+                    }
+                    else{
+                        Debug.LogWarning("Failed to parse attribute: " + attributeName);
+                    }
+                }
+                else{
+                    FieldInfo fieldInfo = fields.FirstOrDefault(f => f.Name == attributeName);
+
+                    if (fieldInfo != null){
+                        object parsedValue;
+                        bool parsingSuccess;
+
+                        CreatureData.ParseValue(attributeValue, fieldInfo.FieldType, out parsedValue, out parsingSuccess);
+
+                        if (parsingSuccess){
+                            fieldInfo.SetValue(targetObject, parsedValue);
+                        }
+                        else{
+                            Debug.LogWarning("Failed to parse attribute: " + attributeName);
+                        }
+                    }
+                    else{
+                        Debug.LogWarning("Unrecognized attribute or non-property member: " + attributeName);
+                    }
+                }
+            }
+        }
+    }
 }
+
 
 [System.Serializable]
 public class NatureResistance
@@ -274,10 +374,6 @@ public class NatureResistance
 [System.Serializable]
 public class CharacterAttributes
 {
-    //public static CharacterAttributes CA = new CharacterAttributes();
-
-    //public Dictionary<string, object> AttributesDict = new Dictionary<string, object>();
-
     public string normalSplash = "CrautaryusLight";
     public string weakSplash = "CrautaryusLight";
     public string defenceSplash = "CrautaryusLight";
@@ -315,72 +411,8 @@ public class CharacterAttributes
     /// Read from XML Element
     /// </summary>
     /// <param name="property"></param>
-    public CharacterAttributes(XElement property)
-    {
-        if (property != null && property.HasAttributes)
-        {
-            BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy;
-            string[] excludedMemberNames = { "GetXElement" };
-            PropertyInfo[] properties = typeof(CharacterAttributes).GetProperties(flags);
-            FieldInfo[] fields = typeof(CharacterAttributes).GetFields(flags);
-
-            foreach (XAttribute attribute in property.Attributes())
-            {
-                string attributeName = attribute.Name.LocalName;
-                string attributeValue = attribute.Value;
-
-                PropertyInfo propertyInfo = properties.FirstOrDefault(p => p.Name == attributeName);
-
-                if (propertyInfo != null)
-                {
-                    object parsedValue;
-                    bool parsingSuccess;
-
-                    ParseValue(attributeValue, propertyInfo.PropertyType, out parsedValue, out parsingSuccess);
-
-                    if (parsingSuccess)
-                    {
-                        if (propertyInfo.CanWrite) // Check if the property has a setter
-                        {
-                            propertyInfo.SetValue(this, parsedValue);
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Property does not have a setter: " + attributeName);
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Failed to parse attribute: " + attributeName);
-                    }
-                }
-                else
-                {
-                    FieldInfo fieldInfo = fields.FirstOrDefault(f => f.Name == attributeName);
-
-                    if (fieldInfo != null)
-                    {
-                        object parsedValue;
-                        bool parsingSuccess;
-
-                        ParseValue(attributeValue, fieldInfo.FieldType, out parsedValue, out parsingSuccess);
-
-                        if (parsingSuccess)
-                        {
-                            fieldInfo.SetValue(this, parsedValue);
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Failed to parse attribute: " + attributeName);
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Unrecognized attribute or non-property member: " + attributeName);
-                    }
-                }
-            }
-        }
+    public CharacterAttributes(XElement property){
+        CreatureData.SetFromXML(property, this);
     }
 
     /// <summary>
@@ -404,175 +436,6 @@ public class CharacterAttributes
         }
 
         return element;
-    }
-
-    /// <summary>
-    /// Read from XML Element
-    /// </summary>
-    /// <param name="property"></param>
-    /*
-    public CharacterAttributes(XElement property)
-    {
-        if (property != null && property.HasAttributes)
-        {
-            if (property.Attribute("baseLevel") != null) int.TryParse(property.Attribute("baseLevel").Value, out baseLevel);
-            if (property.Attribute("attackPower") != null) float.TryParse(property.Attribute("attackPower").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out attackPower);
-            if (property.Attribute("bodyPower") != null) float.TryParse(property.Attribute("bodyPower").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out bodyPower);
-            if (property.Attribute("inflictsBodyDamage") != null) bool.TryParse(property.Attribute("inflictsBodyDamage").Value, out inflictsBodyDamage);
-            if (property.Attribute("inflictsAttackDamage") != null) bool.TryParse(property.Attribute("inflictsAttackDamage").Value, out inflictsAttackDamage);
-            //String values \/
-            if (property.Attribute("normalSplash") != null) normalSplash = property.Attribute("normalSplash").Value;
-            if (property.Attribute("weakSplash") != null) weakSplash = property.Attribute("weakSplash").Value;
-            if (property.Attribute("defenceSplash") != null) defenceSplash = property.Attribute("defenceSplash").Value;
-            if (property.Attribute("abnormalSplash") != null) abnormalSplash = property.Attribute("abnormalSplash").Value;
-            //String values /\
-            if (property.Attribute("strengthFactor") != null) float.TryParse(property.Attribute("strengthFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out strengthFactor);
-            if (property.Attribute("resistanceFactor") != null) float.TryParse(property.Attribute("resistanceFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out resistanceFactor);
-            if (property.Attribute("efficiencyFactor") != null) float.TryParse(property.Attribute("efficiencyFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out efficiencyFactor);
-            
-            if (property.Attribute("mysticalEfficiencyFactor") != null) float.TryParse(property.Attribute("mysticalEfficiencyFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out mysticalEfficiencyFactor);
-            
-            if (property.Attribute("peripheralFactor") != null) float.TryParse(property.Attribute("peripheralFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out peripheralFactor);
-            if (property.Attribute("mysticalFactor") != null) float.TryParse(property.Attribute("mysticalFactor").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out mysticalFactor);
-            if (property.Attribute("sufferCriticable") != null) bool.TryParse(property.Attribute("sufferCriticable").Value, out sufferCriticable);
-            if (property.Attribute("damagerCriticable") != null) bool.TryParse(property.Attribute("damagerCriticable").Value, out damagerCriticable);
-            if (property.Attribute("bodyDamageRepeatTime") != null) float.TryParse(property.Attribute("bodyDamageRepeatTime").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out bodyDamageRepeatTime);
-            if (property.Attribute("bodyAttackWeight") != null) float.TryParse(property.Attribute("bodyAttackWeight").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out bodyAttackWeight);
-            if (property.Attribute("bodySufferWeight") != null) float.TryParse(property.Attribute("bodySufferWeight").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out bodySufferWeight);
-            if (property.Attribute("attackDamageRepeatTime") != null) float.TryParse(property.Attribute("attackDamageRepeatTime").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out attackDamageRepeatTime);
-            if (property.Attribute("attackWeight") != null) float.TryParse(property.Attribute("attackWeight").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out attackWeight);
-            if (property.Attribute("pullDirection") != null) float.TryParse(property.Attribute("pullDirection").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out pullDirection);
-            if (property.Attribute("pullTypeID") != null) int.TryParse(property.Attribute("pullTypeID").Value, out pullTypeID);
-            if (property.Attribute("regenerable") != null) bool.TryParse(property.Attribute("regenerable").Value, out regenerable);
-            if (property.Attribute("degenerable") != null) bool.TryParse(property.Attribute("degenerable").Value, out degenerable);
-        }
-    }*/
-
-    /// <summary>
-    /// Normal constructor
-    /// </summary>
-    public CharacterAttributes(int baseLevel, float attackPower, float bodyPower, bool inflictsBodyDamage, bool inflictsAttackDamage, string normalSplash, string weakSplash, string defenceSplash, string abnormalSplash, float strengthFactor, float resistanceFactor, float efficiencyFactor, float mysticalEfficiencyFactor, float peripheralFactor, float mysticalFactor, bool sufferCriticable, bool damagerCriticable, float bodyDamageRepeatTime, float bodyAttackWeight, float bodySufferWeight, float attackDamageRepeatTime, float attackWeight, float pullDirection, int pullTypeID, bool regenerable, bool degenerable)
-    {
-        this.baseLevel = baseLevel;
-        this.attackPower = attackPower;
-        this.bodyPower = bodyPower;
-        this.inflictsBodyDamage = inflictsBodyDamage;
-        this.inflictsAttackDamage = inflictsAttackDamage;
-        this.normalSplash = normalSplash;
-        this.weakSplash = weakSplash;
-        this.defenceSplash = defenceSplash;
-        this.abnormalSplash = abnormalSplash;
-        this.strengthFactor = strengthFactor;
-        this.resistanceFactor = resistanceFactor;
-        this.efficiencyFactor = efficiencyFactor;
-        
-        this.mysticalEfficiencyFactor = mysticalEfficiencyFactor;
-        
-        this.peripheralFactor = peripheralFactor;
-        this.mysticalFactor = mysticalFactor;
-        this.sufferCriticable = sufferCriticable;
-        this.damagerCriticable = damagerCriticable;
-        this.bodyDamageRepeatTime = bodyDamageRepeatTime;
-        this.bodyAttackWeight = bodyAttackWeight;
-        this.bodySufferWeight = bodySufferWeight;
-        this.attackDamageRepeatTime = attackDamageRepeatTime;
-        this.attackWeight = attackWeight;
-        this.pullDirection = pullDirection;
-        this.pullTypeID = pullTypeID;
-        this.regenerable = regenerable;
-        this.degenerable = degenerable;
-    }
-
-    /// <summary>
-    /// Read from attributes data and create XML Element
-    /// </summary>
-    /// <returns></returns>
-    /*
-    public XElement GetXElement()
-    {
-        XElement element = new XElement("CharacterAttributes");
-        List<XAttribute> attributes = new List<XAttribute>();
-
-        attributes.Add(new XAttribute("normalSplash", normalSplash));
-        attributes.Add(new XAttribute("weakSplash", weakSplash));
-        attributes.Add(new XAttribute("defenceSplash", defenceSplash));
-        attributes.Add(new XAttribute("abnormalSplash", abnormalSplash));
-        attributes.Add(new XAttribute("sufferCriticable", sufferCriticable));
-        attributes.Add(new XAttribute("damagerCriticable", damagerCriticable));
-        attributes.Add(new XAttribute("regenerable", regenerable));
-        attributes.Add(new XAttribute("degenerable", degenerable));
-        attributes.Add(new XAttribute("inflictsBodyDamage", inflictsBodyDamage));
-        attributes.Add(new XAttribute("inflictsAttackDamage", inflictsAttackDamage));
-        attributes.Add(new XAttribute("baseLevel", baseLevel));
-        attributes.Add(new XAttribute("pullTypeID", pullTypeID));
-        attributes.Add(new XAttribute("mysticalFactor", mysticalFactor));
-        attributes.Add(new XAttribute("attackPower", attackPower));
-        attributes.Add(new XAttribute("bodyPower", bodyPower));
-        attributes.Add(new XAttribute("strengthFactor", strengthFactor));
-        attributes.Add(new XAttribute("resistanceFactor", resistanceFactor));
-        attributes.Add(new XAttribute("efficiencyFactor", efficiencyFactor));
-
-        attributes.Add(new XAttribute("mysticalEfficiencyFactor", mysticalEfficiencyFactor));
-
-        attributes.Add(new XAttribute("peripheralFactor", peripheralFactor));
-        attributes.Add(new XAttribute("bodyDamageRepeatTime", bodyDamageRepeatTime));
-        attributes.Add(new XAttribute("bodyAttackWeight", bodyAttackWeight));
-        attributes.Add(new XAttribute("bodySufferWeight", bodySufferWeight));
-        attributes.Add(new XAttribute("attackDamageRepeatTime", attackDamageRepeatTime));
-        attributes.Add(new XAttribute("attackWeight", attackWeight));
-        attributes.Add(new XAttribute("pullDirection", pullDirection));
-
-        foreach (XAttribute attribute in attributes)
-        {
-            element.Add(attribute);
-        }
-
-        return element;
-    }*/
-    /// <summary>
-    /// Parse XML attribute value to taking into account the type.
-    /// </summary>
-    /// <param name="value">Value itself</param>
-    /// <param name="targetType">Value Type</param>
-    /// <param name="parsedValue"></param>
-    /// <param name="parsingSuccess"></param>
-    private void ParseValue(string value, Type targetType, out object parsedValue, out bool parsingSuccess)
-    {
-        parsingSuccess = false;
-        parsedValue = null;
-
-        if (targetType == typeof(int))
-        {
-            int intValue;
-            if (int.TryParse(value, out intValue))
-            {
-                parsedValue = intValue;
-                parsingSuccess = true;
-            }
-        }
-        else if (targetType == typeof(float))
-        {
-            float floatValue;
-            if (float.TryParse(value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out floatValue))
-            {
-                parsedValue = floatValue;
-                parsingSuccess = true;
-            }
-        }
-        else if (targetType == typeof(bool))
-        {
-            bool boolValue;
-            if (bool.TryParse(value, out boolValue))
-            {
-                parsedValue = boolValue;
-                parsingSuccess = true;
-            }
-        }
-        else if (targetType == typeof(string))
-        {
-            parsedValue = value;
-            parsingSuccess = true;
-        }
     }
 }
 
@@ -605,70 +468,36 @@ public class BehaviorProperties
     {
     }
 
-    public BehaviorProperties(XElement property)
-    {
-        if (property != null && property.HasAttributes)
-        {
-            if (property.Attribute("timeAgonizing") != null) float.TryParse(property.Attribute("timeAgonizing").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out timeAgonizing);
-            if (property.Attribute("retainDeath") != null) bool.TryParse(property.Attribute("retainDeath").Value, out retainDeath);
-            if (property.Attribute("craven") != null) bool.TryParse(property.Attribute("craven").Value, out craven);
-            if (property.Attribute("startAggressive") != null) bool.TryParse(property.Attribute("startAggressive").Value, out startAggressive);
-            if (property.Attribute("naturallyAggressive") != null) bool.TryParse(property.Attribute("naturallyAggressive").Value, out naturallyAggressive);
-            if (property.Attribute("racialAggressive") != null) bool.TryParse(property.Attribute("racialAggressive").Value, out racialAggressive);
-            if (property.Attribute("naturallyProtector") != null) bool.TryParse(property.Attribute("naturallyProtector").Value, out naturallyProtector);
-            if (property.Attribute("actionsMaxRange") != null) float.TryParse(property.Attribute("actionsMaxRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out actionsMaxRange);
-            if (property.Attribute("patrolRange") != null) float.TryParse(property.Attribute("patrolRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out patrolRange);
-            if (property.Attribute("followRange") != null) float.TryParse(property.Attribute("followRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out followRange);
-            if (property.Attribute("combatRange") != null) float.TryParse(property.Attribute("combatRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out combatRange);
-            if (property.Attribute("meleeRange") != null) float.TryParse(property.Attribute("meleeRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out meleeRange);
-            if (property.Attribute("idealRange") != null) float.TryParse(property.Attribute("idealRange").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out idealRange);
-            if (property.Attribute("speed") != null) float.TryParse(property.Attribute("speed").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out speed);
-            if (property.Attribute("groundAdapt") != null) bool.TryParse(property.Attribute("groundAdapt").Value, out groundAdapt);
-            if (property.Attribute("invertableCharacter") != null) bool.TryParse(property.Attribute("invertableCharacter").Value, out invertableCharacter);
-            if (property.Attribute("delayedInverted") != null) bool.TryParse(property.Attribute("delayedInverted").Value, out delayedInverted);
-            if (property.Attribute("jumpFrequency") != null) float.TryParse(property.Attribute("jumpFrequency").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out jumpFrequency);
-            if (property.Attribute("jumpFrame") != null) int.TryParse(property.Attribute("jumpFrame").Value, out jumpFrame);
-            if (property.Attribute("patrolRangeRatio") != null) float.TryParse(property.Attribute("patrolRangeRatio").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out patrolRangeRatio);
-            if (property.Attribute("actionDelay") != null) float.TryParse(property.Attribute("actionDelay").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out actionDelay);
-
-        }
+    /// <summary>
+    /// Read from XML Element
+    /// </summary>
+    /// <param name="property"></param>
+    public BehaviorProperties(XElement property){
+        CreatureData.SetFromXML(property, this);
     }
 
+    /// <summary>
+    /// Read from attributes data and create XML Element
+    /// </summary>
+    /// <returns></returns>    
     public XElement GetXElement()
     {
+        Type type = typeof(BehaviorProperties);
+        FieldInfo[] fields = type.GetFields();
+
         XElement element = new XElement("BehaviorProperties");
         List<XAttribute> attributes = new List<XAttribute>();
 
-        attributes.Add(new XAttribute("retainDeath", retainDeath));
-        attributes.Add(new XAttribute("craven", craven));
-        attributes.Add(new XAttribute("startAggressive", startAggressive));
-        attributes.Add(new XAttribute("naturallyAggressive", naturallyAggressive));
-        attributes.Add(new XAttribute("racialAggressive", racialAggressive));
-        attributes.Add(new XAttribute("naturallyProtector", naturallyProtector));
-        attributes.Add(new XAttribute("groundAdapt", groundAdapt));
-        attributes.Add(new XAttribute("invertableCharacter", invertableCharacter));
-        attributes.Add(new XAttribute("delayedInverted", delayedInverted));
-        attributes.Add(new XAttribute("jumpFrame", jumpFrame));
-        attributes.Add(new XAttribute("timeAgonizing", timeAgonizing));
-        attributes.Add(new XAttribute("actionsMaxRange", actionsMaxRange));
-        attributes.Add(new XAttribute("patrolRange", patrolRange));
-        attributes.Add(new XAttribute("followRange", followRange));
-        attributes.Add(new XAttribute("combatRange", combatRange));
-        attributes.Add(new XAttribute("meleeRange", meleeRange));
-        attributes.Add(new XAttribute("idealRange", idealRange));
-        attributes.Add(new XAttribute("speed", speed));
-        attributes.Add(new XAttribute("jumpFrequency", jumpFrequency));
-        attributes.Add(new XAttribute("patrolRangeRatio", patrolRangeRatio));
-        attributes.Add(new XAttribute("actionDelay", actionDelay));
-
-        foreach (XAttribute attribute in attributes)
+        foreach (FieldInfo field in fields)
         {
-            element.Add(attribute);
+            string fieldName = field.Name;
+            object fieldValue = field.GetValue(this);
+
+            element.Add(new XAttribute(fieldName, fieldValue));
         }
 
         return element;
     }
-
 }
 
 [System.Serializable]
@@ -682,49 +511,38 @@ public class CreaturePhysics
     public float friction = 0.5f;
     public bool fixedRotation = true;
     public float visualScaleRatio = 1;
+    public string color = "255,255,255";
 
     public CreaturePhysics()
     {
     }
 
-    public CreaturePhysics(XElement property)
-    {
-        if (property != null && property.HasAttributes)
-        {
-            if (property.Attribute("height") != null) float.TryParse(property.Attribute("height").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out height);
-            if (property.Attribute("width") != null) float.TryParse(property.Attribute("width").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out width);
-            if (property.Attribute("offsetX") != null) float.TryParse(property.Attribute("offsetX").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out offsetX);
-            if (property.Attribute("offsetY") != null) float.TryParse(property.Attribute("offsetY").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out offsetY);
-            if (property.Attribute("density") != null) float.TryParse(property.Attribute("density").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out density);
-            if (property.Attribute("friction") != null) float.TryParse(property.Attribute("friction").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out friction);
-            if (property.Attribute("fixedRotation") != null) bool.TryParse(property.Attribute("fixedRotation").Value, out fixedRotation);
-            
-            if (property.Attribute("visualScaleRatio") != null) float.TryParse(property.Attribute("visualScaleRatio").Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out visualScaleRatio);
-        }
+    public CreaturePhysics(XElement property){
+        CreatureData.SetFromXML(property, this);
     }
 
+    /// <summary>
+    /// Read from attributes data and create XML Element
+    /// </summary>
+    /// <returns></returns>    
     public XElement GetXElement()
     {
+        Type type = typeof(CreaturePhysics);
+        FieldInfo[] fields = type.GetFields();
+
         XElement element = new XElement("CreaturePhysics");
         List<XAttribute> attributes = new List<XAttribute>();
 
-        attributes.Add(new XAttribute("height", height));
-        attributes.Add(new XAttribute("width", width));
-        attributes.Add(new XAttribute("offsetX", offsetX));
-        attributes.Add(new XAttribute("offsetY", offsetY));
-        attributes.Add(new XAttribute("density", density));
-        attributes.Add(new XAttribute("friction", friction));
-        attributes.Add(new XAttribute("visualScaleRatio", visualScaleRatio));
-        attributes.Add(new XAttribute("fixedRotation", fixedRotation));
-
-        foreach (XAttribute attribute in attributes)
+        foreach (FieldInfo field in fields)
         {
-            element.Add(attribute);
+            string fieldName = field.Name;
+            object fieldValue = field.GetValue(this);
+
+            element.Add(new XAttribute(fieldName, fieldValue));
         }
 
         return element;
     }
-
 }
 
 [System.Serializable]
@@ -791,8 +609,6 @@ public class Loot
         element.Add(new XAttribute("deepAmountRatio", deepAmountRatio));
         element.Add(natureDropsElement);
         element.Add(objectDropsElement);
-
-
 
         foreach (NameFloatPair pair in natureDrops)
         {

@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 1496110218211848301}
   - component: {fileID: 1496110218211848290}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: InputBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 1496110219514007553}
   - component: {fileID: 1496110219514007552}
   m_Layer: 5
-  m_Name: HorizontalBox
+  m_Name: InputSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 1496110219754600914}
   - component: {fileID: 1496110219754600915}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PropertyName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -925,7 +925,7 @@ GameObject:
   - component: {fileID: 8282679231947891861}
   - component: {fileID: 1431199175876087490}
   m_Layer: 5
-  m_Name: DefaultBox
+  m_Name: RefValuesSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

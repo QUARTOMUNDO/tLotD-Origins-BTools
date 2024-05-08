@@ -41,43 +41,9 @@ public class CharacterAttributesDisplay : MonoBehaviour
     public PropertyDisplay pullDirection;
 
 
-    /*
-    private void Awake()
-    {
-        if (normalSplash) normalSplash.OnValueChanged2 += PropertyChangeResponse; normalSplash.gameObject.name = "normalSplash";
-        if (weakSplash) weakSplash.OnValueChanged2 += PropertyChangeResponse; weakSplash.gameObject.name = "weakSplash";
-        if (defenceSplash) defenceSplash.OnValueChanged2 += PropertyChangeResponse; defenceSplash.gameObject.name = "defenceSplash";
-        if (abnormalSplash) abnormalSplash.OnValueChanged2 += PropertyChangeResponse; abnormalSplash.gameObject.name = "abnormalSplash";
-        if (sufferCriticable) sufferCriticable.OnValueChanged2 += PropertyChangeResponse; sufferCriticable.gameObject.name = "sufferCriticable";
-        if (damagerCriticable) damagerCriticable.OnValueChanged2 += PropertyChangeResponse; damagerCriticable.gameObject.name = "damagerCriticable";
-        if (regenerable) regenerable.OnValueChanged2 += PropertyChangeResponse; regenerable.gameObject.name = "regenerable";
-        if (degenerable) degenerable.OnValueChanged2 += PropertyChangeResponse; degenerable.gameObject.name = "degenerable";
-        if (inflictsBodyDamage) inflictsBodyDamage.OnValueChanged2 += PropertyChangeResponse; inflictsBodyDamage.gameObject.name = "inflictsBodyDamage";
-        if (inflictsAttackDamage) inflictsAttackDamage.OnValueChanged2 += PropertyChangeResponse; inflictsAttackDamage.gameObject.name = "inflictsAttackDamage";
-        if (baseLevel) baseLevel.OnValueChanged2 += PropertyChangeResponse; baseLevel.gameObject.name = "baseLevel";
-        if (pullTypeID) pullTypeID.OnValueChanged2 += PropertyChangeResponse; pullTypeID.gameObject.name = "pullTypeID";
-        if (mysticalFactor) mysticalFactor.OnValueChanged2 += PropertyChangeResponse; mysticalFactor.gameObject.name = "mysticalFactor";
-        if (attackPower) attackPower.OnValueChanged2 += PropertyChangeResponse; attackPower.gameObject.name = "attackPower";
-        if (bodyPower) bodyPower.OnValueChanged2 += PropertyChangeResponse; bodyPower.gameObject.name = "bodyPower";
-        if (strengthFactor) strengthFactor.OnValueChanged2 += PropertyChangeResponse; strengthFactor.gameObject.name = "strengthFactor";
-        if (resistanceFactor) resistanceFactor.OnValueChanged2 += PropertyChangeResponse; resistanceFactor.gameObject.name = "resistanceFactor";
-        if (efficiencyFactor) efficiencyFactor.OnValueChanged2 += PropertyChangeResponse; efficiencyFactor.gameObject.name = "efficiencyFactor";
-        
-        if (mysticalEfficiencyFactor) mysticalEfficiencyFactor.OnValueChanged2 += PropertyChangeResponse; mysticalEfficiencyFactor.gameObject.name = "mysticalEfficiencyFactor";
-        
-        if (peripheralFactor) peripheralFactor.OnValueChanged2 += PropertyChangeResponse; peripheralFactor.gameObject.name = "peripheralFactor";
-        if (bodyDamageRepeatTime) bodyDamageRepeatTime.OnValueChanged2 += PropertyChangeResponse; bodyDamageRepeatTime.gameObject.name = "bodyDamageRepeatTime";
-        if (bodyAttackWeight) bodyAttackWeight.OnValueChanged2 += PropertyChangeResponse; bodyAttackWeight.gameObject.name = "bodyAttackWeight";
-        if (bodySufferWeight) bodySufferWeight.OnValueChanged2 += PropertyChangeResponse; bodySufferWeight.gameObject.name = "bodySufferWeight";
-        if (attackDamageRepeatTime) attackDamageRepeatTime.OnValueChanged2 += PropertyChangeResponse; attackDamageRepeatTime.gameObject.name = "attackDamageRepeatTime";
-        if (attackWeight) attackWeight.OnValueChanged2 += PropertyChangeResponse; attackWeight.gameObject.name = "attackWeight";
-        if (pullDirection) pullDirection.OnValueChanged2 += PropertyChangeResponse; pullDirection.gameObject.name = "pullDirection";
-
-    }*/
-
     private void Awake(){
         BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-        FieldInfo[] fields = typeof(CharacterAttributesDisplay).GetFields(flags).Where(f => typeof(PropertyDisplay).IsAssignableFrom(f.FieldType)).ToArray();
+        FieldInfo[] fields = this.GetType().GetFields(flags).Where(f => typeof(PropertyDisplay).IsAssignableFrom(f.FieldType)).ToArray();
 
         foreach (FieldInfo fieldInfo in fields) {
             PropertyDisplay fieldDisplay = null;
@@ -96,110 +62,78 @@ public class CharacterAttributesDisplay : MonoBehaviour
         }
     }
 
-    private void PropertyChangeResponse(string arg, string arg1)
-    {
-        switch (arg)
-        {
-            case "normalSplash": targetCreature.characterAttributes.normalSplash = arg1; break;
-            case "weakSplash": targetCreature.characterAttributes.weakSplash = arg1; break;
-            case "defenceSplash": targetCreature.characterAttributes.defenceSplash = arg1; break;
-            case "abnormalSplash": targetCreature.characterAttributes.abnormalSplash = arg1; break;
-            case "sufferCriticable": targetCreature.characterAttributes.sufferCriticable = bool.Parse(arg1); break;
-            case "damagerCriticable": targetCreature.characterAttributes.damagerCriticable = bool.Parse(arg1); break;
-            case "regenerable": targetCreature.characterAttributes.regenerable = bool.Parse(arg1); break;
-            case "degenerable": targetCreature.characterAttributes.degenerable = bool.Parse(arg1); break;
-            case "inflictsBodyDamage": targetCreature.characterAttributes.inflictsBodyDamage = bool.Parse(arg1); break;
-            case "inflictsAttackDamage": targetCreature.characterAttributes.inflictsAttackDamage = bool.Parse(arg1); break;
-            case "baseLevel": targetCreature.characterAttributes.baseLevel = int.Parse(arg1); break;
-            case "pullTypeID": targetCreature.characterAttributes.pullTypeID = int.Parse(arg1); break;
-            case "mysticalFactor": targetCreature.characterAttributes.mysticalFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "attackPower": targetCreature.characterAttributes.attackPower = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "bodyPower": targetCreature.characterAttributes.bodyPower = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "strengthFactor": targetCreature.characterAttributes.strengthFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "resistanceFactor": targetCreature.characterAttributes.resistanceFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "efficiencyFactor": targetCreature.characterAttributes.efficiencyFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            
-            case "mysticalEfficiencyFactor": targetCreature.characterAttributes.mysticalEfficiencyFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            
-            case "peripheralFactor": targetCreature.characterAttributes.peripheralFactor = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "bodyDamageRepeatTime": targetCreature.characterAttributes.bodyDamageRepeatTime = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "bodyAttackWeight": targetCreature.characterAttributes.bodyAttackWeight = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "bodySufferWeight": targetCreature.characterAttributes.bodySufferWeight = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "attackDamageRepeatTime": targetCreature.characterAttributes.attackDamageRepeatTime = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "attackWeight": targetCreature.characterAttributes.attackWeight = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
-            case "pullDirection": targetCreature.characterAttributes.pullDirection = float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture); break;
+    private void PropertyChangeResponse(string arg, string arg1){
+        FieldInfo Field = targetCreature.characterAttributes.GetType().GetField(arg, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        object currentValue = Field.GetValue(targetCreature.characterAttributes);
 
-
-            default:
-                break;
+        if (Field != null){
+            if (currentValue is bool){
+                Field.SetValue(currentValue, bool.Parse(arg1));
+            }
+            else if (currentValue is float) {
+                Field.SetValue(currentValue, float.Parse(arg1, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture));
+            }
+            else {
+                Field.SetValue(currentValue, arg1);
+            }
         }
     }
 
-    public void Setup(ref CreatureEntry creatureEntry)
-    {
+    public void Setup(ref CreatureEntry creatureEntry) {
         targetCreature = creatureEntry;
 
+        BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        FieldInfo[] fields = creatureEntry.currentData.characterAttributes.GetType().GetFields(flags);
 
-        normalSplash.Setup("normalSplash", creatureEntry.currentData.characterAttributes.normalSplash, UtilDefinitions.PropertyDisplayTypes.String, creatureEntry.defaultData.characterAttributes.normalSplash.ToString(), creatureEntry.sourceData.characterAttributes.normalSplash.ToString());
-        weakSplash.Setup("weakSplash", creatureEntry.currentData.characterAttributes.weakSplash, UtilDefinitions.PropertyDisplayTypes.String, creatureEntry.defaultData.characterAttributes.weakSplash.ToString(), creatureEntry.sourceData.characterAttributes.weakSplash.ToString());
-        defenceSplash.Setup("defenceSplash", creatureEntry.currentData.characterAttributes.defenceSplash, UtilDefinitions.PropertyDisplayTypes.String, creatureEntry.defaultData.characterAttributes.defenceSplash.ToString(), creatureEntry.sourceData.characterAttributes.defenceSplash.ToString());
-        abnormalSplash.Setup("abnormalSplash", creatureEntry.currentData.characterAttributes.abnormalSplash, UtilDefinitions.PropertyDisplayTypes.String, creatureEntry.defaultData.characterAttributes.abnormalSplash.ToString(), creatureEntry.sourceData.characterAttributes.abnormalSplash.ToString());
-        sufferCriticable.Setup("sufferCriticable", creatureEntry.currentData.characterAttributes.sufferCriticable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.sufferCriticable.ToString(), creatureEntry.sourceData.characterAttributes.sufferCriticable.ToString());
-        damagerCriticable.Setup("damagerCriticable", creatureEntry.currentData.characterAttributes.damagerCriticable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.damagerCriticable.ToString(), creatureEntry.sourceData.characterAttributes.damagerCriticable.ToString());
-        regenerable.Setup("regenerable", creatureEntry.currentData.characterAttributes.regenerable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.regenerable.ToString(), creatureEntry.sourceData.characterAttributes.regenerable.ToString());
-        degenerable.Setup("degenerable", creatureEntry.currentData.characterAttributes.degenerable.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.degenerable.ToString(), creatureEntry.sourceData.characterAttributes.degenerable.ToString());
-        inflictsBodyDamage.Setup("inflictsBodyDamage", creatureEntry.currentData.characterAttributes.inflictsBodyDamage.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.inflictsBodyDamage.ToString(), creatureEntry.sourceData.characterAttributes.inflictsBodyDamage.ToString());
-        inflictsAttackDamage.Setup("inflictsAttackDamage", creatureEntry.currentData.characterAttributes.inflictsAttackDamage.ToString(), UtilDefinitions.PropertyDisplayTypes.Bool, creatureEntry.defaultData.characterAttributes.inflictsAttackDamage.ToString(), creatureEntry.sourceData.characterAttributes.inflictsAttackDamage.ToString());
-        baseLevel.Setup("baseLevel", creatureEntry.currentData.characterAttributes.baseLevel.ToString(), UtilDefinitions.PropertyDisplayTypes.Int, creatureEntry.defaultData.characterAttributes.baseLevel.ToString(), creatureEntry.sourceData.characterAttributes.baseLevel.ToString());
-        pullTypeID.Setup("pullTypeID", creatureEntry.currentData.characterAttributes.pullTypeID.ToString(), UtilDefinitions.PropertyDisplayTypes.Int, creatureEntry.defaultData.characterAttributes.pullTypeID.ToString(), creatureEntry.sourceData.characterAttributes.pullTypeID.ToString());
-        mysticalFactor.Setup("mysticalFactor", creatureEntry.currentData.characterAttributes.mysticalFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.mysticalFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.mysticalFactor.ToString(CultureInfo.InvariantCulture));
-        attackPower.Setup("attackPower", creatureEntry.currentData.characterAttributes.attackPower.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.attackPower.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.attackPower.ToString(CultureInfo.InvariantCulture));
-        bodyPower.Setup("bodyPower", creatureEntry.currentData.characterAttributes.bodyPower.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodyPower.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.bodyPower.ToString(CultureInfo.InvariantCulture));
-        strengthFactor.Setup("strengthFactor", creatureEntry.currentData.characterAttributes.strengthFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.strengthFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.strengthFactor.ToString(CultureInfo.InvariantCulture));
-        resistanceFactor.Setup("resistanceFactor", creatureEntry.currentData.characterAttributes.resistanceFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.resistanceFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.resistanceFactor.ToString(CultureInfo.InvariantCulture));
-        efficiencyFactor.Setup("efficiencyFactor", creatureEntry.currentData.characterAttributes.efficiencyFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.efficiencyFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.efficiencyFactor.ToString(CultureInfo.InvariantCulture));
+        foreach (FieldInfo field in fields)
+        {
+            object currentValue = field.GetValue(creatureEntry.currentData.characterAttributes);
+            object defaultValue = field.GetValue(creatureEntry.defaultData.characterAttributes);
+            object sourceValue = field.GetValue(creatureEntry.sourceData.characterAttributes);
 
-        mysticalEfficiencyFactor.Setup("mysticalEfficiencyFactor", creatureEntry.currentData.characterAttributes.mysticalEfficiencyFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.mysticalEfficiencyFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.mysticalEfficiencyFactor.ToString(CultureInfo.InvariantCulture));
-        
-        peripheralFactor.Setup("peripheralFactor", creatureEntry.currentData.characterAttributes.peripheralFactor.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.peripheralFactor.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.peripheralFactor.ToString(CultureInfo.InvariantCulture));
-        bodyDamageRepeatTime.Setup("bodyDamageRepeatTime", creatureEntry.currentData.characterAttributes.bodyDamageRepeatTime.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodyDamageRepeatTime.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.bodyDamageRepeatTime.ToString(CultureInfo.InvariantCulture));
-        bodyAttackWeight.Setup("bodyAttackWeight", creatureEntry.currentData.characterAttributes.bodyAttackWeight.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodyAttackWeight.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.bodyAttackWeight.ToString(CultureInfo.InvariantCulture));
-        bodySufferWeight.Setup("bodySufferWeight", creatureEntry.currentData.characterAttributes.bodySufferWeight.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.bodySufferWeight.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.bodySufferWeight.ToString(CultureInfo.InvariantCulture));
-        attackDamageRepeatTime.Setup("attackDamageRepeatTime", creatureEntry.currentData.characterAttributes.attackDamageRepeatTime.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.attackDamageRepeatTime.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.attackDamageRepeatTime.ToString(CultureInfo.InvariantCulture));
-        attackWeight.Setup("attackWeight", creatureEntry.currentData.characterAttributes.attackWeight.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.attackWeight.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.attackWeight.ToString(CultureInfo.InvariantCulture));
-        pullDirection.Setup("pullDirection", creatureEntry.currentData.characterAttributes.pullDirection.ToString(CultureInfo.InvariantCulture), UtilDefinitions.PropertyDisplayTypes.Float, creatureEntry.defaultData.characterAttributes.pullDirection.ToString(CultureInfo.InvariantCulture), creatureEntry.sourceData.characterAttributes.pullDirection.ToString(CultureInfo.InvariantCulture));
+            string fieldName = field.Name;
+            UtilDefinitions.PropertyDisplayTypes displayType = UtilDefinitions.PropertyDisplayTypes.String;
+
+            FieldInfo DisplayFieldInfo = this.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            PropertyDisplay fieldDisplay = DisplayFieldInfo.GetValue(this) as PropertyDisplay;
+
+            if (currentValue is bool)
+            {
+                displayType = UtilDefinitions.PropertyDisplayTypes.Bool;
+            }
+            else if (currentValue is float)
+            {
+                displayType = UtilDefinitions.PropertyDisplayTypes.Float;
+            }
+
+            MethodInfo setupMethod = typeof(PropertyDisplay).GetMethod("Setup", new Type[] { typeof(string), typeof(string), typeof(UtilDefinitions.PropertyDisplayTypes), typeof(string), typeof(string) });
+
+            string currentStr = (displayType == UtilDefinitions.PropertyDisplayTypes.Float) ? ((float)currentValue).ToString("G", CultureInfo.InvariantCulture) : currentValue.ToString();
+            string defaultStr = (displayType == UtilDefinitions.PropertyDisplayTypes.Float) ? ((float)defaultValue).ToString("G", CultureInfo.InvariantCulture) : defaultValue.ToString();
+            string sourceStr = (displayType == UtilDefinitions.PropertyDisplayTypes.Float) ? ((float)sourceValue).ToString("G", CultureInfo.InvariantCulture) : sourceValue.ToString();
+
+            setupMethod.Invoke(fieldDisplay, new object[] { fieldName, currentStr, displayType, defaultStr, sourceStr });
+        }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        if (normalSplash) normalSplash.gameObject.name = "normalSplash";
-        if (weakSplash) weakSplash.gameObject.name = "weakSplash";
-        if (defenceSplash) defenceSplash.gameObject.name = "defenceSplash";
-        if (abnormalSplash) abnormalSplash.gameObject.name = "abnormalSplash";
-        if (sufferCriticable) sufferCriticable.gameObject.name = "sufferCriticable";
-        if (damagerCriticable) damagerCriticable.gameObject.name = "damagerCriticable";
-        if (regenerable) regenerable.gameObject.name = "regenerable";
-        if (degenerable) degenerable.gameObject.name = "degenerable";
-        if (inflictsBodyDamage) inflictsBodyDamage.gameObject.name = "inflictsBodyDamage";
-        if (inflictsAttackDamage) inflictsAttackDamage.gameObject.name = "inflictsAttackDamage";
-        if (baseLevel) baseLevel.gameObject.name = "baseLevel";
-        if (pullTypeID) pullTypeID.gameObject.name = "pullTypeID";
-        if (mysticalFactor) mysticalFactor.gameObject.name = "mysticalFactor";
-        if (attackPower) attackPower.gameObject.name = "attackPower";
-        if (bodyPower) bodyPower.gameObject.name = "bodyPower";
-        if (strengthFactor) strengthFactor.gameObject.name = "strengthFactor";
-        if (resistanceFactor) resistanceFactor.gameObject.name = "resistanceFactor";
-        if (efficiencyFactor) efficiencyFactor.gameObject.name = "efficiencyFactor";
-        
-        if (mysticalEfficiencyFactor) mysticalEfficiencyFactor.gameObject.name = "mysticalEfficiencyFactor";
-        
-        if (peripheralFactor) peripheralFactor.gameObject.name = "peripheralFactor";
-        if (bodyDamageRepeatTime) bodyDamageRepeatTime.gameObject.name = "bodyDamageRepeatTime";
-        if (bodyAttackWeight) bodyAttackWeight.gameObject.name = "bodyAttackWeight";
-        if (bodySufferWeight) bodySufferWeight.gameObject.name = "bodySufferWeight";
-        if (attackDamageRepeatTime) attackDamageRepeatTime.gameObject.name = "attackDamageRepeatTime";
-        if (attackWeight) attackWeight.gameObject.name = "attackWeight";
-        if (pullDirection) pullDirection.gameObject.name = "pullDirection";
-    }
+    private void OnDrawGizmosSelected(){
+        BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        FieldInfo[] fields = this.GetType().GetFields(flags).Where(f => typeof(PropertyDisplay).IsAssignableFrom(f.FieldType)).ToArray();
 
+        foreach (FieldInfo fieldInfo in fields){
+            PropertyDisplay fieldDisplay = null;
+
+            string fieldName = fieldInfo.Name;
+            object fieldValueObj = fieldInfo.GetValue(this);
+
+            if (fieldValueObj != null) {
+                fieldDisplay = fieldValueObj as PropertyDisplay;
+            }
+
+            if (fieldDisplay != null){
+                fieldDisplay.gameObject.name = fieldName;
+                fieldDisplay.previewPropertyName = fieldName;
+            }
+        }
+    }
 }
